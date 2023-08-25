@@ -1,0 +1,6 @@
+# Create an empty next project using yarn
+yarn create next-app
+
+# Entry point
+src/app/page.tsx
+

@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Dmitri Khassanov <khdmitri@yahoo.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.101.1"
+alembic = "^1.11.3"
+fastapi-sqlalchemy = "^0.2.1"
+pydantic = "^2.3.0"
+psycopg2 = "^2.9.7"
+uvicorn = "^0.23.2"
+python-dotenv = "^1.0.0"
+bump-pydantic = "^0.6.1"
+pydantic-settings = "^2.0.3"
+jwt = "^1.3.1"
+python-jose = "^3.3.0"
+passlib = "^1.7.4"
+emails = "^0.6"
+email-validator = "^2.0.0.post2"
+asyncpg = "^0.28.0"
+python-multipart = "^0.0.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

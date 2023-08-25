@@ -1,0 +1,7 @@
+.mypy_cache
+.coverage
+htmlcov
+client64/
+client64_19.17/
+.env
+.idea/

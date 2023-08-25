@@ -1,0 +1,6 @@
+# Run postgres container docker command
+docker run --name smm-postgres -e POSTGRES_PASSWORD=qwerty123 -p 5436:5432 -d postgres
+
+# Backup & Restore
+docker exec -i -e PGPASSWORD=qwerty123 smm-postgres /usr/bin/pg_dump -U postgres public > ./app/dumps/postgres-backup.sql
+cat .\app\dumps\postgres-backup.sql | docker exec -i smm-postgres psql -U postgres -d public
