@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/smm_planner_project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/authentication/signup/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(schemes)/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -44,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/smm_planner_project/frontend/src/app/authentication/signup",
+    "last_opened_file_path": "C:/projects/DataAnalysis/frontend",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib"
@@ -68,6 +70,7 @@
       <updated>1693048266882</updated>
       <workItem from="1693048268252" duration="799000" />
       <workItem from="1693111208810" duration="4514000" />
+      <workItem from="1693206441229" duration="6498000" />
     </task>
     <servers />
   </component>

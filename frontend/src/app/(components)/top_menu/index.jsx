@@ -17,7 +17,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CssBaseline, Divider, Drawer, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 import DrawerMain from "../drawers/drawer_main";
 import {useRouter} from "next/navigation";
@@ -69,8 +69,12 @@ export default function PrimaryAppBar() {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const navItems = ['Home', 'About', 'Contact'];
-    const user = JSON.parse(sessionStorage.getItem("user"))
+    let user = null
     const router = useRouter()
+
+    useEffect(() => {
+        user = JSON.parse(sessionStorage.getItem("user"))
+    }, [])
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -161,7 +165,7 @@ export default function PrimaryAppBar() {
                     </IconButton>
                     <p>Profile</p>
                 </MenuItem> :
-                <>
+                <div>
                     <MenuItem>
                         <IconButton
                             size="small"
@@ -180,7 +184,7 @@ export default function PrimaryAppBar() {
                             Sign In
                         </IconButton>
                     </MenuItem>
-                </>
+                </div>
             }
         </Menu>
     );

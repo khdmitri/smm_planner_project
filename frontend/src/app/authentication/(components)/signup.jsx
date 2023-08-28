@@ -13,13 +13,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useFormik} from "formik";
+import {signupFormSchema} from "../../(schemes)";
+import {useState} from "react";
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Smm Planner
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,14 +35,36 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const onSubmit = () => {
+    console.log(`Submitted: ${JSON.stringify(values)}`)
+    const form = {
+      "email": values.email,
+      "first_name": values.first_name,
+      "last_name": values.last_name,
+      "password": values.password,
+      "allow_extra_emails": allowExtraEmails
+    }
+
+    // useUser("createUser", onCreateComplete, form, accessToken)
   };
+
+  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
+    initialValues: {
+      email: "",
+      first_name: "",
+      last_name: "",
+      password: "",
+      password2: ""
+    },
+    validationSchema: signupFormSchema,
+    onSubmit
+  });
+
+  const [allowExtraEmails, setAllowExtraEmails] = useState(true)
+
+  const allowExtraEmailsChanged = () => {
+    setAllowExtraEmails(!allowExtraEmails)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -64,11 +89,15 @@ export default function SignUp() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="first_name"
                   required
                   fullWidth
-                  id="firstName"
+                  id="first_name"
                   label="First Name"
+                  value={values.first_name}
+                  onChange={handleChange}
+                  error={errors.first_name}
+                  helperText={errors.first_name ? errors.first_name : ""}
                   autoFocus
                 />
               </Grid>
@@ -76,10 +105,14 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="last_name"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
                   autoComplete="family-name"
+                  value={values.last_name}
+                  onChange={handleChange}
+                  error={errors.last_name}
+                  helperText={errors.last_name ? errors.last_name : ""}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,12 +120,17 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
+                  type="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  error={errors.email}
+                  helperText={errors.email ? errors.email : ""}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -101,11 +139,30 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={values.password}
+                  onChange={handleChange}
+                  error={errors.password}
+                  helperText={errors.password ? errors.password : ""}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password2"
+                  label="Repeat Password"
+                  type="password"
+                  id="password2"
+                  autoComplete="repeat-password"
+                  value={values.password2}
+                  onChange={handleChange}
+                  error={errors.password2}
+                  helperText={errors.password2 ? errors.password2 : ""}
                 />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={<Checkbox value={allowExtraEmails} onChange={allowExtraEmailsChanged} color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>

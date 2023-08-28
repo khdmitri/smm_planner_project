@@ -15,10 +15,6 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         result = await db.execute(select(User).filter(User.email == email))
         return result.scalars().first()
 
-    async def get_by_username(self, db: AsyncSession, *, username: str) -> Optional[User]:
-        result = await db.execute(select(User).filter(User.username == username))
-        return result.scalars().first()
-
     async def get_by_ids(self, db: AsyncSession, *, ids: List[int]):
         result = await db.execute(select(User).filter(User.id.in_(ids)))
         return result.scalars().all()
@@ -26,12 +22,10 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
     async def create(self, db: AsyncSession, *, obj_in: UserCreate) -> User:
         db_obj = User(
             email=obj_in.email,
-            username=obj_in.username,
+            first_name=obj_in.first_name,
             hashed_password=get_password_hash(obj_in.password),
-            full_name=obj_in.full_name,
-            is_superuser=obj_in.is_superuser,
-            is_active=obj_in.is_active,
-            role_id=obj_in.role_id
+            last_name=obj_in.last_name,
+            allow_extra_emails=obj_in.allow_extra_emails
         )
         db.add(db_obj)
         await db.commit()
@@ -53,8 +47,8 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         result = await super().update(db, db_obj=db_obj, obj_in=update_data)
         return result
 
-    async def authenticate(self, db: AsyncSession, *, username: str, password: str) -> Optional[User]:
-        user = await self.get_by_username(db, username=username)
+    async def authenticate(self, db: AsyncSession, *, email: str, password: str) -> Optional[User]:
+        user = await self.get_by_email(db, email=email)
         if not user:
             return None
         if not verify_password(password, user.hashed_password):
