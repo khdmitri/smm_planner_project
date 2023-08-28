@@ -8,6 +8,7 @@ export default function RootLayout(props) {
     <html lang="en">
       <body>
         <MenuLayer />
+        <div className="paddingTop"></div>
         {children}
       </body>
     </html>
