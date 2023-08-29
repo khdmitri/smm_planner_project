@@ -8,6 +8,8 @@ class UserBase(BaseModel):
     allow_extra_emails: Optional[bool] = True
     first_name: Optional[str] = None
     last_name: Optional[str] = None
+    is_superuser: Optional[bool] = None
+    is_active: Optional[bool] = None
 
 
 # Properties to receive via API on creation
@@ -42,4 +44,5 @@ class UserInDB(UserInDBBase):
 
 
 class User(UserInDBBase):
-    pass
+    is_superuser: bool
+    is_active: bool

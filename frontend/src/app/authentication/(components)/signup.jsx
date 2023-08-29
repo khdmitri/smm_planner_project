@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useFormik} from "formik";
 import {signupFormSchema} from "../../(schemes)";
 import {useState} from "react";
+import UserAPI from "../../../lib/user";
 
 function Copyright(props) {
   return (
@@ -35,7 +36,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const onSubmit = () => {
+  const onSubmit = async () => {
     console.log(`Submitted: ${JSON.stringify(values)}`)
     const form = {
       "email": values.email,
@@ -45,7 +46,13 @@ export default function SignUp() {
       "allow_extra_emails": allowExtraEmails
     }
 
-    // useUser("createUser", onCreateComplete, form, accessToken)
+    const onCreateComplete = await UserAPI.createNewUser(form)
+    if (onCreateComplete.status === 200 || onCreateComplete.status === 201) {
+      console.log("Creation complete:", onCreateComplete)
+    }
+    else {
+      console.log("Creation Error:", onCreateComplete)
+    }
   };
 
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({

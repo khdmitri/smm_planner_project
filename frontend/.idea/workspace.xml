@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/(schemes)/index.js" afterDir="false" />
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: sign up">
+      <change afterPath="$PROJECT_DIR$/src/lib/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/createNewUser.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +38,9 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="2UWH9i6F6RssgBNKAiqOiSEF1fH" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -46,7 +51,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/DataAnalysis/frontend",
+    "last_opened_file_path": "C:/projects/nextjs_course/discover-coffee-stores",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib"
@@ -57,6 +62,7 @@
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
   </component>
@@ -70,8 +76,17 @@
       <updated>1693048266882</updated>
       <workItem from="1693048268252" duration="799000" />
       <workItem from="1693111208810" duration="4514000" />
-      <workItem from="1693206441229" duration="6498000" />
+      <workItem from="1693206441229" duration="6525000" />
+      <workItem from="1693285885579" duration="7384000" />
     </task>
+    <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
+      <created>1693223721411</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693223721411</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,5 +102,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="FE&amp;BE: sign up" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE&amp;BE: sign up" />
   </component>
 </project>
