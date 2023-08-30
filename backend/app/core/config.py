@@ -72,7 +72,7 @@ class Settings(BaseSettings):
             password=values.data.get("POSTGRES_PASSWORD"),
             host=values.data.get("POSTGRES_SERVER"),
             port=int(values.data.get("POSTGRES_PORT")),
-            path=f"/{values.data.get('POSTGRES_DB') or ''}",
+            path=f"{values.data.get('POSTGRES_DB') or ''}",
         )
 
     SMTP_TLS: bool = True

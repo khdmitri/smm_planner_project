@@ -171,6 +171,7 @@ export default function PrimaryAppBar() {
                             size="small"
                             aria-label="account sign up"
                             color="inherit"
+                            onClick={() => router.push('/authentication/signup')}
                         >
                             Sign Up
                         </IconButton>
@@ -180,6 +181,7 @@ export default function PrimaryAppBar() {
                             size="small"
                             aria-label="account sign up"
                             color="inherit"
+                            onClick={() => router.push('/authentication/signin')}
                         >
                             Sign In
                         </IconButton>
@@ -287,7 +289,7 @@ export default function PrimaryAppBar() {
                                     size="small"
                                     edge="end"
                                     aria-label="account sign in"
-                                    onClick={handleProfileMenuOpen}
+                                    onClick={() => router.push('/authentication/signin')}
                                     color="inherit"
                                 >
                                     Sign In
