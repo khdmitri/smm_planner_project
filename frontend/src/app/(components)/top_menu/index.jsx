@@ -21,6 +21,7 @@ import {useEffect, useState} from "react";
 import {CssBaseline, Divider, Drawer, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 import DrawerMain from "../drawers/drawer_main";
 import {useRouter} from "next/navigation";
+import SmmPlannerLogo from "../../../components/logo/smm_planner_logo";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -199,9 +200,7 @@ export default function PrimaryAppBar() {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
-            <Typography variant="h6" sx={{my: 2}}>
-                SMM Planner
-            </Typography>
+            <SmmPlannerLogo />
             <Divider/>
             <List>
                 {navItems.map((item) => (
@@ -230,14 +229,15 @@ export default function PrimaryAppBar() {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{display: {xs: 'none', sm: 'block'}}}
-                    >
-                        SMM Planner
-                    </Typography>
+                    {/*<Typography*/}
+                    {/*    variant="h6"*/}
+                    {/*    noWrap*/}
+                    {/*    component="div"*/}
+                    {/*    sx={{display: {xs: 'none', sm: 'block'}}}*/}
+                    {/*>*/}
+                    {/*    SMM Planner*/}
+                    {/*</Typography>*/}
+                    <SmmPlannerLogo />
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon/>

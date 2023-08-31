@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: sign up v.2">
-      <change afterPath="$PROJECT_DIR$/../backend/app/common/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/common/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/authentication/signin/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/profile/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/profile/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/alert/alert.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/db/session.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/db/session.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pyproject.toml" afterDir="false" />
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: sign up &amp; sign in. Start profile design">
+      <change afterPath="$PROJECT_DIR$/src/app/profile/(components)/app_menu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/layout/root_page_layout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/logo/smm_planner_logo.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +49,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/DataAnalysis/frontend",
+    "last_opened_file_path": "C:/projects/smm_planner_project/frontend",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib"
@@ -66,6 +60,7 @@
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\src\components" />
       <recent name="C:\projects\smm_planner_project\frontend" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
@@ -82,7 +77,8 @@
       <workItem from="1693111208810" duration="4514000" />
       <workItem from="1693206441229" duration="6525000" />
       <workItem from="1693285885579" duration="7465000" />
-      <workItem from="1693371462751" duration="16236000" />
+      <workItem from="1693371462751" duration="16272000" />
+      <workItem from="1693458784950" duration="7929000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -98,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693296170350</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="FE&amp;BE: sign up &amp; sign in. Start profile design">
+      <created>1693395996434</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693395996434</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FE&amp;BE: sign up" />
     <MESSAGE value="FE&amp;BE: sign up v.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="FE&amp;BE: sign up v.2" />
+    <MESSAGE value="FE&amp;BE: sign up &amp; sign in. Start profile design" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE&amp;BE: sign up &amp; sign in. Start profile design" />
   </component>
 </project>
