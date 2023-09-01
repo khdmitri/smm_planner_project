@@ -6,12 +6,12 @@ export default function ProfileLayout(props) {
     const {children} = props;
     return (
         <AppMenu>
-            <Container sx={{height: '100vh', paddingTop: 7}}>
+            <Box sx={{height: '100vh', paddingTop: 9, paddingLeft: 2    }} display="flex" justifyContent="left">
                 <CssBaseline/>
-                <Box display="flex" justifyContent="center">
+                <Box display="flex" justifyContent="start">
                     {children}
                 </Box>
-            </Container>
+            </Box>
         </AppMenu>
     )
 }
