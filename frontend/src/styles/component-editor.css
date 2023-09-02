@@ -23,3 +23,15 @@
 .editorWrapper {
     position: relative;
 }
+
+.toolbar-wrapper {
+    display: flex;
+}
+
+.editor-list-ol-custom {
+    padding-left: 12px;
+}
+
+.editor-list-ul-custom {
+    padding-left: 12px;
+}

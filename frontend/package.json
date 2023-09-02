@@ -11,8 +11,10 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@lexical/list": "^0.12.0",
     "@lexical/react": "^0.12.0",
     "@lexical/rich-text": "^0.12.0",
+    "@lexical/selection": "^0.12.0",
     "@material-ui/core": "^5.0.0-beta.5",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
