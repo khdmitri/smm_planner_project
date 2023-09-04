@@ -7,10 +7,12 @@ import {ContentEditable} from '@lexical/react/LexicalContentEditable';
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin";
-import {$createHeadingNode, HeadingNode} from "@lexical/rich-text";
+import {$createHeadingNode, HeadingNode, QuoteNode} from "@lexical/rich-text";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {$getSelection, $isRangeSelection, COMMAND_PRIORITY_LOW} from "lexical";
 import {$setBlocksType} from "@lexical/selection";
+import {$convertFromMarkdownString, TRANSFORMERS} from '@lexical/markdown';
+import {MarkdownShortcutPlugin} from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import {
     INSERT_ORDERED_LIST_COMMAND,
     INSERT_UNORDERED_LIST_COMMAND,
@@ -18,6 +20,9 @@ import {
     ListItemNode,
     ListNode
 } from "@lexical/list";
+import {HorizontalRuleNode} from "@lexical/react/LexicalHorizontalRuleNode";
+import {CodeNode} from "@lexical/code";
+import {LinkNode} from "@lexical/link";
 
 const theme = {
     paragraph: 'editor-paragraph',
@@ -37,9 +42,6 @@ const theme = {
         },
         ol: 'editor-list-ol-custom',
         ul: 'editor-list-ul-custom',
-        listitem: 'editor-listItem',
-        listitemChecked: 'editor-listItemChecked',
-        listitemUnchecked: 'editor-listItemUnchecked',
     },
 }
 
@@ -88,7 +90,8 @@ function ToolbarPlugin() {
     return (
         <div className="toolbar-wrapper">
             <HeadingToolbarPlugin/>&nbsp;|&nbsp;
-            <ListToolbarPlugin/>
+            <ListToolbarPlugin/>&nbsp;|&nbsp;
+            <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         </div>
     )
 }
@@ -113,7 +116,7 @@ const LexicalEditor = () => {
         theme,
         onError,
         nodes: [
-            HeadingNode, ListNode, ListItemNode
+            HeadingNode, ListNode, ListItemNode, HorizontalRuleNode, CodeNode, LinkNode, QuoteNode,
         ]
     };
 
