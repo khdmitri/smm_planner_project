@@ -9,11 +9,13 @@ import MUIRichTextEditor from "mui-rte";
 import {ThemeProvider} from "@mui/styles";
 import { convertToRaw } from 'draft-js'
 import LexicalEditor from "../(components)/lexical_editor";
+import Editor from "../../../components/editor/Editor";
 
 const NewPost = () => {
     const myTheme = createTheme({
         // Set up your custom MUI theme here
     })
+    const [markdown, setMarkdown] = useState("");
     const [files, setFiles] = useState([])
     const [editorState, setEditorState] = useState()
     const handlePreviewIcon = (fileObject) => {
@@ -52,7 +54,7 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
-            <LexicalEditor />
+            <Editor onChange={setMarkdown} value={markdown} />
         </Box>
     );
 };

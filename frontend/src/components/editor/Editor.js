@@ -20,6 +20,7 @@ import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import ReadOnlyPlugin from "./plugins/ReadOnlyPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import OnChangeMarkdown from "./plugins/OnChangeMarkdown";
+import "./styles.css"
 
 function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
