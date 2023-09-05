@@ -105,6 +105,7 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER: EmailStr
     FIRST_SUPERUSER_PASSWORD: str
     USERS_OPEN_REGISTRATION: bool = False
+    BASE_FILE_DIRECTORY: str
     APP_VERSION: str
 
 
