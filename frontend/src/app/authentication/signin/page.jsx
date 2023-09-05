@@ -74,7 +74,7 @@ export default function SignIn() {
         }).catch(error => {
             setShowMessage(true)
             setMessage(`Sign In failed: ${error.message}`)
-            setSeverity("info")
+            setSeverity("error")
         })
     };
 

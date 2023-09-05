@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -17,12 +17,12 @@ import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import {useRouter} from "next/navigation";
 
 const MenuList = (props) => {
-    const [active, setActive] = useState("Dashboard")
     const {open} = props
+    const [active, setActive] = useState("Dashboard")
     const router = useRouter()
 
-    const onMenuItemClick = (route, activeItem) => {
-        setActive(activeItem)
+    const onMenuItemClick = (route, active_text) => {
+        setActive(active_text)
         router.push(route)
     }
 
@@ -59,7 +59,7 @@ const MenuList = (props) => {
             <List>
                 {[{text: 'Dashboard', icon: <DashboardIcon/>, route: '/profile'},
                     {text: 'New Post', icon: <PostAddIcon/>, route: '/profile/new_post'},
-                    {text: 'Posts', icon: <DynamicFeedIcon/>, route: '/profile/posts'},
+                    {text: 'Posts', icon: <DynamicFeedIcon/>, route: '/profile/posts_list'},
                     {text: 'Scheduler', icon: <ScheduleIcon/>, route: '/profile/scheduler'}]
                     .map((item, index) => (
                         renderListItem(item)

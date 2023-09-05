@@ -2,38 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: Profile: RichTextEditor #2">
+      <change afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/profile/posts_list/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/emoji/1F600.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/emoji/1F600.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/emoji/1F641.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/emoji/1F641.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/emoji/1F642.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/emoji/1F642.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/emoji/2764.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/emoji/2764.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/arrow-clockwise.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/arrow-clockwise.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/arrow-counterclockwise.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/arrow-counterclockwise.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/chat-square-quote.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/chat-square-quote.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/chevron-down.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/chevron-down.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/code.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/code.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/journal-code.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/journal-code.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/journal-text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/journal-text.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/justify.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/justify.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/link.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/link.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/list-ol.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/list-ol.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/list-ul.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/list-ul.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/pencil-fill.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/pencil-fill.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/text-center.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/text-center.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/text-left.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/text-left.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/text-paragraph.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/text-paragraph.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/text-right.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/text-right.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-bold.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-bold.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-h1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-h1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-h2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-h2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-h3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-h3.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-italic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-italic.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-strikethrough.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-strikethrough.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icons/type-underline.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/images/icons/type-underline.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authentication/signin/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authentication/signin/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editor/Editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/Editor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editor/plugins/ToolbarPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/plugins/ToolbarPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +25,8 @@
       <list>
         <option value="Python Script" />
         <option value="TypeScript JSX File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -67,19 +47,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/projects/smm_planner_project/frontend&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/projects/smm_planner_project/backend",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />

@@ -6,19 +6,14 @@ const instance = axios.create({
 instance.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
 instance.defaults.headers.post["Content-Type"] = "multipart/form-data"
 
-export default class LoginAPI {
-    static async loginAccessToken(data) {
-        return await instance.post("login/access-token", data)
-    }
-
-    static async testToken(data) {
+export default class PostAPI {
+    static async newPost(form_data, access_token) {
         const config = {
             headers: {
-                "Authorization": `Bearer ${data}`,
+                "Authorization": `Bearer ${access_token}`,
             }
         }
-
-        return await instance.post("login/test-token", data, config)
+        return await instance.post("posts", form_data, config)
     }
 }
 

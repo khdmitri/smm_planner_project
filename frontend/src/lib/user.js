@@ -12,11 +12,6 @@ export default class UserAPI {
         console.log("Axios headers=", instance.defaults.headers)
         console.log("Form=", form)
 
-        try {
-            return await instance.post('/users', form)
-        } catch (error) {
-            console.log("ERROR (CreateNewUser):", error)
-            return error
-        }
+        return await instance.post('/users', form)
     }
 }
