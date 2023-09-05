@@ -4,4 +4,4 @@ htmlcov
 client64/
 client64_19.17/
 .env
-.idea/
+.idea/*
