@@ -1,12 +1,13 @@
-from typing import Optional, List
+from typing import Optional
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 
 
 class PostFileBase(BaseModel):
     filepath: Optional[str] = None
     content_type: Optional[str] = True
-    filesize: Optional[bool] = None
+    filesize: Optional[int] = None
+    save_result: Optional[dict] = None
 
 
 # Properties to receive via API on creation

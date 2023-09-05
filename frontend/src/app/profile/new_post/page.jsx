@@ -14,7 +14,7 @@ const NewPost = () => {
     const myTheme = createTheme({
         // Set up your custom MUI theme here
     })
-    const [markdown, setMarkdown] = useState("");
+    const [markdown, setMarkdown] = useState("Sample Text");
     const [isCreated, setIsCreated] = useState(false)
     const [files, setFiles] = useState([])
     const [user, setUser] = useState()
@@ -24,48 +24,50 @@ const NewPost = () => {
     const [severity, setSeverity] = useState("info")
     const router = useRouter()
     const handlePreviewIcon = (fileObject) => {
-        console.log("FileObject=", fileObject)
-        const {type} = fileObject.file
-        // const iconProps = {
-        //     className: classes.image,
-        // }
-
+        // console.log("FileObject=", fileObject)
         return (
             <PreviewCard fileObject={fileObject}/>
         )
-
     }
 
     const resetPage = () => {
-        setMarkdown("")
-        setShowMessage(false)
-        setIsCreated(false)
-        setFiles([])
-        setTitle("")
+        sessionStorage.setItem("active_item", "New Post")
+        window.location.reload()
+        // setMarkdown("")
+        // setShowMessage(false)
+        // setIsCreated(false)
+        // setFiles([])
+        // setTitle("")
     }
 
     const onNewPost = async (event) => {
+        console.log("Submit")
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         if (user) {
             data.append("text", markdown)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
-            await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
+            // await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
+            //     setIsCreated(true)
+            //     setShowMessage(true)
+            //     setMessage(`Post was successfully created!`)
+            //     setSeverity("success")
+            // }).catch(error => {
+            //     console.log(error)
+            //     setShowMessage(true)
+            //     setMessage(`Error: ${error.response && error.response.data ? error.response.data.detail : "Unknown"}`)
+            //     setSeverity("error")
+            // })
                 setIsCreated(true)
                 setShowMessage(true)
                 setMessage(`Post was successfully created!`)
                 setSeverity("success")
-            }).catch(error => {
-                console.log(error)
-                setShowMessage(true)
-                setMessage(`Error: ${error.response.data.detail}`)
-                setSeverity("error")
-            })
-
         } else {
             router.push("/authentication/signin")
         }
+        console.log("End of submit")
+        return true
     }
 
     useEffect(() => {
@@ -96,6 +98,7 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
+            <Editor onChange={setMarkdown} value={markdown}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"
@@ -111,7 +114,6 @@ const NewPost = () => {
                     autoFocus
                     focused
                 />
-                <Editor onChange={setMarkdown} value={markdown}/>
                 {!isCreated &&
                     <Button type="submit" variant="contained">Create New Post</Button>
                 }

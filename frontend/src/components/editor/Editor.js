@@ -99,7 +99,7 @@ export default function Editor(props) {
           <CodeHighlightPlugin />
           <ListPlugin />
           <LinkPlugin />
-          <OnChangeMarkdown onChange={props.onChange} />
+          <OnChangeMarkdown transformers={TRANSFORMERS} onChange={props.onChange} />
           <ReadOnlyPlugin isDisabled={props.isDisabled} />
           <AutoLinkPlugin />
           <ListMaxIndentLevelPlugin maxDepth={7} />

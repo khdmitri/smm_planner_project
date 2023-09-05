@@ -18,7 +18,7 @@ import {useRouter} from "next/navigation";
 
 const MenuList = (props) => {
     const {open} = props
-    const [active, setActive] = useState("Dashboard")
+    const [active, setActive] = useState(sessionStorage.getItem("active_item") || "Dashboard")
     const router = useRouter()
 
     const onMenuItemClick = (route, active_text) => {

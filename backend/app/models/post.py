@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, List
 
-from sqlalchemy import Column, String, ForeignKey, Integer, DateTime, func, Boolean
+from sqlalchemy import Column, String, ForeignKey, Integer, DateTime, func, Boolean, JSON
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from app.db.base_class import Base
@@ -25,3 +25,4 @@ class PostFile(Base):
     content_type: Mapped[str] = mapped_column(String)
     filesize: Mapped[int] = mapped_column(Integer)
     post_id: Mapped[int] = mapped_column(ForeignKey("post.id"))
+    save_result = Column(JSON, default={})
