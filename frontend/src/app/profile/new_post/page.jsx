@@ -9,12 +9,14 @@ import {useRouter} from "next/navigation";
 import TextField from "@mui/material/TextField";
 import PostAPI from "../../../lib/post";
 import UniAlert from "../../../components/alert/alert";
+import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
+import {$generateHtmlFromNodes} from "@lexical/html";
 
 const NewPost = () => {
     const myTheme = createTheme({
         // Set up your custom MUI theme here
     })
-    const [markdown, setMarkdown] = useState("Sample Text");
+    const [markdown, setMarkdown] = useState("**Bold *Italic***");
     const [isCreated, setIsCreated] = useState(false)
     const [files, setFiles] = useState([])
     const [user, setUser] = useState()
@@ -22,6 +24,7 @@ const NewPost = () => {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
+    const [editor, setEditor] = useState()
     const router = useRouter()
     const handlePreviewIcon = (fileObject) => {
         // console.log("FileObject=", fileObject)
@@ -42,6 +45,7 @@ const NewPost = () => {
 
     const onNewPost = async (event) => {
         console.log("Submit")
+        console.log("HTML=", $generateHtmlFromNodes(editor, null))
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         if (user) {
@@ -79,6 +83,10 @@ const NewPost = () => {
             router.push("/authentication/signin")
     }, [])
 
+    useEffect(() => {
+        console.log("markdown=", markdown)
+    }, [markdown])
+
     return (
         <Box>
             {showMessage &&
@@ -98,7 +106,7 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
-            <Editor onChange={setMarkdown} value={markdown}/>
+            <Editor onChange={setMarkdown} value={markdown} editor={setEditor}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"
