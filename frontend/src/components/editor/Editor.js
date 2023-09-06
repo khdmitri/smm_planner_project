@@ -35,45 +35,47 @@ function Placeholder() {
 }
 
 export default function Editor(props) {
-    const editorRef = useRef(null)
+    const { json_setter, initial_value } = props
+    const EMPTY_CONTENT = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
     console.log("Props=", props)
 
-    // const initialEditorState = () => {
-    //     // let str = (props.value || "").replace(/\n\n<br>\n/g, "\n");
-    //     // let str = (props.value || "")
-    //     // console.log("str=", str)
-    //
-    //     // If we still have br tags, we're coming from Slate, apply
-    //     // Slate list collapse and remove remaining br tags
-    //     // https://github.com/facebook/lexical/issues/2208
-    //     // if (str.match(/<br>/g)) {
-    //     //     str = str
-    //     //         .replace(/^(\n)(?=\s*[-+\d.])/gm, "")
-    //     //         .replace(/<br>/g, "");
-    //     // }
-    //     //
-    //     // str = str
-    //     //     // Unescape HTML characters
-    //     //     .replace(/&quot;/g, '"')
-    //     //     .replace(/&amp;/g, "&")
-    //     //     .replace(/&#39;/g, "'")
-    //     //     .replace(/&lt;/g, "<")
-    //     //     .replace(/&gt;/g, ">");
-    //     //
-    //     // if (!str) {
-    //     //     // if string is empty and this is not an update
-    //     //     // don't bother trying to $convertFromMarkdown
-    //     //     // below we properly initialize with the correct state allowing for
-    //     //     // AutoFocus to work (as there is state to focus on), which works better
-    //     //     // than $convertFromMarkdownString('')
-    //     //     const root = $getRoot();
-    //     //     const paragraph = $createParagraphNode();
-    //     //     root.append(paragraph);
-    //     //     return;
-    //     // }
-    //
-    //     // $convertFromMarkdownString(str, TRANSFORMERS);
-    // }
+    const initialEditorState = () => {
+        return JSON.stringify(initial_value) || EMPTY_CONTENT
+        // let str = (props.value || "").replace(/\n\n<br>\n/g, "\n");
+        // let str = (props.value || "")
+        // console.log("str=", str)
+
+        // If we still have br tags, we're coming from Slate, apply
+        // Slate list collapse and remove remaining br tags
+        // https://github.com/facebook/lexical/issues/2208
+        // if (str.match(/<br>/g)) {
+        //     str = str
+        //         .replace(/^(\n)(?=\s*[-+\d.])/gm, "")
+        //         .replace(/<br>/g, "");
+        // }
+        //
+        // str = str
+        //     // Unescape HTML characters
+        //     .replace(/&quot;/g, '"')
+        //     .replace(/&amp;/g, "&")
+        //     .replace(/&#39;/g, "'")
+        //     .replace(/&lt;/g, "<")
+        //     .replace(/&gt;/g, ">");
+        //
+        // if (!str) {
+        //     // if string is empty and this is not an update
+        //     // don't bother trying to $convertFromMarkdown
+        //     // below we properly initialize with the correct state allowing for
+        //     // AutoFocus to work (as there is state to focus on), which works better
+        //     // than $convertFromMarkdownString('')
+        //     const root = $getRoot();
+        //     const paragraph = $createParagraphNode();
+        //     root.append(paragraph);
+        //     return;
+        // }
+
+        // $convertFromMarkdownString(str, TRANSFORMERS);
+    }
 
     const editorConfig = {
         // The editor theme
@@ -81,14 +83,13 @@ export default function Editor(props) {
         onError(error) {
             throw error;
         },
+        editorState: initialEditorState,
         // Any custom nodes go here
         nodes: [HeadingNode, ListNode, ListItemNode, QuoteNode, CodeNode, CodeHighlightNode, TableNode, TableCellNode, TableRowNode, AutoLinkNode, LinkNode]
     };
 
     const onChange = (editorState) => {
-        console.log("editorState:", editorState)
-        console.log("json=", editorState.toJSON())
-        console.log("html=", editorRef.current)
+        json_setter(editorState.toJSON())
     }
 
     return (<LexicalComposer initialConfig={editorConfig}>
@@ -102,7 +103,6 @@ export default function Editor(props) {
                 />
                 <OnChangePlugin onChange={onChange}/>
                 <HistoryPlugin/>
-
                 <CodeHighlightPlugin/>
                 <ListPlugin/>
                 <LinkPlugin/>
@@ -111,7 +111,7 @@ export default function Editor(props) {
                 <AutoLinkPlugin/>
                 <ListMaxIndentLevelPlugin maxDepth={7}/>
                 <MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
-                <RefPlugin editorRef={editorRef} />
+                {/*<RefPlugin setter={editorRef} />*/}
             </div>
         </div>
     </LexicalComposer>);

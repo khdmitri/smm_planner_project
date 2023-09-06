@@ -12,7 +12,8 @@ if TYPE_CHECKING:
 class Post(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = Column(String, index=True)
-    text: Mapped[str] = Column(String)
+    markdown_text: Mapped[str] = Column(String)
+    json_text = Column(JSON, default={})
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     when = Column(DateTime, server_default=func.now())
     is_posted: Mapped[bool] = Column(Boolean, default=False)

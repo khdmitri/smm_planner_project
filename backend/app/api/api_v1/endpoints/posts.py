@@ -19,12 +19,13 @@ logger = get_logger(logging.INFO)
 @router.post("/", response_model=schemas.Msg)
 async def new_post(
         title: Optional[str] = Form(None),
-        text: Optional[str] = Form(None),
+        markdown_text: Optional[str] = Form(None),
+        json_text: Optional[str] = Form(None),
         files: List[UploadFile] = Form(None),
         db: AsyncSession = Depends(get_db_async),
         current_user: models.User = Depends(deps.get_current_user)
 ) -> Any:
-    if title is None and text is None:
+    if title is None and markdown_text is None:
         raise HTTPException(
             status_code=422,
             detail="The title and message text can not be empty at the same time",
@@ -32,7 +33,11 @@ async def new_post(
 
     try:
         # Create New Post
-        new_post = PostCreate(user_id=current_user.id, title=title, text=text)
+        new_post = PostCreate(user_id=current_user.id,
+                              title=title,
+                              markdown_text=markdown_text,
+                              json_text=json_text
+                              )
         new_post = await crud_post.create(db, obj_in=new_post)
 
         # Create PostFiles

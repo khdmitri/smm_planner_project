@@ -11,12 +11,14 @@ import PostAPI from "../../../lib/post";
 import UniAlert from "../../../components/alert/alert";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {$generateHtmlFromNodes} from "@lexical/html";
+import {convertPureMarkdown} from "../../../lib/utils";
 
 const NewPost = () => {
     const myTheme = createTheme({
         // Set up your custom MUI theme here
     })
     const [markdown, setMarkdown] = useState("**Bold *Italic***");
+    const [jsonText, setJsonText] = useState({})
     const [isCreated, setIsCreated] = useState(false)
     const [files, setFiles] = useState([])
     const [user, setUser] = useState()
@@ -45,28 +47,24 @@ const NewPost = () => {
 
     const onNewPost = async (event) => {
         console.log("Submit")
-        console.log("HTML=", $generateHtmlFromNodes(editor, null))
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         if (user) {
-            data.append("text", markdown)
+            data.append("markdown_text", convertPureMarkdown(markdown))
+            data.append("json_text", JSON.stringify(jsonText))
             if (files.length > 0)
                 files.map(file => data.append("files", file))
-            // await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
-            //     setIsCreated(true)
-            //     setShowMessage(true)
-            //     setMessage(`Post was successfully created!`)
-            //     setSeverity("success")
-            // }).catch(error => {
-            //     console.log(error)
-            //     setShowMessage(true)
-            //     setMessage(`Error: ${error.response && error.response.data ? error.response.data.detail : "Unknown"}`)
-            //     setSeverity("error")
-            // })
+            await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
                 setIsCreated(true)
                 setShowMessage(true)
                 setMessage(`Post was successfully created!`)
                 setSeverity("success")
+            }).catch(error => {
+                console.log(error)
+                setShowMessage(true)
+                setMessage(`Error: ${error.response && error.response.data ? error.response.data.detail : "Unknown"}`)
+                setSeverity("error")
+            })
         } else {
             router.push("/authentication/signin")
         }
@@ -106,7 +104,7 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
-            <Editor onChange={setMarkdown} value={markdown} editor={setEditor}/>
+            <Editor onChange={setMarkdown} json_setter={setJsonText}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"

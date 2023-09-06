@@ -8,7 +8,8 @@ from app.schemas.post_file import PostFile
 
 class PostBase(BaseModel):
     title: Optional[str] = None
-    text: Optional[str] = True
+    markdown_text: Optional[str] = True
+    json_text: Optional[dict] = True
     is_posted: Optional[bool] = None
     when: Optional[datetime] = None
 
