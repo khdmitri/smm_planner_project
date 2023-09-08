@@ -3,3 +3,5 @@
 from app.db.base_class import Base  # noqa
 from app.models.user import User # noqa
 from app.models.post import Post, PostFile # Noqa
+from app.models.telegram_config import TelegramConfig # Noqa
+from app.models.telegram_queue import TelegramQueue # Noqa
