@@ -25,6 +25,7 @@
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.3",
     "@mui/styles": "^5.14.7",
+    "@mui/x-data-grid": "^6.12.1",
     "@types/node": "20.4.5",
     "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",

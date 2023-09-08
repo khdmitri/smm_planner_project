@@ -14,6 +14,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import {useRouter} from "next/navigation";
 
 const MenuList = (props) => {
@@ -71,7 +72,8 @@ const MenuList = (props) => {
             </List>
             <Divider/>
             <List>
-                {[{text: 'Property', icon: <PermDataSettingIcon/>, route: '/profile/config'}]
+                {[{text: 'Properties', icon: <PermDataSettingIcon/>, route: '/profile/config'},
+                  {text: 'Telegram', icon: <TelegramIcon/>, route: '/profile/config/telegram'}]
                     .map((item, index) => (
                         renderListItem(item)
                     ))}
