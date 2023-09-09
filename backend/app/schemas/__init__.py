@@ -1,4 +1,5 @@
 from .msg import Msg
+from .post_date import PostDate
 from .user import User, UserCreate, UserInDB, UserUpdate
 from .post import Post, PostCreate, PostInDB, PostUpdate
 from .telegram_config import TelegramConfig, TelegramConfigCreate, TelegramConfigUpdate

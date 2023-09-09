@@ -59,3 +59,22 @@ async def new_post(
         )
 
     return {"msg": "Post successfully created!"}
+
+
+@router.get("/{post_id}", response_model=schemas.Post)
+async def read_post(
+    post_id: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+    db: AsyncSession = Depends(deps.get_db_async),
+) -> Any:
+    """
+    Get a specific post by id.
+    """
+    post = await crud_post.get(db, id=post_id)
+
+    if not post.user_id == current_user.id:
+        raise HTTPException(
+            status_code=400, detail="The user can get self post only"
+        )
+
+    return post

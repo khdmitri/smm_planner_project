@@ -1,6 +1,6 @@
 from typing import Optional, List
 
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
@@ -9,10 +9,16 @@ from app.schemas import TelegramQueueCreate, TelegramQueueUpdate
 
 
 class CRUDTelegramQueue(CRUDBase[TelegramQueue, TelegramQueueCreate, TelegramQueueUpdate]):
-    async def get_multi_by_user(self, db: AsyncSession, *, user_id: str) -> Optional[List[TelegramQueue]]:
+    async def get_multi_by_user(self, db: AsyncSession, *, user_id: int) -> Optional[List[TelegramQueue]]:
         result = await db.execute(select(TelegramQueue).filter(TelegramQueue.user_id == user_id,
                                                                TelegramQueue.is_posted.is_(False)))
         return result.scalars().first()
+
+    async def get_max_date(self, db: AsyncSession, *, user_id: str, config_id: int):
+        result = await db.execute(select(func.max(TelegramQueue)).filter(
+            TelegramQueue.user_id == user_id,
+            TelegramQueue.telegram_config_id == config_id))
+        return result.fetchone()
 
 
 crud_telegram_queue = CRUDTelegramQueue(TelegramQueue)

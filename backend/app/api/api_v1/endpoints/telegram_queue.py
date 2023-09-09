@@ -15,14 +15,27 @@ logger = get_logger(logging.INFO)
 
 @router.get("/", response_model=List[schemas.TelegramQueue])
 async def read_queues(
-    db: AsyncSession = Depends(deps.get_db_async),
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+        db: AsyncSession = Depends(deps.get_db_async),
+        current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Retrieve queues.
     """
     configs = await crud_telegram_queue.get_multi_by_user(db, user_id=current_user.id)
     return configs
+
+
+@router.get("/max_date/{config_id}", response_model=schemas.PostDate)
+async def read_max_date(
+        config_id: int,
+        db: AsyncSession = Depends(deps.get_db_async),
+        current_user: models.User = Depends(deps.get_current_active_superuser),
+) -> Any:
+    """
+    Retrieve max date.
+    """
+    result = await crud_telegram_queue.get_max_date(db, user_id=current_user.id, config_id=config_id)
+    return {"post_date": result[0]}
 
 
 @router.post("/", response_model=schemas.TelegramQueue)
@@ -46,10 +59,10 @@ async def new_post(
 
 @router.put("/", response_model=schemas.TelegramQueue)
 async def update_queue(
-    *,
-    db: AsyncSession = Depends(deps.get_db_async),
-    post_in: schemas.TelegramQueueUpdate,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+        *,
+        db: AsyncSession = Depends(deps.get_db_async),
+        post_in: schemas.TelegramQueueUpdate,
+        current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Update queue.
@@ -72,10 +85,10 @@ async def update_queue(
 
 @router.delete("/{id}", response_model=schemas.Msg)
 async def delete_queue(
-    *,
-    db: AsyncSession = Depends(deps.get_db_async),
-    id: int,
-    current_user: models.User = Depends(deps.get_current_active_user),
+        *,
+        db: AsyncSession = Depends(deps.get_db_async),
+        id: int,
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Delete post.
