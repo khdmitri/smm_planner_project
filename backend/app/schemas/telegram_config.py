@@ -9,12 +9,12 @@ from app.schemas.post_file import PostFile
 class TelegramConfigBase(BaseModel):
     chat_id: Optional[int] = None
     description: Optional[str] = None
-    schedule: Optional[dict] = {}
+    schedule: Optional[dict] = {"minutes": 0, "hours": 0, "days": 0}
 
 
 # Properties to receive via API on creation
 class TelegramConfigCreate(TelegramConfigBase):
-    user_id: int
+    user_id: int = None
 
 
 # Properties to receive via API on update

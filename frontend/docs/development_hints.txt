@@ -2,5 +2,5 @@
 yarn create next-app
 
 # Entry point
-src/app/page.tsx
+src/app/page.jsx
 

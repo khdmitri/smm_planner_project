@@ -44,7 +44,7 @@ async def new_post(
     return new_telegram_post
 
 
-@router.put("/{post_id}", response_model=schemas.TelegramQueue)
+@router.put("/", response_model=schemas.TelegramQueue)
 async def update_queue(
     *,
     db: AsyncSession = Depends(deps.get_db_async),

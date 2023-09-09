@@ -1,18 +1,13 @@
 import logging
-from typing import Any, List, Optional
-from fastapi import APIRouter, Depends, Form, UploadFile, HTTPException
+from typing import Any, List
+
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app import schemas, models
 from app.api import deps
-from app.api.deps import get_db_async
 from app.common.logger import get_logger
-from app.core.file_processing import FileProcessing
-from app.crud import crud_post, crud_post_file
 from app.crud.crud_telegram_config import crud_telegram_config
-from app.schemas import TelegramConfigCreate
-from app.schemas.post import PostCreate
-from app.schemas.post_file import PostFileCreate
 
 router = APIRouter()
 logger = get_logger(logging.INFO)
@@ -21,13 +16,32 @@ logger = get_logger(logging.INFO)
 @router.get("/", response_model=List[schemas.TelegramConfig])
 async def read_configs(
     db: AsyncSession = Depends(deps.get_db_async),
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Retrieve users.
     """
     configs = await crud_telegram_config.get_multi_by_user(db, user_id=current_user.id)
-    return configs
+    return configs if configs is not None else []
+
+
+@router.get("/{config_id}", response_model=schemas.TelegramConfig)
+async def read_user_by_id(
+    config_id: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+    db: AsyncSession = Depends(deps.get_db_async),
+) -> Any:
+    """
+    Get a specific config by id.
+    """
+    config = await crud_telegram_config.get(db, id=config_id)
+
+    if not config.user_id == current_user.id:
+        raise HTTPException(
+            status_code=400, detail="The user can get self config only"
+        )
+
+    return config
 
 
 @router.post("/", response_model=schemas.TelegramConfig)
@@ -35,10 +49,11 @@ async def new_telegram(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
         telegram_config_in: schemas.TelegramConfigCreate,
-        current_user: models.User = Depends(deps.get_current_active_superuser),
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     try:
         # Create New Telegram Config
+        telegram_config_in.user_id = current_user.id
         new_telegram_config = await crud_telegram_config.create(db, obj_in=telegram_config_in)
     except AssertionError as ae:
         raise HTTPException(
@@ -49,12 +64,12 @@ async def new_telegram(
     return new_telegram_config
 
 
-@router.put("/{config_id}", response_model=schemas.TelegramConfig)
+@router.put("/", response_model=schemas.TelegramConfig)
 async def update_config(
     *,
     db: AsyncSession = Depends(deps.get_db_async),
     config_in: schemas.TelegramConfigUpdate,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Update config.

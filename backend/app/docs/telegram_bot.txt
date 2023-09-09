@@ -1,0 +1,35 @@
+Done! Congratulations on your new bot. You will find it at t.me/smm_schedule_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
+
+Use this token to access the HTTP API:
+6453049166:AAFSjYy0Zct2lx_SR5v4SY3sCr-o9qP6iLE
+Keep your token secure and store it safely, it can be used by anyone to control your bot.
+
+For a description of the Bot API, see this page: https://core.telegram.org/bots/api
+
+
+------------------------
+"chat": {
+            "id": 849641449,
+            "first_name": "Dmitri",
+            "last_name": "Khassanov",
+            "username": "DmitriKhassanov",
+            "type": "private"
+        },
+
+CHANNEL=t.me/smm_schedule
+
+Открываем в Telegram официального бота LeadСonverter | Инструменты (https://t.me/LeadConverterToolkitBot) и нажимаем /start
+Находим свою группу (чат), открываем и жмем на её название
+Добавляем в участники группы (чата) бота LeadСonverter | Инструменты (вставьте в поиск  @LeadConverterToolkitBot). Не пугаемся появившемуся сообщению "Неизвестное действие" - бот работает
+Отправляем в чат команду /get_chat_id
+
+SMMPlannerGroupTest (группа)
+CHAT ID: -1001960245370
+
+
+@smm_schedule
+Id: -1001954920590
+Title: SMM Planner Channel Test
+https://t.me/smm_schedule/2
+
+

@@ -1,30 +1,42 @@
 "use client"
 
 import {DataGrid} from '@mui/x-data-grid';
-import {IconButton} from "@mui/material";
+import {Box, IconButton, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import '../../../../../styles/data-grid.css';
 
 const get_columns = (deleteFunc, editFunc) =>
     [
-        {field: 'id', headerName: 'ID', width: 70},
-        {field: 'chat_id', headerName: 'CHAT ID', width: 150, type: 'number'},
-        {field: 'description', headerName: 'DESCRIPTION', width: 200},
+        {field: 'id', headerName: 'ID', align: "left", headerClassName: 'data-grid-header'},
+        {field: 'chat_id', headerName: 'CHAT ID', width: 150, align: "left", headerClassName: 'data-grid-header'},
+        {
+            field: 'description',
+            headerName: 'DESCRIPTION',
+            width: 200,
+            align: "left",
+            headerClassName: 'data-grid-header'
+        },
         {
             field: 'action',
             headerName: 'ACTION',
             sortable: false,
-            width: 160,
-            valueGetter: (params) => {
-                return <div>
+            width: 150,
+            headerAlign: "center",
+            headerClassName: 'data-grid-header',
+            renderCell: (params) => (
+                <Box display="flex" justifyContent="right" alignItems="center">
                     <IconButton aria-label="delete" size="large" onClick={() => deleteFunc(params.row.id)}>
                         <DeleteIcon/>
-                    </IconButton>&nbsp;|&nbsp;
-                    <IconButton aria-label="delete" size="large" onClick={() => editFunc(params.row.id)}>
+                    </IconButton>
+                    <Typography variant="span">
+                        &nbsp;|&nbsp;
+                    </Typography>
+                    <IconButton aria-label="edit" size="large" onClick={() => editFunc(params.row.id)}>
                         <EditIcon/>
                     </IconButton>
-                </div>
-            }
+                </Box>
+            )
         },
     ];
 

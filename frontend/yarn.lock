@@ -49,7 +49,7 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@babel/runtime@^7.22.11":
+"@babel/runtime@^7.22.15":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.15.tgz#38f46494ccf6cf020bd4eed7124b425e83e523b8"
   integrity sha512-T0O+aa+4w0u06iNmapipJXMV4HoUir03hpx3/YqXXhu9xim3w+dVphjFWl1OH8NbZHw5Lbm9k45drDkgq2VNNA==
@@ -541,12 +541,12 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
-"@mui/x-data-grid@^6.12.1":
-  version "6.12.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.12.1.tgz#8cb9f1d66049837121cc4187ff8173a0ef905a45"
-  integrity sha512-lSY1dFBv6yh2ffkkWeMM9c0ajpwIWn/da/ec0kY8OfLa79Hboh53mN09nopylZO8MHJGfDlPvduwuWcgWs+zFw==
+"@mui/x-data-grid@^6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.13.0.tgz#b63fd1c474cb72ef0af542504a9ccb31acee7e2c"
+  integrity sha512-HRZGPdE+unZEiygcMqLsKOJ1F7iaTrhGQXGdlFLLniwfYMzVmJgZQXYCCeOIkCQqF28rQniF+4PbRhmFERdqSQ==
   dependencies:
-    "@babel/runtime" "^7.22.11"
+    "@babel/runtime" "^7.22.15"
     "@mui/utils" "^5.14.7"
     clsx "^2.0.0"
     prop-types "^15.8.1"

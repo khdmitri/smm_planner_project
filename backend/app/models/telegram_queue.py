@@ -16,7 +16,7 @@ class TelegramQueue(Base):
     post_id: Mapped[int] = mapped_column(ForeignKey("post.id"))
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     telegram_config_id: Mapped[int] = mapped_column(ForeignKey("telegramconfig.id"))
-    telegram_config = relationship("TelegramConfig", cascade="all, delete-orphan", lazy="selectin")
+    telegram_config = relationship("TelegramConfig", back_populates="queued_posts")
     text: Mapped[str] = Column(String, index=True)
     title: Mapped[str] = Column(String, index=True)
     post_result = Column(JSON, default={})

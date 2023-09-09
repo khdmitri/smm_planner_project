@@ -12,7 +12,7 @@ from app.schemas.post import PostCreate, PostUpdate
 class CRUDTelegramConfig(CRUDBase[TelegramConfig, TelegramConfigCreate, TelegramConfigUpdate]):
     async def get_multi_by_user(self, db: AsyncSession, *, user_id: str) -> Optional[List[TelegramConfig]]:
         result = await db.execute(select(TelegramConfig).filter(TelegramConfig.user_id == user_id))
-        return result.scalars().first()
+        return result.scalars().all()
 
 
 crud_telegram_config = CRUDTelegramConfig(TelegramConfig)

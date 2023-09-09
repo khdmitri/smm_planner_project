@@ -66,7 +66,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         return db_obj
 
     async def remove(self, db: AsyncSession, *, id: int) -> bool:
-        obj = db.get(self.model, id)
+        obj = await db.get(self.model, id)
         assert obj is not None
         await db.delete(obj)
         await db.commit()
