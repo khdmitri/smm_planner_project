@@ -9,8 +9,6 @@ import {useRouter} from "next/navigation";
 import TextField from "@mui/material/TextField";
 import PostAPI from "../../../lib/post";
 import UniAlert from "../../../components/alert/alert";
-import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import {$generateHtmlFromNodes} from "@lexical/html";
 import {convertPureMarkdown} from "../../../lib/utils";
 
 const NewPost = () => {
@@ -26,7 +24,7 @@ const NewPost = () => {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
-    const [editor, setEditor] = useState()
+    const [post, setPost] = useState({})
     const router = useRouter()
     const handlePreviewIcon = (fileObject) => {
         // console.log("FileObject=", fileObject)
@@ -55,6 +53,7 @@ const NewPost = () => {
             if (files.length > 0)
                 files.map(file => data.append("files", file))
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
+                setPost(res.data)
                 setIsCreated(true)
                 setShowMessage(true)
                 setMessage(`Post was successfully created!`)
@@ -86,7 +85,7 @@ const NewPost = () => {
     }, [markdown])
 
     return (
-        <Box>
+        <Box pb={3}>
             {showMessage &&
                 <UniAlert severity={severity}>
                     {message}
@@ -125,7 +124,10 @@ const NewPost = () => {
                 }
             </Box>
             {isCreated &&
-                <Button type="button" color="warning" onClick={resetPage} variant="contained">Create Next Post</Button>
+                <Box flexDirection="row" p={2}>
+                    <Button m={1} type="button" onClick={() => router.push(`/profile/queue_post/${post.id}`)} variant="contained">POST</Button>
+                    <Button m={1} type="button" color="secondary" onClick={resetPage} variant="outlined">Create Next Post</Button>
+                </Box>
             }
         </Box>
     );

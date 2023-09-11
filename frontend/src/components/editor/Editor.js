@@ -83,7 +83,7 @@ export default function Editor(props) {
         onError(error) {
             throw error;
         },
-        editorState: initialEditorState,
+        editorState: initialEditorState(),
         // Any custom nodes go here
         nodes: [HeadingNode, ListNode, ListItemNode, QuoteNode, CodeNode, CodeHighlightNode, TableNode, TableCellNode, TableRowNode, AutoLinkNode, LinkNode]
     };

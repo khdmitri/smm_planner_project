@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import Any, List, Optional
 from fastapi import APIRouter, Depends, Form, UploadFile, HTTPException
@@ -16,7 +17,7 @@ router = APIRouter()
 logger = get_logger(logging.INFO)
 
 
-@router.post("/", response_model=schemas.Msg)
+@router.post("/", response_model=schemas.Post)
 async def new_post(
         title: Optional[str] = Form(None),
         markdown_text: Optional[str] = Form(None),
@@ -33,11 +34,12 @@ async def new_post(
 
     try:
         # Create New Post
-        new_post = PostCreate(user_id=current_user.id,
-                              title=title,
-                              markdown_text=markdown_text,
-                              json_text=json_text
-                              )
+        new_post = PostCreate(
+            user_id=current_user.id,
+            title=title,
+            markdown_text=markdown_text,
+            json_text=json.loads(json_text)
+        )
         new_post = await crud_post.create(db, obj_in=new_post)
 
         # Create PostFiles
@@ -58,14 +60,14 @@ async def new_post(
             detail=str(ae),
         )
 
-    return {"msg": "Post successfully created!"}
+    return new_post
 
 
 @router.get("/{post_id}", response_model=schemas.Post)
 async def read_post(
-    post_id: int,
-    current_user: models.User = Depends(deps.get_current_active_user),
-    db: AsyncSession = Depends(deps.get_db_async),
+        post_id: int,
+        current_user: models.User = Depends(deps.get_current_active_user),
+        db: AsyncSession = Depends(deps.get_db_async),
 ) -> Any:
     """
     Get a specific post by id.
@@ -78,3 +80,15 @@ async def read_post(
         )
 
     return post
+
+
+@router.get("/", response_model=List[schemas.Post])
+async def read_configs(
+    db: AsyncSession = Depends(deps.get_db_async),
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Retrieve posts by user.
+    """
+    posts = await crud_post.get_multi_by_user(db, user_id=current_user.id)
+    return posts if posts is not None else []

@@ -25,6 +25,33 @@ export default class PostAPI {
         }
         return await instance.get(`posts/${post_id}`, config)
     }
+
+    static async getPosts(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get(`posts`, config)
+    }
+
+    static async updatePost(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.put("/posts", form_data, config)
+    }
+
+    static async deletePost(post_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.delete(`/posts/${post_id}`, config)
+    }
 }
 
 

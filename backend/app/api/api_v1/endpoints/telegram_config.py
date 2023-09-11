@@ -34,7 +34,7 @@ async def read_user_by_id(
     """
     Get a specific config by id.
     """
-    config = await crud_telegram_config.get(db, id=config_id)
+    config = await crud_telegram_config.get_full(db, id=config_id, user_id=current_user.id)
 
     if not config.user_id == current_user.id:
         raise HTTPException(

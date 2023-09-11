@@ -35,4 +35,4 @@ class TelegramConfigInDB(TelegramConfigInDBBase):
 
 
 class TelegramConfig(TelegramConfigInDBBase):
-    pass
+    next_post_time: datetime = None

@@ -26,7 +26,7 @@ const Page = ({params}) => {
     };
 
     const getPost = async () => {
-        await PostAPI.getPost(parseInt(params.id), sessionStorage.getItem("access-token")).then(res => {
+        await PostAPI.getPost(parseInt(params.post_id), sessionStorage.getItem("access-token")).then(res => {
             setPost(res.data)
         }).catch(error => {
             setShowMessage(true)
@@ -37,7 +37,7 @@ const Page = ({params}) => {
 
     const getConfigList = async () => {
         ConfigAPI.getTelegramConfigList(sessionStorage.getItem("access-token")).then(res => {
-            setData(res.data)
+            setChats(res.data)
             if (Array.isArray(res.data) && res.data.length > 0)
                 setValue(res.data[0].chat_id)
         }).catch(error => {
@@ -66,17 +66,17 @@ const Page = ({params}) => {
                 }
             </Box>
             <Box sx={{width: '100%', typography: 'body1'}}>
-                <TabContext value={value}>
+                <TabContext value={value ? value.toString() : "None"}>
                     <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
                             {chats && chats.map(chat =>
-                                <Tab label="Item One" value={chat.chat_id} key={chat.chat_id}/>
+                                <Tab label={chat.description} value={chat.chat_id.toString()} key={chat.chat_id}/>
                             )
                             }
                         </TabList>
                     </Box>
                     {chats && post && chats.map(chat =>
-                        <TabPanel value={chat.chat_id} key={chat.chat_id}>
+                        <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
                             <ChatForm chat={chat} post={post} activateSubmit={activateSubmit} />
                         </TabPanel>
                     )
