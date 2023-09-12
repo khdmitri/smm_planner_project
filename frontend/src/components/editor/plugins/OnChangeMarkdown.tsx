@@ -7,7 +7,7 @@ import debounce from "lodash.debounce";
 
 export type OnChangeMarkdownType =
   | Dispatch<SetStateAction<string>>
-  | ((value: string) => void);
+  | ((value: string, value_json: Object) => void);
 
 export default function OnChangeMarkdown({
   onChange,
@@ -50,6 +50,6 @@ function transformState(
       // and need to convert it back to the original, so the markdown is respected
       .replace(/^(&gt\;)(?=\s)(?!.*&lt\;)/gm, ">");
 
-    onChange(withBrs);
+    onChange(withBrs, editorState.toJSON());
   });
 }

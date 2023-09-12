@@ -40,6 +40,7 @@ export default function Editor(props) {
     console.log("Props=", props)
 
     const initialEditorState = () => {
+        console.log("initial_value=", initial_value)
         return JSON.stringify(initial_value) || EMPTY_CONTENT
         // let str = (props.value || "").replace(/\n\n<br>\n/g, "\n");
         // let str = (props.value || "")
@@ -101,7 +102,7 @@ export default function Editor(props) {
                     contentEditable={<ContentEditable className="editor-input"/>}
                     placeholder={<Placeholder/>}
                 />
-                <OnChangePlugin onChange={onChange}/>
+                {/*<OnChangePlugin onChange={onChange}/>*/}
                 <HistoryPlugin/>
                 <CodeHighlightPlugin/>
                 <ListPlugin/>

@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import PostAPI from "../../../../lib/post";
 import {error} from "next/dist/build/output/log";
 import {Box, Button, Tab} from "@mui/material";
@@ -11,6 +11,22 @@ import ConfigAPI from "../../../../lib/config";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import ChatForm from "../(componnets)/chat_form";
 
+const reducer = (state, action) => {
+    console.log("action=", action)
+    switch (action.type) {
+        case 'init_state': {
+            return {...action.payload}
+        }
+        case 'update_item': {
+            return {
+                ...state,
+                [action.key]: action.payload
+            }
+        }
+    }
+    throw Error("Unknown action: "+action.type)
+}
+
 const Page = ({params}) => {
     const [post, setPost] = useState()
     const [chats, setChats] = useState(null)
@@ -19,7 +35,7 @@ const Page = ({params}) => {
     const [severity, setSeverity] = useState("info")
     const router = useRouter()
     const [value, setValue] = React.useState();
-    const [activateSubmit, setActivateSubmit] = useState(false)
+    const [state, dispatch] = useReducer(reducer, {}, ()=>{});
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -34,6 +50,21 @@ const Page = ({params}) => {
             setSeverity("error")
         })
     }
+
+    useEffect(() => {
+        console.log("state=", state)
+        if (!state && post && chats) {
+            // Init reducer state
+            const init_state = {}
+            chats.map((chat) => {
+                init_state[chat.id] = {...post, is_included: true, when: chat.when}
+            })
+            dispatch({
+                type: "init_state",
+                payload: init_state
+            })
+        }
+    }, [post, chats, state])
 
     const getConfigList = async () => {
         ConfigAPI.getTelegramConfigList(sessionStorage.getItem("access-token")).then(res => {
@@ -75,9 +106,9 @@ const Page = ({params}) => {
                             }
                         </TabList>
                     </Box>
-                    {chats && post && chats.map(chat =>
+                    {state && Object.keys(state).length > 0 && chats.map(chat =>
                         <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
-                            <ChatForm chat={chat} post={post} activateSubmit={activateSubmit} />
+                            <ChatForm chat={chat} post={state[chat.id]} dispatch={dispatch} />
                         </TabPanel>
                     )
                     }

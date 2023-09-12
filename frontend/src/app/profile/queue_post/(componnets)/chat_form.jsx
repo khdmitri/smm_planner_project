@@ -8,32 +8,34 @@ import {DateTimePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import moment from "moment";
 
-const ChatForm = ({chat, post, activateSubmit = false}) => {
-    const [markdown, setMarkdown] = useState("");
-    const [jsonText, setJsonText] = useState({})
-    const [title, setTitle] = useState("")
-    const [isIncluded, setIsIncluded] = useState(true)
-    const [when, setWhen] =useState(moment(chat.next_post_time))
-
-    const onSubmit = () => {
-
-    }
-
+const ChatForm = ({chat, post, dispatch}) => {
     useEffect(() => {
-        console.log("Current title:", title)
         console.log("Init form:", chat.id)
     }, [])
 
-    useEffect(() => {
-        console.log("ActivateSubmit=", activateSubmit)
-        console.log("chat ID=", chat.id)
-    }, [activateSubmit])
+    const onChange = (sub_key, value) => {
+        console.log("onChange:", sub_key, value)
+        dispatch({
+            type: "update_item",
+            key: chat.id,
+            payload: {
+                ...post,
+                [sub_key]: value
+            }
+        })
+    }
 
     return (
         <Card>
             <CardContent>
                 <Box>
-                    <Editor onChange={setMarkdown} json_setter={setJsonText} initial_value={post.json_text}/>
+                    <Editor
+                        onChange={(value, value_json) => {
+                            onChange("markdown_text", value)
+                            onChange("json_text", value_json)
+                        }
+                        }
+                        initial_value={post.json_text}/>
                     <Box component="form" key={chat.id} noValidate sx={{mt: 1}} name={`form_${chat.id.toString()}`}>
                         <TextField
                             margin="normal"
@@ -41,9 +43,9 @@ const ChatForm = ({chat, post, activateSubmit = false}) => {
                             fullWidth
                             id="title"
                             label="Post Title"
-                            value={title}
+                            value={post.title}
                             name="title"
-                            onChange={event => setTitle(event.target.value)}
+                            onChange={event => onChange("title", event.target.value)}
                             autoComplete="title"
                             InputLabelProps={{shrink: true}}
                             autoFocus
@@ -51,12 +53,12 @@ const ChatForm = ({chat, post, activateSubmit = false}) => {
                         />
                         <FormGroup>
                             <FormControlLabel
-                                control={<Checkbox name="isIncluded" value={isIncluded}
-                                                   onChange={() => setIsIncluded(!isIncluded)} defaultChecked/>}
+                                control={<Checkbox name="isIncluded" value={post.is_included}
+                                                   onChange={() => onChange("is_included", !post.is_included)}/>}
                                 label="Include This Chat"/>
                         </FormGroup>
                         <LocalizationProvider dateAdapter={AdapterMoment}>
-                            <DateTimePicker value={when} onChange={(value) => setWhen(value)}/>
+                            <DateTimePicker value={post.when} onChange={(value) => onChange("when", value)}/>
                         </LocalizationProvider>
                     </Box>
                 </Box>
