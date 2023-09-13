@@ -106,6 +106,7 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER_PASSWORD: str
     USERS_OPEN_REGISTRATION: bool = False
     BASE_FILE_DIRECTORY: str
+    TELEGRAM_BOT_TOKEN: str
     APP_VERSION: str
 
 

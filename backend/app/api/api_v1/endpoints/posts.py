@@ -99,7 +99,7 @@ async def update_post(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
         post_in: schemas.Post,
-        current_user: models.User = Depends(deps.get_current_active_superuser),
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Update post.

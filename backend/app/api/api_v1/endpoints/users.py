@@ -17,7 +17,7 @@ async def read_users(
     db: AsyncSession = Depends(deps.get_db_async),
     skip: int = 0,
     limit: int = 100,
-    # current_user: models.User = Depends(deps.get_current_active_superuser),
+    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Retrieve users.
@@ -30,8 +30,7 @@ async def read_users(
 async def create_user(
     *,
     db: AsyncSession = Depends(deps.get_db_async),
-    user_in: schemas.UserCreate,
-    #current_user: models.User = Depends(deps.get_current_active_superuser),
+    user_in: schemas.UserCreate
 ) -> Any:
     """
     Create new user.

@@ -10,6 +10,7 @@ import {useRouter} from "next/navigation";
 import ConfigAPI from "../../../../lib/config";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import ChatForm from "../(componnets)/chat_form";
+import QueueAPI from "../../../../lib/queue";
 
 const reducer = (state, action) => {
     console.log("action=", action)
@@ -24,18 +25,20 @@ const reducer = (state, action) => {
             }
         }
     }
-    throw Error("Unknown action: "+action.type)
+    throw Error("Unknown action: " + action.type)
 }
 
 const Page = ({params}) => {
     const [post, setPost] = useState()
+    const [isPosted, setIsPosted] = useState(false)
     const [chats, setChats] = useState(null)
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
     const router = useRouter()
     const [value, setValue] = React.useState();
-    const [state, dispatch] = useReducer(reducer, {}, ()=>{});
+    const [state, dispatch] = useReducer(reducer, {}, () => {
+    });
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -46,7 +49,7 @@ const Page = ({params}) => {
             setPost(res.data)
         }).catch(error => {
             setShowMessage(true)
-            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setMessage(error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
             setSeverity("error")
         })
     }
@@ -74,7 +77,7 @@ const Page = ({params}) => {
                 setValue(res.data[0].chat_id)
         }).catch(error => {
             setShowMessage(true)
-            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
             setSeverity("error")
         })
     }
@@ -83,6 +86,36 @@ const Page = ({params}) => {
         getPost()
         getConfigList()
     }, [])
+
+    const sendPosts = async () => {
+        const keys = Object.keys(state)
+        if (Array.isArray(keys))
+            keys.map(async (key) => {
+                const state_post = state[key]
+                if (state_post.is_included) {
+                    const queued_post = {
+                        post_id: state_post.id,
+                        telegram_config_id: key,
+                        title: state_post.title,
+                        text: state_post.markdown_text,
+                        when: state_post.when.format("YYYY-MM-DD HH:mm")
+                    }
+                    await QueueAPI.newTelegramPost(queued_post, sessionStorage.getItem("access-token"))
+                        .then(() => {
+                            setIsPosted(true)
+                            setShowMessage(true)
+                            setMessage("Post was successfully appended to queue!")
+                            setSeverity("success")
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            setShowMessage(true)
+                            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
+                            setSeverity("error")
+                        })
+                }
+            })
+    }
 
     return (
         <Box>
@@ -109,16 +142,19 @@ const Page = ({params}) => {
                     </Box>
                     {state && Object.keys(state).length > 0 && chats.map(chat =>
                         <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
-                            <ChatForm chat={chat} post={state[chat.id]} dispatch={dispatch} />
+                            <ChatForm chat={chat} post={state[chat.id]} dispatch={dispatch}/>
                         </TabPanel>
                     )
                     }
                 </TabContext>
             </Box>
-            {chats &&
-                chats.map((chat) => {
-
-                })
+            {state && Object.keys(state).length > 0 && !isPosted &&
+                <Button variant="contained" onClick={sendPosts}>Post to Social Networks</Button>
+            }
+            {isPosted &&
+                <Button variant="outlined" color="success" onClick={()=>router.push("/profile/queue_post")}>
+                    Check Post Queue
+                </Button>
             }
         </Box>
     );

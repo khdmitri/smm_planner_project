@@ -16,7 +16,7 @@ logger = get_logger(logging.INFO)
 @router.get("/", response_model=List[schemas.TelegramQueue])
 async def read_queues(
         db: AsyncSession = Depends(deps.get_db_async),
-        current_user: models.User = Depends(deps.get_current_active_superuser),
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Retrieve queues.
@@ -29,7 +29,7 @@ async def read_queues(
 async def read_max_date(
         config_id: int,
         db: AsyncSession = Depends(deps.get_db_async),
-        current_user: models.User = Depends(deps.get_current_active_superuser),
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Retrieve max date.
@@ -43,10 +43,11 @@ async def new_post(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
         telegram_queue_in: schemas.TelegramQueueCreate,
-        current_user: models.User = Depends(deps.get_current_active_superuser),
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     try:
         # Create New Telegram Post
+        telegram_queue_in.user_id = current_user.id
         new_telegram_post = await crud_telegram_queue.create(db, obj_in=telegram_queue_in)
     except AssertionError as ae:
         raise HTTPException(
@@ -62,7 +63,7 @@ async def update_queue(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
         post_in: schemas.TelegramQueueUpdate,
-        current_user: models.User = Depends(deps.get_current_active_superuser),
+        current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Update queue.

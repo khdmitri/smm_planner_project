@@ -17,7 +17,7 @@ class TelegramQueueBase(BaseModel):
 # Properties to receive via API on creation
 class TelegramQueueCreate(TelegramQueueBase):
     post_id: int
-    user_id: int
+    user_id: int = None
     telegram_config_id: int
     is_posted: bool = False
 
