@@ -57,7 +57,8 @@ const Page = ({params}) => {
             // Init reducer state
             const init_state = {}
             chats.map((chat) => {
-                init_state[chat.id] = {...post, is_included: true, when: chat.when}
+                console.log("CHAT=", chat)
+                init_state[chat.id] = {...post, is_included: true, when: null}
             })
             dispatch({
                 type: "init_state",

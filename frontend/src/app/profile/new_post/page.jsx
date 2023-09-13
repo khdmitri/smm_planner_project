@@ -84,6 +84,17 @@ const NewPost = () => {
         console.log("markdown=", markdown)
     }, [markdown])
 
+    const onChangeEditor = (sub_key, value) => {
+        switch(sub_key) {
+            case "markdown_text":
+                setMarkdown(value)
+                return true
+            case "json_text":
+                setJsonText(value)
+                return true
+        }
+    }
+
     return (
         <Box pb={3}>
             {showMessage &&
@@ -103,7 +114,11 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
-            <Editor onChange={setMarkdown} json_setter={setJsonText}/>
+            <Editor onChange={(value, value_json) => {
+                            onChangeEditor("markdown_text", value)
+                            onChangeEditor("json_text", value_json)
+                        }
+                        }/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"

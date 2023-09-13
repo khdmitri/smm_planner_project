@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class TelegramConfig(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    chat_id: Mapped[int] = mapped_column(BigInteger)
+    chat_id: Mapped[int] = mapped_column(BigInteger, unique=True)
     description: Mapped[str] = mapped_column(String)
     schedule: Mapped[dict] = mapped_column(JSON, default={"minutes": 0, "hours": 0, "days": 0})
     queued_posts: Mapped[List["TelegramQueue"]] = relationship(back_populates="telegram_config",

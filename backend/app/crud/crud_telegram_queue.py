@@ -14,8 +14,8 @@ class CRUDTelegramQueue(CRUDBase[TelegramQueue, TelegramQueueCreate, TelegramQue
                                                                TelegramQueue.is_posted.is_(False)))
         return result.scalars().first()
 
-    async def get_max_date(self, db: AsyncSession, *, user_id: str, config_id: int):
-        result = await db.execute(select(func.max(TelegramQueue)).filter(
+    async def get_max_date(self, db: AsyncSession, *, user_id: int, config_id: int):
+        result = await db.execute(select(func.max(TelegramQueue.when)).filter(
             TelegramQueue.user_id == user_id,
             TelegramQueue.telegram_config_id == config_id))
         return result.fetchone()

@@ -17,7 +17,7 @@ class Post(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     when = Column(DateTime, server_default=func.now())
     is_posted: Mapped[bool] = Column(Boolean, default=False)
-    post_files: Mapped[List["PostFile"]] = relationship()
+    post_files: Mapped[List["PostFile"]] = relationship(lazy="selectin")
 
 
 class PostFile(Base):

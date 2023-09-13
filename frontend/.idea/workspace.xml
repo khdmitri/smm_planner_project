@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: Profile: RichTextEditor #2">
-      <change afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/profile/posts_list/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" afterDir="false" />
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: telegram config done">
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/telegram_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/core/file_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/file_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/telegram_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/telegram_config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/authentication/signin/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authentication/signin/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editor/plugins/ToolbarPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/plugins/ToolbarPlugin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +25,8 @@
       <list>
         <option value="Python Script" />
         <option value="TypeScript JSX File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -65,6 +65,7 @@
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\telegram\edit\[id]" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components\editor" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components" />
       <recent name="C:\projects\smm_planner_project\frontend" />
@@ -91,6 +92,12 @@
       <workItem from="1693721877032" duration="2028000" />
       <workItem from="1693754973857" duration="3335000" />
       <workItem from="1693796854421" duration="977000" />
+      <workItem from="1693883586005" duration="155000" />
+      <workItem from="1693929232597" duration="4971000" />
+      <workItem from="1694003368771" duration="4178000" />
+      <workItem from="1694185116413" duration="4653000" />
+      <workItem from="1694227559699" duration="17910000" />
+      <workItem from="1694570442952" duration="6262000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -134,7 +141,35 @@
       <option name="project" value="LOCAL" />
       <updated>1693666869306</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="FE&amp;BE: Save post">
+      <created>1693883620556</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693883620556</updated>
+    </task>
+    <task id="LOCAL-00008" summary="FE&amp;BE: Save post done">
+      <created>1693938661132</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693938661132</updated>
+    </task>
+    <task id="LOCAL-00009" summary="FE&amp;BE: post reworked: markdown, json">
+      <created>1694009529856</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1694009529856</updated>
+    </task>
+    <task id="LOCAL-00010" summary="FE&amp;BE: telegram config done">
+      <created>1694266977897</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1694266977897</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +193,10 @@
     <MESSAGE value="FE&amp;BE: Profile implementation" />
     <MESSAGE value="FE&amp;BE: Profile: RichTextEditor" />
     <MESSAGE value="FE&amp;BE: Profile: RichTextEditor #2" />
-    <option name="LAST_COMMIT_MESSAGE" value="FE&amp;BE: Profile: RichTextEditor #2" />
+    <MESSAGE value="FE&amp;BE: Save post" />
+    <MESSAGE value="FE&amp;BE: Save post done" />
+    <MESSAGE value="FE&amp;BE: post reworked: markdown, json" />
+    <MESSAGE value="FE&amp;BE: telegram config done" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE&amp;BE: telegram config done" />
   </component>
 </project>

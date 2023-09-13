@@ -1,8 +1,9 @@
 import asyncio
 import os
+import pathlib
 import uuid
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Union
 
 import aiofiles
 
@@ -14,7 +15,7 @@ from app.models import User
 
 
 class FileProcessing(object):
-    def __init__(self, user: User, files: Optional[List[UploadFile]] = None):
+    def __init__(self, user: User, files: Union[Optional[List[UploadFile]], List[str]] = None):
         self.user = user
         self.files = files
 
@@ -40,6 +41,13 @@ class FileProcessing(object):
             return {"success": True}
         except Exception as e:
             return {"success": False, "error": str(e)}
+
+    def delete_files(self):
+        for file in self.files:
+            filepath = os.path.join(self._get_directory(), file)
+            file_to_delete = pathlib.Path(filepath)
+            file_to_delete.unlink(missing_ok=True)
+        return True
 
     async def run(self):
         saved_files = {}

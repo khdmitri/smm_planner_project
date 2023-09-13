@@ -83,7 +83,7 @@ async def read_post(
 
 
 @router.get("/", response_model=List[schemas.Post])
-async def read_configs(
+async def read_posts(
     db: AsyncSession = Depends(deps.get_db_async),
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
@@ -92,3 +92,63 @@ async def read_configs(
     """
     posts = await crud_post.get_multi_by_user(db, user_id=current_user.id)
     return posts if posts is not None else []
+
+
+@router.put("/", response_model=schemas.Post)
+async def update_post(
+        *,
+        db: AsyncSession = Depends(deps.get_db_async),
+        post_in: schemas.Post,
+        current_user: models.User = Depends(deps.get_current_active_superuser),
+) -> Any:
+    """
+    Update post.
+    """
+    post = await crud_post.get(db, id=post_in.id)
+    if not post:
+        raise HTTPException(
+            status_code=404,
+            detail="The post with this ID does not exist in the system",
+        )
+    if post.user_id != current_user.id:
+        raise HTTPException(
+            status_code=400,
+            detail="User can update only self posts",
+        )
+
+    post = await crud_post.update(db, db_obj=post, obj_in=post_in)
+    return post
+
+
+@router.delete("/{id}", response_model=schemas.Msg)
+async def delete_post(
+        *,
+        db: AsyncSession = Depends(deps.get_db_async),
+        id: int,
+        current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+    """
+    Delete post.
+    """
+    post = await crud_post.get(db=db, id=id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    if post.user_id != current_user.id:
+        raise HTTPException(
+            status_code=400,
+            detail="User can delete only self posts",
+        )
+
+    # We have to delete physical files from FS and clean postfiles table before delete post
+    file_names = []
+    post_files = post.post_files
+    for post_file in post_files:
+        file_names.append(post_file.filepath)
+        await crud_post_file.remove(db, id=post_file.id)
+
+    if file_names:
+        file_processing = FileProcessing(current_user, file_names)
+        file_processing.delete_files()
+
+    await crud_post.remove(db=db, id=id)
+    return {"msg": "Post was successfully deleted"}

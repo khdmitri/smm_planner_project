@@ -18,9 +18,9 @@ class CRUDTelegramConfig(CRUDBase[TelegramConfig, TelegramConfigCreate, Telegram
         return result.scalars().all()
 
     async def get_full(self, db: AsyncSession, *, config_id: int, user_id: int) -> Optional[schemas.TelegramConfig]:
-        config = self.get(db, id=config_id)
+        config = await self.get(db, id=config_id)
         schema_config: schemas.TelegramConfig = schemas.TelegramConfig.model_validate(config)
-        max_date = crud_telegram_queue.get_max_date(db, user_id=user_id, config_id=config_id)
+        max_date = await crud_telegram_queue.get_max_date(db, user_id=user_id, config_id=config_id)
         if max_date is not None and max_date[0] is not None:
             schema_config.next_post_time = max_date[0] + timedelta(**max_date)
         else:
