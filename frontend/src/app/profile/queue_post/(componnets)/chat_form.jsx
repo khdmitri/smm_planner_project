@@ -80,7 +80,7 @@ const ChatForm = ({chat, post, dispatch}) => {
                             <FormGroup>
                                 <FormControlLabel
                                     control={<Checkbox name="isIncluded" value={post.is_included}
-                                                       onClick={() => onChange("is_included", !post.is_included)}/>
+                                                       onChange={() => onChange("is_included", !post.is_included)}/>
                                     }
                                     label="Include This Chat"/>
                             </FormGroup>
