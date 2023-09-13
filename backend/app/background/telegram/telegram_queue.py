@@ -16,7 +16,7 @@ FILE_BASE_PATH = "app/background/telegram/queries"
 
 class TelegramQueue:
     def __init__(self):
-        self.bot = Bot(token=settings.TELEGRAM_BOT_TOKEN, parse_mode="MarkdownV2")
+        self.bot = Bot(token=settings.TELEGRAM_BOT_TOKEN, parse_mode="Markdown")
 
     async def send_all(self):
         stmt = read_query(os.path.join(FILE_BASE_PATH, "queue.sql"))
