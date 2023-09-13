@@ -1,4 +1,5 @@
 import asyncio
+from typing import Dict, Any
 
 import asyncpg
 
@@ -40,14 +41,17 @@ class Database:
             except Exception as e:
                 print(e)
 
-    async def fetch_rows(self, query: str, named_args):
+    async def fetch_rows(self, query: str, named_args: Dict[str, Any] = None):
         if not self._connection_pool:
             await self.connect()
 
         self.con = await self._connection_pool.acquire()
         try:
-            formatted_query, args = pyformat2psql(query, named_args)
-            result = await self.con.fetch(formatted_query, *args)
+            if named_args is None:
+                result = await self.con.fetch(query)
+            else:
+                formatted_query, args = pyformat2psql(query, named_args)
+                result = await self.con.fetch(formatted_query, *args)
             return result
         except Exception as e:
             print(e)
