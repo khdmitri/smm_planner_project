@@ -22,7 +22,7 @@ class CRUDTelegramConfig(CRUDBase[TelegramConfig, TelegramConfigCreate, Telegram
         schema_config: schemas.TelegramConfig = schemas.TelegramConfig.model_validate(config)
         max_date = await crud_telegram_queue.get_max_date(db, user_id=user_id, config_id=config_id)
         if max_date is not None and max_date[0] is not None:
-            schema_config.next_post_time = max_date[0] + timedelta(**max_date)
+            schema_config.next_post_time = max_date[0] + timedelta(**schema_config.schedule)
         else:
             schema_config.next_post_time = datetime.now()
 
