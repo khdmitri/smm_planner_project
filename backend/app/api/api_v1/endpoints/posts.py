@@ -19,18 +19,30 @@ logger = get_logger(logging.INFO)
 
 @router.post("/", response_model=schemas.Post)
 async def new_post(
-        title: Optional[str] = Form(None),
+        title: Optional[str] = Form(...),
         markdown_text: Optional[str] = Form(None),
         json_text: Optional[str] = Form(None),
         files: List[UploadFile] = Form(None),
         db: AsyncSession = Depends(get_db_async),
         current_user: models.User = Depends(deps.get_current_user)
 ) -> Any:
-    if title is None and markdown_text is None:
+    if markdown_text is None and files is None:
         raise HTTPException(
             status_code=422,
-            detail="The title and message text can not be empty at the same time",
+            detail="No content found: either media content or message text must be given",
         )
+
+    content_type = None
+    if files is not None and len(files) > 1:
+        for ind, file in enumerate(files):
+            if ind == 0:
+                content_type = file.content_type.split("/")[0]
+            else:
+                if content_type != file.content_type.split("/")[0]:
+                    raise HTTPException(
+                        status_code=422,
+                        detail="Media content MUST be the same type. Do not mix video and photos as example.",
+                    )
 
     try:
         # Create New Post

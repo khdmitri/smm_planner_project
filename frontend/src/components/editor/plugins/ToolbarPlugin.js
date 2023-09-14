@@ -46,19 +46,19 @@ const supportedBlockTypes = new Set([
   "paragraph",
   "quote",
   "code",
-  "h1",
-  "h2",
+  // "h1",
+  // "h2",
   "ul",
   "ol"
 ]);
 
 const blockTypeToBlockName = {
   code: "Code Block",
-  h1: "Large Heading",
-  h2: "Small Heading",
-  h3: "Heading",
-  h4: "Heading",
-  h5: "Heading",
+  // h1: "Large Heading",
+  // h2: "Small Heading",
+  // h3: "Heading",
+  // h4: "Heading",
+  // h5: "Heading",
   ol: "Numbered List",
   paragraph: "Normal",
   quote: "Quote",
@@ -381,16 +381,16 @@ function BlockOptionsDropdownList({
         <span className="text">Normal</span>
         {blockType === "paragraph" && <span className="active" />}
       </button>
-      <button className="item" onClick={formatLargeHeading}>
-        <span className="icon large-heading" />
-        <span className="text">Large Heading</span>
-        {blockType === "h1" && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatSmallHeading}>
-        <span className="icon small-heading" />
-        <span className="text">Small Heading</span>
-        {blockType === "h2" && <span className="active" />}
-      </button>
+      {/*<button className="item" onClick={formatLargeHeading}>*/}
+      {/*  <span className="icon large-heading" />*/}
+      {/*  <span className="text">Large Heading</span>*/}
+      {/*  {blockType === "h1" && <span className="active" />}*/}
+      {/*</button>*/}
+      {/*<button className="item" onClick={formatSmallHeading}>*/}
+      {/*  <span className="icon small-heading" />*/}
+      {/*  <span className="text">Small Heading</span>*/}
+      {/*  {blockType === "h2" && <span className="active" />}*/}
+      {/*</button>*/}
       <button className="item" onClick={formatBulletList}>
         <span className="icon bullet-list" />
         <span className="text">Bullet List</span>

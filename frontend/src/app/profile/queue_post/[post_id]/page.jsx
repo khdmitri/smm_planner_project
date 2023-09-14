@@ -11,6 +11,7 @@ import ConfigAPI from "../../../../lib/config";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import ChatForm from "../(componnets)/chat_form";
 import QueueAPI from "../../../../lib/queue";
+import moment from "moment";
 
 const reducer = (state, action) => {
     console.log("action=", action)
@@ -98,7 +99,7 @@ const Page = ({params}) => {
                         telegram_config_id: key,
                         title: state_post.title,
                         text: state_post.markdown_text,
-                        when: state_post.when.format("YYYY-MM-DD HH:mm")
+                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
                     }
                     await QueueAPI.newTelegramPost(queued_post, sessionStorage.getItem("access-token"))
                         .then(() => {

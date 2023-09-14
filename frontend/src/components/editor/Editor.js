@@ -27,7 +27,7 @@ import {OnChangePlugin} from "@lexical/react/LexicalOnChangePlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import {useEffect, useRef} from "react";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import RefPlugin from "./plugins/RefPlugin";
+import HTMLPlugin from "./plugins/HTMLPlugin";
 import {$generateHtmlFromNodes} from "@lexical/html";
 
 function Placeholder() {
@@ -35,7 +35,7 @@ function Placeholder() {
 }
 
 export default function Editor(props) {
-    const { json_setter, initial_value } = props
+    const { html_setter, initial_value } = props
     const EMPTY_CONTENT = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
     console.log("Props=", props)
 
@@ -89,10 +89,6 @@ export default function Editor(props) {
         nodes: [HeadingNode, ListNode, ListItemNode, QuoteNode, CodeNode, CodeHighlightNode, TableNode, TableCellNode, TableRowNode, AutoLinkNode, LinkNode]
     };
 
-    const onChange = (editorState) => {
-        json_setter(editorState.toJSON())
-    }
-
     return (<LexicalComposer initialConfig={editorConfig}>
         <div className="editor-container">
             <ToolbarPlugin/>
@@ -112,7 +108,7 @@ export default function Editor(props) {
                 <AutoLinkPlugin/>
                 <ListMaxIndentLevelPlugin maxDepth={7}/>
                 <MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
-                {/*<RefPlugin setter={editorRef} />*/}
+                <HTMLPlugin setter={html_setter} />
             </div>
         </div>
     </LexicalComposer>);

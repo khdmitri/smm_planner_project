@@ -15,8 +15,9 @@ const NewPost = () => {
     const myTheme = createTheme({
         // Set up your custom MUI theme here
     })
-    const [markdown, setMarkdown] = useState("**Bold *Italic***");
+    const [markdown, setMarkdown] = useState("");
     const [jsonText, setJsonText] = useState({})
+    const [htmlText, setHtmlText] = useState()
     const [isCreated, setIsCreated] = useState(false)
     const [files, setFiles] = useState([])
     const [user, setUser] = useState()
@@ -50,6 +51,7 @@ const NewPost = () => {
         if (user) {
             data.append("markdown_text", convertPureMarkdown(markdown))
             data.append("json_text", JSON.stringify(jsonText))
+            data.append("html_text", htmlText)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
@@ -118,7 +120,7 @@ const NewPost = () => {
                             onChangeEditor("markdown_text", value)
                             onChangeEditor("json_text", value_json)
                         }
-                        }/>
+                        } html_setter={setHtmlText}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"

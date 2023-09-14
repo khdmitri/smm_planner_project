@@ -13,6 +13,7 @@ class Post(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = Column(String, index=True)
     markdown_text: Mapped[str] = Column(String)
+    html_text: Mapped[str] = Column(String)
     json_text = Column(JSON, default={})
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     when = Column(DateTime, server_default=func.now())
