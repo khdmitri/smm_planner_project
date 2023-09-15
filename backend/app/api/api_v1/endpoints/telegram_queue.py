@@ -21,8 +21,8 @@ async def read_queues(
     """
     Retrieve queues.
     """
-    configs = await crud_telegram_queue.get_multi_by_user(db, user_id=current_user.id)
-    return configs
+    posts = await crud_telegram_queue.get_multi_by_user(db, user_id=current_user.id)
+    return posts
 
 
 @router.get("/max_date/{config_id}", response_model=schemas.PostDate)

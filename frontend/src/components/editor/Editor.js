@@ -7,14 +7,13 @@ import {ContentEditable} from "@lexical/react/LexicalContentEditable";
 import {HistoryPlugin} from "@lexical/react/LexicalHistoryPlugin";
 import {HeadingNode, QuoteNode} from "@lexical/rich-text";
 import {TableCellNode, TableNode, TableRowNode} from "@lexical/table";
-import {$createParagraphNode, $getRoot, EditorState} from "lexical";
 import {ListItemNode, ListNode} from "@lexical/list";
 import {CodeHighlightNode, CodeNode} from "@lexical/code";
 import {AutoLinkNode, LinkNode} from "@lexical/link";
 import {LinkPlugin} from "@lexical/react/LexicalLinkPlugin";
 import {ListPlugin} from "@lexical/react/LexicalListPlugin";
 import {MarkdownShortcutPlugin} from "@lexical/react/LexicalMarkdownShortcutPlugin";
-import {$convertFromMarkdownString, TRANSFORMERS} from "@lexical/markdown";
+import {TRANSFORMERS} from "@lexical/markdown";
 
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
 import ListMaxIndentLevelPlugin from "./plugins/ListMaxIndentLevelPlugin";
@@ -23,19 +22,14 @@ import ReadOnlyPlugin from "./plugins/ReadOnlyPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import OnChangeMarkdown from "./plugins/OnChangeMarkdown";
 import "./styles.css"
-import {OnChangePlugin} from "@lexical/react/LexicalOnChangePlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import {useEffect, useRef} from "react";
-import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
-import HTMLPlugin from "./plugins/HTMLPlugin";
-import {$generateHtmlFromNodes} from "@lexical/html";
 
 function Placeholder() {
     return <div className="editor-placeholder">Enter some rich text...</div>;
 }
 
 export default function Editor(props) {
-    const { html_setter, initial_value } = props
+    const { initial_value } = props
     const EMPTY_CONTENT = '{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}';
     console.log("Props=", props)
 
@@ -98,7 +92,6 @@ export default function Editor(props) {
                     contentEditable={<ContentEditable className="editor-input"/>}
                     placeholder={<Placeholder/>}
                 />
-                {/*<OnChangePlugin onChange={onChange}/>*/}
                 <HistoryPlugin/>
                 <CodeHighlightPlugin/>
                 <ListPlugin/>
@@ -108,7 +101,6 @@ export default function Editor(props) {
                 <AutoLinkPlugin/>
                 <ListMaxIndentLevelPlugin maxDepth={7}/>
                 <MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
-                <HTMLPlugin setter={html_setter} />
             </div>
         </div>
     </LexicalComposer>);

@@ -56,9 +56,10 @@ const ChatForm = ({chat, post, dispatch}) => {
                 <CardContent>
                     <Box>
                         <Editor
-                            onChange={(value, value_json) => {
+                            onChange={(value, value_json, value_html) => {
                                 onChange("markdown_text", value)
                                 onChange("json_text", value_json)
+                                onChange("html_text", value_html)
                             }
                             }
                             initial_value={post.json_text}/>

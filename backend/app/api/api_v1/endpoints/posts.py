@@ -22,6 +22,7 @@ async def new_post(
         title: Optional[str] = Form(...),
         markdown_text: Optional[str] = Form(None),
         json_text: Optional[str] = Form(None),
+        html_text: Optional[str] = Form(None),
         files: List[UploadFile] = Form(None),
         db: AsyncSession = Depends(get_db_async),
         current_user: models.User = Depends(deps.get_current_user)
@@ -50,7 +51,8 @@ async def new_post(
             user_id=current_user.id,
             title=title,
             markdown_text=markdown_text,
-            json_text=json.loads(json_text)
+            json_text=json.loads(json_text),
+            html_text=html_text
         )
         new_post = await crud_post.create(db, obj_in=new_post)
 
@@ -110,7 +112,7 @@ async def read_posts(
 async def update_post(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
-        post_in: schemas.Post,
+        post_in: schemas.PostUpdate,
         current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """

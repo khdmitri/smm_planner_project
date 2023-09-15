@@ -10,8 +10,12 @@ from app.schemas import TelegramQueueCreate, TelegramQueueUpdate
 
 class CRUDTelegramQueue(CRUDBase[TelegramQueue, TelegramQueueCreate, TelegramQueueUpdate]):
     async def get_multi_by_user(self, db: AsyncSession, *, user_id: int) -> Optional[List[TelegramQueue]]:
-        result = await db.execute(select(TelegramQueue).filter(TelegramQueue.user_id == user_id,
-                                                               TelegramQueue.is_posted.is_(False)))
+        result = await db.execute(select(
+            TelegramQueue).filter(
+            TelegramQueue.user_id == user_id,
+            TelegramQueue.is_posted.is_(False)).group_by(
+            TelegramQueue.when
+        ).limit(100))
         return result.scalars().first()
 
     async def get_max_date(self, db: AsyncSession, *, user_id: int, config_id: int):

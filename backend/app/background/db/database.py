@@ -41,6 +41,23 @@ class Database:
             except Exception as e:
                 print(e)
 
+    async def execute(self, stmt: str, named_args: Dict[str, Any] = None):
+        if not self._connection_pool:
+            await self.connect()
+
+        self.con = await self._connection_pool.acquire()
+        try:
+            if named_args is None:
+                result = await self.con.execute(stmt)
+            else:
+                formatted_stmt, args = pyformat2psql(stmt, named_args)
+                result = await self.con.execute(formatted_stmt, *args)
+            return result
+        except Exception as e:
+            print(e)
+        finally:
+            await self._connection_pool.release(self.con)
+
     async def fetch_rows(self, query: str, named_args: Dict[str, Any] = None):
         if not self._connection_pool:
             await self.connect()

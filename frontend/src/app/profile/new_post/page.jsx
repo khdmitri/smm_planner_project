@@ -52,6 +52,8 @@ const NewPost = () => {
             data.append("markdown_text", convertPureMarkdown(markdown))
             data.append("json_text", JSON.stringify(jsonText))
             data.append("html_text", htmlText)
+            console.log("Data2Submit:", data)
+            console.log("Html:", htmlText)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
@@ -94,6 +96,9 @@ const NewPost = () => {
             case "json_text":
                 setJsonText(value)
                 return true
+            case "html_text":
+                setHtmlText(value)
+                return true
         }
     }
 
@@ -116,9 +121,10 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
-            <Editor onChange={(value, value_json) => {
+            <Editor onChange={(value, value_json, value_html) => {
                             onChangeEditor("markdown_text", value)
                             onChangeEditor("json_text", value_json)
+                            onChangeEditor("html_text", value_html)
                         }
                         } html_setter={setHtmlText}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>

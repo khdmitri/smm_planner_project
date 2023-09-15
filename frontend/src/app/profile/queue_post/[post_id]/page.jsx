@@ -50,7 +50,7 @@ const Page = ({params}) => {
             setPost(res.data)
         }).catch(error => {
             setShowMessage(true)
-            setMessage(error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
+            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
             setSeverity("error")
         })
     }
@@ -98,7 +98,7 @@ const Page = ({params}) => {
                         post_id: state_post.id,
                         telegram_config_id: key,
                         title: state_post.title,
-                        text: state_post.markdown_text,
+                        text: state_post.html_text,
                         when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
                     }
                     await QueueAPI.newTelegramPost(queued_post, sessionStorage.getItem("access-token"))
@@ -116,6 +116,11 @@ const Page = ({params}) => {
                         })
                 }
             })
+        if (post) {
+            post.is_posted = true
+            post.post_date = moment().format("YYYY-MM-DD HH:mm")
+            await PostAPI.updatePost(post, sessionStorage.getItem("access-token"))
+        }
     }
 
     return (
@@ -153,7 +158,7 @@ const Page = ({params}) => {
                 <Button variant="contained" onClick={sendPosts}>Post to Social Networks</Button>
             }
             {isPosted &&
-                <Button variant="outlined" color="success" onClick={()=>router.push("/profile/queue_post")}>
+                <Button variant="outlined" color="success" onClick={() => router.push("/profile/queue_post")}>
                     Check Post Queue
                 </Button>
             }

@@ -20,6 +20,7 @@ async def regular_check(ctx):
     logger.info("===Running TelegramQueue instance...")
     tq = TelegramQueue()
     await tq.send_all()
+    await tq.close()
     logger.info("===TelegramQueue work complete...")
 
 
@@ -43,8 +44,8 @@ class WorkerSettings:
             regular_check,
             minute=at_every_x_minutes(30),
             run_at_startup=True,
-            timeout=1500,
-            max_tries=5,
+            # timeout=1500,
+            # max_tries=5,
         )
     ]
     on_startup = startup

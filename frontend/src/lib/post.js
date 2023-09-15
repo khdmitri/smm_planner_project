@@ -6,6 +6,7 @@ const instance = axios.create({
 instance.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
 instance.defaults.headers.post["Content-Type"] = "multipart/form-data"
 instance.defaults.headers.get["Content-Type"] = "application/json"
+instance.defaults.headers.put["Content-Type"] = "application/json"
 
 export default class PostAPI {
     static async newPost(form_data, access_token) {
@@ -14,6 +15,7 @@ export default class PostAPI {
                 "Authorization": `Bearer ${access_token}`,
             }
         }
+        console.log("Sending data=", form_data)
         return await instance.post("posts", form_data, config)
     }
 

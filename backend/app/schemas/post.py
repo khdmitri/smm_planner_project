@@ -13,6 +13,7 @@ class PostBase(BaseModel):
     json_text: Optional[dict] = {}
     is_posted: Optional[bool] = None
     when: Optional[datetime] = None
+    post_date: Optional[datetime] = None
 
 
 # Properties to receive via API on creation

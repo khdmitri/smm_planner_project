@@ -4,10 +4,13 @@ import { useMemo } from "react";
 import { $convertToMarkdownString } from "@lexical/markdown";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import debounce from "lodash.debounce";
+import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
+import {$generateHtmlFromNodes} from "@lexical/html";
+import {LexicalEditor} from "lexical";
 
 export type OnChangeMarkdownType =
   | Dispatch<SetStateAction<string>>
-  | ((value: string, value_json: Object) => void);
+  | ((value: string, value_json: Object, value_html: string) => void);
 
 export default function OnChangeMarkdown({
   onChange,
@@ -18,9 +21,10 @@ export default function OnChangeMarkdown({
   onChange: OnChangeMarkdownType;
   __UNSAFE_debounceTime?: number;
 }) {
+  const [editor] = useLexicalComposerContext()
   const OnChangeMarkdown = useMemo(() => {
     return debounce(
-      (state: EditorState) => transformState(state, onChange, transformers),
+      (state: EditorState) => transformState(state, editor, onChange, transformers),
       __UNSAFE_debounceTime ?? 200
     );
   }, [onChange, __UNSAFE_debounceTime]);
@@ -36,11 +40,13 @@ export default function OnChangeMarkdown({
 
 function transformState(
   editorState: EditorState,
+  editor: LexicalEditor,
   onChange: OnChangeMarkdownType,
   transformers: any
 ) {
   editorState.read(() => {
     const markdown = $convertToMarkdownString(transformers);
+    const html_text = $generateHtmlFromNodes(editor, null)
     const withBrs = markdown
       // https://github.com/markedjs/marked/issues/190#issuecomment-865303317
       .replace(/\n(?=\n)/g, "\n")
@@ -49,6 +55,7 @@ function transformState(
       // and need to convert it back to the original, so the markdown is respected
       .replace(/^(&gt\;)(?=\s)(?!.*&lt\;)/gm, ">");
 
-    onChange(withBrs, editorState.toJSON());
+    console.log("HTML_TEXT=", html_text)
+    onChange(withBrs, editorState.toJSON(), html_text);
   });
 }

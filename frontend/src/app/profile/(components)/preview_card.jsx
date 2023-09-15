@@ -24,14 +24,8 @@ const PreviewCard = (props) => {
                     }
                     {type.startsWith("image/") &&
                         <Grid container display="flex" justifyContent="center">
-                            <Grid item xs={3} padding={2}>
-                                <CardMedia
-                                    display="flex"
-                                    justifyContent="center"
-                                    component="img"
-                                    src={fileObject.data}
-                                    sx={{height: 200, padding: 1}}
-                                />
+                            <Grid item xs={12} padding={2}>
+                                <img src={fileObject.data} width="100%" />
                             </Grid>
                         </Grid>
                     }
