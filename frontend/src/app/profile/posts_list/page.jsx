@@ -16,7 +16,7 @@ const PostList = () => {
     const router = useRouter()
 
     const postList = async () => {
-        PostAPI.getPosts(sessionStorage.getItem("access-token")).then(res => {
+        await PostAPI.getPosts(sessionStorage.getItem("access-token")).then(res => {
             setData(res.data)
         }).catch(error => {
             setShowMessage(true)

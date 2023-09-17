@@ -1,23 +1,25 @@
 "use client"
 
 import React, {useEffect, useState} from 'react';
-import {Box, Card, CardContent, Divider, Typography} from "@mui/material";
+import {Box, Card, CardContent, Divider, Tab, Typography} from "@mui/material";
 import {useRouter} from "next/navigation";
-import PostAPI from "../../../lib/post";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import PostListTable from "./(components)/post_list_table";
 import UniAlert from "../../../components/alert/alert";
+import {TabContext, TabList, TabPanel} from "@mui/lab";
+import PostListTableTg from "./(componnets)/post_list_table_tg";
+import QueueAPI from "../../../lib/queue";
 
 const PostList = () => {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
-    const [data, setData] = useState([])
+    const [dataTg, setDataTg] = useState([])
     const router = useRouter()
+    const [value, setValue] = React.useState();
 
     const postList = async () => {
-        PostAPI.getPosts(sessionStorage.getItem("access-token")).then(res => {
-            setData(res.data)
+        await QueueAPI.getTelegramPosts(sessionStorage.getItem("access-token")).then(res => {
+            setDataTg(res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -25,8 +27,8 @@ const PostList = () => {
         })
     }
 
-    const deleteFunc = async (post_id) => {
-        await PostAPI.deletePost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
+    const deleteFuncTg = async (post_id) => {
+        await QueueAPI.deleteTelegramPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
             setShowMessage(true)
             setMessage(res.data.msg)
             setSeverity("success")
@@ -38,18 +40,14 @@ const PostList = () => {
         })
     }
 
-    const editFunc = (post_id) => {
-        router.push(`/profile/post_list/edit/${post_id}`)
-    }
-
-    const queuedFunc = (post_id) => {
-        router.push(`/profile/queue_post/${post_id}`)
-    }
-
     useEffect(() => {
-        sessionStorage.setItem("profile_menu_active", "Posts")
+        sessionStorage.setItem("profile_menu_active", "Queue")
         postList()
     }, [])
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
         <Box>
@@ -60,14 +58,35 @@ const PostList = () => {
             }
             <Divider/>
             <Card>
-                <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
+                <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between"
+                     alignItems="center">
                     <Typography components="h1" variant="h4">
-                        Post List
+                        Queued Post List
                     </Typography>
-                    <DynamicFeedIcon fontSize="large" color="info" m={2} p={2} />
+                    <DynamicFeedIcon fontSize="large" color="info" m={2} p={2}/>
                 </Box>
                 <CardContent>
-                    <PostListTable data={data} deleteFunc={deleteFunc} editFunc={editFunc} queuedFunc={queuedFunc}/>
+                    <Box sx={{width: '100%', typography: 'body1'}}>
+                        <TabContext value={value ? value.toString() : "None"}>
+                            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                                <TabList onChange={handleChange} aria-label="queued tabs">
+                                    {["telegram", "facebook"].map(name =>
+                                        <Tab label={name.toUpperCase()} value={name}
+                                             key={name}/>
+                                    )
+                                    }
+                                </TabList>
+                            </Box>
+                            {["telegram", "facebook"].map(name =>
+                                <TabPanel value={name.toUpperCase()} key={name}>
+                                    {name === "telegram" &&
+                                        <PostListTableTg data={dataTg} deleteFunc={deleteFuncTg} />
+                                    }
+                                </TabPanel>
+                            )
+                            }
+                        </TabContext>
+                    </Box>
                 </CardContent>
             </Card>
         </Box>

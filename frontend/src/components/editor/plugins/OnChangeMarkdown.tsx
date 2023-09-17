@@ -6,11 +6,11 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import debounce from "lodash.debounce";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {$generateHtmlFromNodes} from "@lexical/html";
-import {LexicalEditor} from "lexical";
+import {$getRoot, LexicalEditor} from "lexical";
 
 export type OnChangeMarkdownType =
   | Dispatch<SetStateAction<string>>
-  | ((value: string, value_json: Object, value_html: string) => void);
+  | ((value: string, value_json: Object, value_html: string, value_text: string) => void);
 
 export default function OnChangeMarkdown({
   onChange,
@@ -47,6 +47,7 @@ function transformState(
   editorState.read(() => {
     const markdown = $convertToMarkdownString(transformers);
     const html_text = $generateHtmlFromNodes(editor, null)
+    const plain_text = $getRoot().textContent
     const withBrs = markdown
       // https://github.com/markedjs/marked/issues/190#issuecomment-865303317
       .replace(/\n(?=\n)/g, "\n")
@@ -56,6 +57,6 @@ function transformState(
       .replace(/^(&gt\;)(?=\s)(?!.*&lt\;)/gm, ">");
 
     console.log("HTML_TEXT=", html_text)
-    onChange(withBrs, editorState.toJSON(), html_text);
+    onChange(withBrs, editorState.toJSON(), html_text, plain_text);
   });
 }

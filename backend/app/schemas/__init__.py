@@ -4,4 +4,6 @@ from .user import User, UserCreate, UserInDB, UserUpdate
 from .post import Post, PostCreate, PostInDB, PostUpdate
 from .telegram_config import TelegramConfig, TelegramConfigCreate, TelegramConfigUpdate
 from .telegram_queue import TelegramQueue, TelegramQueueCreate, TelegramQueueUpdate
+from .facebook_config import FacebookConfig, FacebookConfigCreate, FacebookConfigUpdate
+from .facebook_queue import FacebookQueue, FacebookQueueCreate, FacebookQueueUpdate
 from .token import Token, TokenPayload

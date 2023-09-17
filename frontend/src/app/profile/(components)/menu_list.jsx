@@ -65,7 +65,7 @@ const MenuList = (props) => {
                 {[{text: 'Dashboard', icon: <DashboardIcon/>, route: '/profile'},
                     {text: 'New Post', icon: <PostAddIcon/>, route: '/profile/new_post'},
                     {text: 'Posts', icon: <DynamicFeedIcon/>, route: '/profile/posts_list'},
-                    {text: 'Scheduler', icon: <ScheduleIcon/>, route: '/profile/scheduler'}]
+                    {text: 'Queue', icon: <ScheduleIcon/>, route: '/profile/queue_post'}]
                     .map((item, index) => (
                         renderListItem(item)
                     ))}

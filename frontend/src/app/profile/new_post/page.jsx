@@ -17,7 +17,8 @@ const NewPost = () => {
     })
     const [markdown, setMarkdown] = useState("");
     const [jsonText, setJsonText] = useState({})
-    const [htmlText, setHtmlText] = useState()
+    const [htmlText, setHtmlText] = useState("")
+    const [plainText, setPlainText] = useState("")
     const [isCreated, setIsCreated] = useState(false)
     const [files, setFiles] = useState([])
     const [user, setUser] = useState()
@@ -52,6 +53,7 @@ const NewPost = () => {
             data.append("markdown_text", convertPureMarkdown(markdown))
             data.append("json_text", JSON.stringify(jsonText))
             data.append("html_text", htmlText)
+            data.append("plain_text", plainText)
             console.log("Data2Submit:", data)
             console.log("Html:", htmlText)
             if (files.length > 0)
@@ -99,6 +101,9 @@ const NewPost = () => {
             case "html_text":
                 setHtmlText(value)
                 return true
+            case "plain_text":
+                setPlainText(value)
+                return true
         }
     }
 
@@ -121,10 +126,11 @@ const NewPost = () => {
                 showPreviewsInDropzone={false}
                 showFileNamesInPreview={true}
             />
-            <Editor onChange={(value, value_json, value_html) => {
+            <Editor onChange={(value, value_json, value_html, value_text) => {
                             onChangeEditor("markdown_text", value)
                             onChangeEditor("json_text", value_json)
                             onChangeEditor("html_text", value_html)
+                            onChangeEditor("plain_text", value_text)
                         }
                         } html_setter={setHtmlText}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
