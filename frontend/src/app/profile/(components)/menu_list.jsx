@@ -5,8 +5,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -16,6 +14,7 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import {useRouter} from "next/navigation";
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 const MenuList = (props) => {
     const {open} = props
@@ -73,7 +72,9 @@ const MenuList = (props) => {
             <Divider/>
             <List>
                 {[{text: 'Properties', icon: <PermDataSettingIcon/>, route: '/profile/config'},
-                  {text: 'Telegram', icon: <TelegramIcon/>, route: '/profile/config/telegram'}]
+                  {text: 'Telegram', icon: <TelegramIcon/>, route: '/profile/config/telegram'},
+                  {text: 'Facebook', icon: <FacebookIcon/>, route: '/profile/config/facebook'}
+                ]
                     .map((item, index) => (
                         renderListItem(item)
                     ))}

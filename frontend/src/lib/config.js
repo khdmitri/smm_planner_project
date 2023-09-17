@@ -10,6 +10,8 @@ instance.defaults.headers.get["Content-Type"] = "application/json"
 instance.defaults.headers.delete["Content-Type"] = "application/json"
 
 export default class ConfigAPI {
+    // TELEGRAM
+
     static async newTelegramConfig(form_data, access_token) {
         const config = {
             headers: {
@@ -53,6 +55,53 @@ export default class ConfigAPI {
             }
         }
         return await instance.delete(`/telegram_config/${config_id}`, config)
+    }
+
+    // FACEBOOK
+
+    static async newFacebookConfig(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.post("/facebook_config", form_data, config)
+    }
+
+    static async getFacebookConfigList(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get("/facebook_config", config)
+    }
+
+    static async getFacebookConfig(config_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get(`/facebook_config/${config_id}`, config)
+    }
+
+    static async updateFacebookConfig(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.put("/facebook_config", form_data, config)
+    }
+
+    static async deleteFacebookConfig(config_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.delete(`/facebook_config/${config_id}`, config)
     }
 }
 

@@ -9,7 +9,7 @@ import '../../../../../styles/data-grid.css';
 const get_columns = (deleteFunc, editFunc) =>
     [
         {field: 'id', headerName: 'ID', align: "left", headerClassName: 'data-grid-header'},
-        {field: 'chat_id', headerName: 'GROUP ID', width: 150, align: "left", headerClassName: 'data-grid-header'},
+        {field: 'chat_id', headerName: 'CHAT ID', width: 150, align: "left", headerClassName: 'data-grid-header'},
         {
             field: 'description',
             headerName: 'DESCRIPTION',

@@ -1,7 +1,7 @@
 "use client"
 
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Card, CardContent, CardHeader, Divider, Typography} from "@mui/material";
+import {Box, Button, Card, CardContent, Divider, Typography} from "@mui/material";
 import ConfigList from "./(components)/config_list"
 import ConfigAPI from "../../../../lib/config";
 import UniAlert from "../../../../components/alert/alert";
@@ -9,7 +9,7 @@ import {useRouter} from "next/navigation";
 import AddIcon from '@mui/icons-material/Add';
 import {Telegram} from "@mui/icons-material";
 
-const TelegramConfig = () => {
+const FacebookConfig = () => {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
@@ -17,7 +17,7 @@ const TelegramConfig = () => {
     const router = useRouter()
 
     const configList = async () => {
-        await ConfigAPI.getTelegramConfigList(sessionStorage.getItem("access-token")).then(res => {
+        await ConfigAPI.getFacebookConfigList(sessionStorage.getItem("access-token")).then(res => {
             setData(res.data)
         }).catch(error => {
             setShowMessage(true)
@@ -27,7 +27,7 @@ const TelegramConfig = () => {
     }
 
     const deleteFunc = async (config_id) => {
-        await ConfigAPI.deleteTelegramConfig(config_id, sessionStorage.getItem("access-token")).then(async (res) => {
+        await ConfigAPI.deleteFacebookConfig(config_id, sessionStorage.getItem("access-token")).then(async (res) => {
             setShowMessage(true)
             setMessage(res.data.msg)
             setSeverity("success")
@@ -40,11 +40,11 @@ const TelegramConfig = () => {
     }
 
     const editFunc = (config_id) => {
-        router.push(`/profile/config/telegram/edit/${config_id}`)
+        router.push(`/profile/config/facebook/edit/${config_id}`)
     }
 
     useEffect(() => {
-        sessionStorage.setItem("profile_menu_active", "Telegram")
+        sessionStorage.setItem("profile_menu_active", "Facebook")
         configList()
     }, [])
 
@@ -59,7 +59,7 @@ const TelegramConfig = () => {
             <Card>
                 <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
                     <Typography components="h1" variant="h4">
-                        Telegram Chat List
+                        Facebook Group List
                     </Typography>
                     <Telegram fontSize="large" color="info" m={2} p={2} />
                 </Box>
@@ -74,4 +74,4 @@ const TelegramConfig = () => {
     );
 };
 
-export default TelegramConfig;
+export default FacebookConfig;
