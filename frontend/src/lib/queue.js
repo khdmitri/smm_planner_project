@@ -8,6 +8,8 @@ instance.defaults.headers.post["Content-Type"] = "application/json"
 instance.defaults.headers.get["Content-Type"] = "application/json"
 
 export default class QueueAPI {
+    // TELEGRAM
+
     static async newTelegramPost(data, access_token) {
         const config = {
             headers: {
@@ -34,6 +36,33 @@ export default class QueueAPI {
         }
         return await instance.delete(`telegram_queue/${post_id}`, config)
     }
+
+    // FACEBOOK
+
+    static async newFacebookPost(data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.post("facebook_queue", data, config)
+    }
+
+    static async getFacebookPosts(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get(`facebook_queue`, config)
+    }
+
+    static async deleteFacebookPost(post_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.delete(`facebook_queue/${post_id}`, config)
+    }
 }
-
-

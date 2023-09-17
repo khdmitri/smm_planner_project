@@ -14,6 +14,7 @@ const PostList = () => {
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
     const [dataTg, setDataTg] = useState([])
+    const [dataFb, setDataFb] = useState([])
     const router = useRouter()
     const [value, setValue] = React.useState();
 
@@ -25,10 +26,30 @@ const PostList = () => {
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
             setSeverity("error")
         })
+        await QueueAPI.getFacebookPosts(sessionStorage.getItem("access-token")).then(res => {
+            setDataFb(res.data)
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setSeverity("error")
+        })
     }
 
     const deleteFuncTg = async (post_id) => {
         await QueueAPI.deleteTelegramPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
+            setShowMessage(true)
+            setMessage(res.data.msg)
+            setSeverity("success")
+            await postList()
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setSeverity("error")
+        })
+    }
+
+    const deleteFuncFb = async (post_id) => {
+        await QueueAPI.deleteFacebookPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
             setShowMessage(true)
             setMessage(res.data.msg)
             setSeverity("success")
@@ -81,6 +102,9 @@ const PostList = () => {
                                 <TabPanel value={name.toUpperCase()} key={name}>
                                     {name === "telegram" &&
                                         <PostListTableTg data={dataTg} deleteFunc={deleteFuncTg} />
+                                    }
+                                    {name === "facebook" &&
+                                        <PostListTableTg data={dataFb} deleteFunc={deleteFuncFb} />
                                     }
                                 </TabPanel>
                             )
