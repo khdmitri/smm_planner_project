@@ -26,8 +26,8 @@ const tlgConfigFormSchema = yup.object().shape({
 })
 
 const fbConfigFormSchema = yup.object().shape({
-    chat_id: yup.number().required("Required"),
-    marker_token: yup.number().required("Required"),
+    chat_id: yup.string().required("Required"),
+    marker_token: yup.string().required("Required"),
     description: yup.string().required("Required"),
     minutes: yup.number().required().min(0).max(59).default(0),
     hours: yup.number().required().min(0).max(23).default(0),

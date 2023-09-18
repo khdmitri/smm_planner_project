@@ -28,4 +28,4 @@ class CRUDFacebookConfig(CRUDBase[FacebookConfig, FacebookConfigCreate, Facebook
         return schema_config
 
 
-crud_facebook_config = CRUDFacebookConfig(TelegramConfig)
+crud_facebook_config = CRUDFacebookConfig(FacebookConfig)

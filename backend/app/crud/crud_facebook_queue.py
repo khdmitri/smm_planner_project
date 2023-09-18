@@ -21,7 +21,7 @@ class CRUDFacebookQueue(CRUDBase[FacebookQueue, FacebookQueueCreate, FacebookQue
     async def get_max_date(self, db: AsyncSession, *, user_id: int, config_id: int):
         result = await db.execute(select(func.max(FacebookQueue.when)).filter(
             FacebookQueue.user_id == user_id,
-            FacebookQueue.telegram_config_id == config_id))
+            FacebookQueue.facebook_config_id == config_id))
         return result.fetchone()
 
 

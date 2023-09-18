@@ -47,7 +47,7 @@ function transformState(
   editorState.read(() => {
     const markdown = $convertToMarkdownString(transformers);
     const html_text = $generateHtmlFromNodes(editor, null)
-    const plain_text = $getRoot().textContent
+    const plain_text = $getRoot().getTextContent()
     const withBrs = markdown
       // https://github.com/markedjs/marked/issues/190#issuecomment-865303317
       .replace(/\n(?=\n)/g, "\n")

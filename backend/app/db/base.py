@@ -7,3 +7,4 @@ from app.models.telegram_config import TelegramConfig # Noqa
 from app.models.telegram_queue import TelegramQueue # Noqa
 from app.models.facebook_config import FacebookConfig # Noqa
 from app.models.facebook_queue import FacebookQueue # Noqa
+from app.models.proxy import Proxy # Noqa

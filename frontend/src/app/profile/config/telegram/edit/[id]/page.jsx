@@ -1,12 +1,12 @@
 "use client";
 
 import TextField from "@mui/material/TextField";
-import {Box, Button, Card, CardContent, FormControl, FormLabel, Grid, Typography} from "@mui/material";
+import {Box, Button, Card, CardContent, FormControl, FormGroup, FormLabel, Grid, Typography} from "@mui/material";
 import {useFormik} from "formik";
 import {useEffect, useState} from "react";
 import ConfigAPI from "../../../../../../lib/config";
 import UniAlert from "../../../../../../components/alert/alert";
-import {fbConfigFormSchema} from "../../../../../(schemes)/index";
+import {tlgConfigFormSchema} from "../../../../../(schemes)/index";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import {useRouter} from "next/navigation";
 
@@ -21,7 +21,7 @@ const EditConfig = ({params}) => {
     const router = useRouter()
 
     const get_config = async () => {
-        await ConfigAPI.getFacebookConfig(params.id, sessionStorage.getItem("access-token")).then(res => {
+        await ConfigAPI.getTelegramConfig(params.id, sessionStorage.getItem("access-token")).then(res => {
             setConfig(res.data)
         }).catch(error => {
             setShowMessage(true)
@@ -34,16 +34,15 @@ const EditConfig = ({params}) => {
         console.log("Submit")
         const data = {
             chat_id: values.chat_id,
-            marker_token: values.marker_token,
             description: values.description,
             schedule: {minutes: values.minutes, hours: values.hours, days: values.days}
         }
         console.log("data=", data)
         if (action === "update") {
             data["id"] = parseInt(params.id)
-            await ConfigAPI.updateFacebookConfig(data, sessionStorage.getItem("access-token")).then(res => {
+            await ConfigAPI.updateTelegramConfig(data, sessionStorage.getItem("access-token")).then(res => {
                 setShowMessage(true)
-                setMessage("Facebook config was successfully updated!")
+                setMessage("Telegram config was successfully updated!")
                 setSeverity("success")
                 setIsUpdateComplete(true)
             }).catch(error => {
@@ -52,9 +51,9 @@ const EditConfig = ({params}) => {
                 setSeverity("error")
             })
         } else {
-            await ConfigAPI.newFacebookConfig(data, sessionStorage.getItem("access-token")).then(res => {
+            await ConfigAPI.newTelegramConfig(data, sessionStorage.getItem("access-token")).then(res => {
                 setShowMessage(true)
-                setMessage("Facebook config was successfully created!")
+                setMessage("Telegram config was successfully created!")
                 setSeverity("success")
                 setIsUpdateComplete(true)
             }).catch(error => {
@@ -74,20 +73,19 @@ const EditConfig = ({params}) => {
         enableReinitialize: true,
         initialValues: {
             chat_id: config && config.chat_id ? config.chat_id : "",
-            marker_token: config && config.marker_token ? config.marker_token : "",
             description: config && config.description ? config.description : "",
             minutes: config && config.schedule ? config.schedule.minutes : 0,
             hours: config && config.schedule ? config.schedule.hours : 0,
             days: config && config.schedule ? config.schedule.days : 0,
         },
-        validationSchema: fbConfigFormSchema,
+        validationSchema: tlgConfigFormSchema,
         onSubmit: onSubmitConfig
     });
     return (
         <Box>
             <Box m={0} p={2}>
                 <Button sx={{marginBottom: 2}} variant="contained" startIcon={<ArrowLeftIcon/>}
-                        onClick={() => router.push("/profile/config/facebook")}>
+                        onClick={() => router.push("/profile/config/telegram")}>
                     Back to config list
                 </Button>
                 {showMessage &&
@@ -99,23 +97,6 @@ const EditConfig = ({params}) => {
             <Card>
                 <CardContent>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1, maxWidth: 400}}>
-                        <TextField
-                            type="number"
-                            margin="normal"
-                            required
-                            fullWidth
-                            onBlur={handleBlur}
-                            id="marker_token"
-                            label="Marker Token"
-                            value={values.marker_token}
-                            onChange={handleChange}
-                            error={errors.marker_token && touched.marker_token}
-                            helperText={errors.marker_token && touched.marker_token ? errors.marker_token : ""}
-                            InputLabelProps={{shrink: true}}
-                            autoComplete="chat_id"
-                            autoFocus
-                            focused
-                        />
                         <TextField
                             type="number"
                             margin="normal"

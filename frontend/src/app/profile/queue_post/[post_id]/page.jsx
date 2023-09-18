@@ -43,7 +43,7 @@ const Page = ({params}) => {
     }
 
     useEffect(() => {
-        function set_init_state(configs) {
+        function set_init_state(configs, dispatch) {
             // Init reducer state
             const init_state = {}
             configs.map((chat) => {
@@ -55,10 +55,10 @@ const Page = ({params}) => {
             })
         }
         if (!state_tg && post && chats) {
-            set_init_state(chats)
+            set_init_state(chats, dispatch_tg)
         }
         if (!state_fb && post && fbChats) {
-            set_init_state(fbChats)
+            set_init_state(fbChats, dispatch_fb)
         }
     }, [post, chats, state_tg, state_fb])
 

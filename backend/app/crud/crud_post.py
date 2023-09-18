@@ -10,7 +10,9 @@ from app.schemas.post import PostCreate, PostUpdate
 
 class CRUDPost(CRUDBase[Post, PostCreate, PostUpdate]):
     async def get_multi_by_user(self, db: AsyncSession, *, user_id: int) -> Optional[List[Post]]:
-        result = await db.execute(select(Post).filter(Post.user_id == user_id))
+        result = await db.execute(select(Post).filter(Post.user_id == user_id).order_by(
+            Post.when.desc()
+        ))
         return result.scalars().all()
 
 

@@ -13,7 +13,7 @@ router = APIRouter()
 logger = get_logger(logging.INFO)
 
 
-@router.get("/", response_model=List[schemas.TelegramConfig])
+@router.get("/", response_model=List[schemas.FacebookConfig])
 async def read_configs(
     db: AsyncSession = Depends(deps.get_db_async),
     current_user: models.User = Depends(deps.get_current_active_user),
@@ -44,7 +44,7 @@ async def read_user_by_id(
     return config
 
 
-@router.post("/", response_model=schemas.TelegramConfig)
+@router.post("/", response_model=schemas.FacebookConfig)
 async def new_facebook(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
@@ -64,7 +64,7 @@ async def new_facebook(
     return new_facebook_config
 
 
-@router.put("/", response_model=schemas.TelegramConfig)
+@router.put("/", response_model=schemas.FacebookConfig)
 async def update_config(
     *,
     db: AsyncSession = Depends(deps.get_db_async),

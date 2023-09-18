@@ -87,8 +87,8 @@ const NewPost = () => {
     }, [])
 
     useEffect(() => {
-        console.log("markdown=", markdown)
-    }, [markdown])
+        console.log("PlainText=", plainText)
+    }, [plainText])
 
     const onChangeEditor = (sub_key, value) => {
         switch(sub_key) {

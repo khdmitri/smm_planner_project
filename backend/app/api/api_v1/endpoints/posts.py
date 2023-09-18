@@ -23,6 +23,7 @@ async def new_post(
         markdown_text: Optional[str] = Form(None),
         json_text: Optional[str] = Form(None),
         html_text: Optional[str] = Form(None),
+        plain_text: Optional[str] = Form(None),
         files: List[UploadFile] = Form(None),
         db: AsyncSession = Depends(get_db_async),
         current_user: models.User = Depends(deps.get_current_user)
@@ -52,7 +53,8 @@ async def new_post(
             title=title,
             markdown_text=markdown_text,
             json_text=json.loads(json_text),
-            html_text=html_text
+            html_text=html_text,
+            plain_text=plain_text
         )
         new_post = await crud_post.create(db, obj_in=new_post)
 
