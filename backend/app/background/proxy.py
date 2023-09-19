@@ -74,13 +74,23 @@ class ProxyManager:
         for item in new_list:
             await self._insert_item(protocol=protocol, address=item)
 
+    async def test_proxy_provider(self, protocol):
+        test_params = {
+            "type": protocol,
+        }
+        url = "https://www.proxy-list.download/api/v1/get"
+        request_result = await self.async_client.request("get", url, params=test_params)
+        return request_result
+
 
 async def main():
     ctx = AsyncClient()
     proxy_inst = ProxyManager(ctx)
     try:
-        await proxy_inst.request_new_list("http")
-        await proxy_inst.request_new_list("https")
+        # await proxy_inst.request_new_list("http")
+        # await proxy_inst.request_new_list("https")
+        result = await proxy_inst.test_proxy_provider("https")
+        print(result)
     except HTTPException as error:
         logger.error(f"Error when request proxy list: {str(error.status_code)}")
     finally:

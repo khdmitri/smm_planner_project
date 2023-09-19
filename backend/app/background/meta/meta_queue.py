@@ -9,7 +9,7 @@ from typing import List
 
 from asyncpg import Record
 from facebook import GraphAPI
-from httpx import AsyncClient
+from httpx import AsyncClient, ProtocolError
 from requests.exceptions import ProxyError, SSLError
 
 from app.background.db.database import database_instance
@@ -20,7 +20,7 @@ from app.core.config import settings
 
 # FILE_BASE_PATH = "app/background/meta/queries"
 FILE_BASE_PATH = "./queries"
-BASE_FILE_DIRECTORY = "app/media"
+BASE_FILE_DIRECTORY = "../../media"
 
 logger = get_logger(logging.INFO)
 
@@ -35,7 +35,7 @@ def put_text_wrapper(graph, parent_object, connection_name, message):
 
 
 def put_photo_wrapper(graph: GraphAPI, parent_object, photo, message):
-    graph.put_photo(image=open(photo, 'rb'), message=message, album_path=parent_object + '/photos')
+    graph.put_photo(image=open(photo, 'rb'), message=message)
 
 
 class MetaQueue:
@@ -155,7 +155,7 @@ class MetaQueue:
                 await loop.run_in_executor(None, put_photo_wrapper, graph, chat_id, filepath, text)
                 logger.info(f"Proxy is successfully worked: {self.current_proxy}")
                 break
-            except (ProxyError, SSLError, ConnectionError):
+            except (ProxyError, SSLError, ProtocolError):
                 await self._remove_proxy()
                 current_attempt += 1
                 graph = await self._get_graph(marker_token)
@@ -164,7 +164,12 @@ class MetaQueue:
                 message = template.format(type(e).__name__, e.args)
                 logger.error(f"_send_text: {message}")
                 last_error = str(e)
-                break
+                if type(e).__name__ in ["ConnectionError", ]:
+                    await self._remove_proxy()
+                    current_attempt += 1
+                    graph = await self._get_graph(marker_token)
+                else:
+                    break
 
         if current_attempt > MAX_ATTEMPTS:
             result["success"] = False
