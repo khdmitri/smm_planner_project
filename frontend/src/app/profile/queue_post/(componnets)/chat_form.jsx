@@ -9,28 +9,38 @@ import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import moment from "moment";
 import ConfigAPI from "../../../../lib/config";
 
-const ChatForm = ({chat, post, dispatch}) => {
+const ChatForm = ({chat, post, dispatch, formType}) => {
     const get_full_config = async (config_id) => {
-        await ConfigAPI.getTelegramConfig(config_id, sessionStorage.getItem("access-token"))
-            .then(res => dispatch({
-                type: "update_item",
-                key: chat.id,
-                payload: {
-                    ...post,
-                    "when": moment(res.data.next_post_time)
-                }
-            }))
-            .catch(error => {
-                console.log("error:", error)
-                dispatch({
+        let configFunc = null
+        switch(formType) {
+            case "tg":
+                configFunc = ConfigAPI.getTelegramConfig
+                break
+            case "fb":
+                configFunc = ConfigAPI.getFacebookConfig
+                break
+        }
+        if (configFunc)
+            await configFunc(config_id, sessionStorage.getItem("access-token"))
+                .then(res => dispatch({
                     type: "update_item",
                     key: chat.id,
                     payload: {
                         ...post,
-                        "when": new Date()
+                        "when": moment(res.data.next_post_time)
                     }
+                }))
+                .catch(error => {
+                    console.log("error:", error)
+                    dispatch({
+                        type: "update_item",
+                        key: chat.id,
+                        payload: {
+                            ...post,
+                            "when": new Date()
+                        }
+                    })
                 })
-            })
     }
 
         useEffect(() => {

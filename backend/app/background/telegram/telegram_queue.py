@@ -17,6 +17,7 @@ from app.common.logger import get_logger
 from app.core.config import settings
 
 FILE_BASE_PATH = "app/background/telegram/queries"
+BASE_FILE_DIRECTORY = "app/media"
 # FILE_BASE_PATH = "./queries"
 
 logger = get_logger(logging.INFO)
@@ -53,7 +54,7 @@ class TelegramQueue:
                 media_group = []
                 content_type = None
                 for ind, postfile in enumerate(postfiles):
-                    filepath = os.path.join(settings.BASE_FILE_DIRECTORY, str(post["user_id"]), postfile["filepath"])
+                    filepath = os.path.join(BASE_FILE_DIRECTORY, str(post["user_id"]), postfile["filepath"])
                     if ind == 0:
                         content_type = postfile["content_type"].split("/")[0]
                     media_group.append(filepath)

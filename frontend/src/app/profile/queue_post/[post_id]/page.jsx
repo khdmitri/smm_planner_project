@@ -180,13 +180,13 @@ const Page = ({params}) => {
                     </Box>
                     {state_tg && Object.keys(state_tg).length > 0 && chats.map(chat =>
                         <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
-                            <ChatForm chat={chat} post={state_tg[chat.id]} dispatch={dispatch_tg}/>
+                            <ChatForm chat={chat} post={state_tg[chat.id]} dispatch={dispatch_tg} formType="tg"/>
                         </TabPanel>
                     )
                     }
                     {state_fb && Object.keys(state_fb).length > 0 && fbChats.map(chat =>
                         <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
-                            <ChatForm chat={chat} post={state_fb[chat.id]} dispatch={dispatch_fb}/>
+                            <ChatForm chat={chat} post={state_fb[chat.id]} dispatch={dispatch_fb} formType="fb"/>
                         </TabPanel>
                     )
                     }

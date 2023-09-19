@@ -15,7 +15,7 @@ params = {
     "request": "displayproxies",
     "timeout": 10000,
     "country": "all",
-    "ssl": "all",
+    "ssl": "no",
     "anonymity": "all",
 }
 
@@ -55,9 +55,9 @@ class ProxyManager:
             except ValueError:
                 pass
 
-    async def _clean_data_in_db(self):
-        delete_stmt = "DELETE FROM proxy"
-        await database_instance.execute(delete_stmt)
+    async def _clean_data_in_db(self, protocol):
+        delete_stmt = "DELETE FROM proxy WHERE protocol={protocol}"
+        await database_instance.execute(delete_stmt, named_args={"protocol": protocol})
         return True
 
     async def _insert_item(self, *, protocol, address):
@@ -70,7 +70,7 @@ class ProxyManager:
         if request_result.status_code > 201:
             raise HTTPException(status_code=request_result.status_code)
         new_list = request_result.text.split("\r\n")
-        await self._clean_data_in_db()
+        await self._clean_data_in_db(protocol)
         for item in new_list:
             await self._insert_item(protocol=protocol, address=item)
 
@@ -79,8 +79,8 @@ async def main():
     ctx = AsyncClient()
     proxy_inst = ProxyManager(ctx)
     try:
-        result = await proxy_inst.request_new_list("https")
-        print(result)
+        await proxy_inst.request_new_list("http")
+        await proxy_inst.request_new_list("https")
     except HTTPException as error:
         logger.error(f"Error when request proxy list: {str(error.status_code)}")
     finally:
