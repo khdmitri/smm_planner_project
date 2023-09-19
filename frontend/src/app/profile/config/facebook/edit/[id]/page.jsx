@@ -130,7 +130,6 @@ const EditConfig = ({params}) => {
                             helperText={errors.chat_id && touched.chat_id ? errors.chat_id : ""}
                             InputLabelProps={{shrink: true}}
                             autoComplete="chat_id"
-                            autoFocus
                         />
                         <TextField
                             margin="normal"

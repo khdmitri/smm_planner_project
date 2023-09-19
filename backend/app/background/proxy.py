@@ -29,11 +29,11 @@ class ProxyManager:
         }
 
     async def _get_current_list(self, protocol):
-        stmt_list = "SELECT address FROM proxy WHERE protocol={protocol}"
+        stmt_list = "SELECT address, is_success FROM proxy WHERE protocol={protocol}"
         result_db = await database_instance.fetch_rows(stmt_list, named_args={"protocol": protocol})
         self.proxy_list[protocol] = []
         for item in result_db:
-            self.proxy_list[protocol].append(item["address"])
+            self.proxy_list[protocol].append({"address": item["address"], "is_success": item["is_success"]})
 
     async def get_random_proxy(self, protocol):
         if len(self.proxy_list[protocol]) == 0:
@@ -50,19 +50,20 @@ class ProxyManager:
         for key in self.proxy_list.keys():
             try:
                 self.proxy_list[key].remove(address)
-                stmt_delete_item = "DELETE FROM proxy WHERE address={address}"
+                stmt_delete_item = "DELETE FROM proxy WHERE address={address} AND is_success IS NOT TRUE"
                 await database_instance.execute(stmt_delete_item, named_args={"address": address})
             except ValueError:
                 pass
 
     async def _clean_data_in_db(self, protocol):
-        delete_stmt = "DELETE FROM proxy WHERE protocol={protocol}"
+        delete_stmt = "DELETE FROM proxy WHERE protocol={protocol} AND is_success IS NOT TRUE"
         await database_instance.execute(delete_stmt, named_args={"protocol": protocol})
         return True
 
     async def _insert_item(self, *, protocol, address):
-        insert_stmt = "INSERT INTO proxy (address, protocol) VALUES ({address}, {protocol})"
-        await database_instance.execute(insert_stmt, named_args={"address": address, "protocol": protocol})
+        insert_stmt = "INSERT INTO proxy (address, protocol, is_success) VALUES ({address}, {protocol}, {is_success})"
+        await database_instance.execute(insert_stmt, named_args={"address": address, "protocol": protocol,
+                                                                 "is_success": False})
 
     async def request_new_list(self, protocol):
         params["protocol"] = protocol
@@ -74,23 +75,13 @@ class ProxyManager:
         for item in new_list:
             await self._insert_item(protocol=protocol, address=item)
 
-    async def test_proxy_provider(self, protocol):
-        test_params = {
-            "type": protocol,
-        }
-        url = "https://www.proxy-list.download/api/v1/get"
-        request_result = await self.async_client.request("get", url, params=test_params)
-        return request_result
-
 
 async def main():
     ctx = AsyncClient()
     proxy_inst = ProxyManager(ctx)
     try:
-        # await proxy_inst.request_new_list("http")
-        # await proxy_inst.request_new_list("https")
-        result = await proxy_inst.test_proxy_provider("https")
-        print(result)
+        await proxy_inst.request_new_list("http")
+        await proxy_inst.request_new_list("https")
     except HTTPException as error:
         logger.error(f"Error when request proxy list: {str(error.status_code)}")
     finally:

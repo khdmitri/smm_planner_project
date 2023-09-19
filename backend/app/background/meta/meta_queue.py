@@ -7,6 +7,7 @@ import re
 from datetime import datetime
 from typing import List
 
+import requests
 from asyncpg import Record
 from facebook import GraphAPI
 from httpx import AsyncClient, ProtocolError
@@ -21,6 +22,7 @@ from app.core.config import settings
 # FILE_BASE_PATH = "app/background/meta/queries"
 FILE_BASE_PATH = "./queries"
 BASE_FILE_DIRECTORY = "../../media"
+FACEBOOK_BASE_URL = "https://graph-video.facebook.com/v18.0/"
 
 logger = get_logger(logging.INFO)
 
@@ -38,6 +40,24 @@ def put_photo_wrapper(graph: GraphAPI, parent_object, photo, message):
     graph.put_photo(image=open(photo, 'rb'), message=message)
 
 
+def put_video_wrapper(access_token, parent_object, video, message, title, proxies):
+    params = {
+        "access_token": access_token,
+        "source": video,
+        "message": message,
+        "title": title,
+        "description": message
+    }
+    if proxies:
+        response = requests.post(f"{FACEBOOK_BASE_URL}{parent_object}/videos", params=params,
+                                 files=dict(video=open(video, 'rb')), proxies=proxies)
+    else:
+        response = requests.post(
+            f"{FACEBOOK_BASE_URL}{parent_object}/videos", params=params,
+            files=dict(video=video))
+    return response
+
+
 class MetaQueue:
     INSERT_IS_POSTED = '''UPDATE facebookqueue 
                           SET is_posted=TRUE, post_result={post_result} 
@@ -45,6 +65,7 @@ class MetaQueue:
 
     def __init__(self, use_proxy=True):
         self.current_proxy = None
+        self.proxy_success = False
         self.async_client = AsyncClient()
         if use_proxy:
             self.proxy_manager: ProxyManager = ProxyManager(self.async_client)
@@ -55,12 +76,24 @@ class MetaQueue:
         text = re.sub(r"([\r\n]+)", "\n", text)
         return text
 
-    async def _get_graph(self, marker_token):
+    async def set_proxy_success(self):
+        if not self.proxy_success:
+            update_stmt = "UPDATE proxy SET is_success=TRUE WHERE address={address}"
+            await database_instance.execute(update_stmt, named_args={"address": self.current_proxy["https"]})
+            self.proxy_success = True
+
+    async def _check_proxy(self):
         if self.proxy_manager is not None and self.current_proxy is None:
+            https = await self.proxy_manager.get_random_proxy("https")
+            http = await self.proxy_manager.get_random_proxy("http")
             self.current_proxy = {
-                "https": await self.proxy_manager.get_random_proxy("https"),
-                "http": await self.proxy_manager.get_random_proxy("http"),
+                "https": https["address"],
+                "http": http["address"],
             }
+            self.proxy_success = https["is_success"]
+
+    async def _get_graph(self, marker_token):
+        await self._check_proxy()
         if self.current_proxy:
             return GraphAPI(
                 access_token=marker_token,
@@ -90,7 +123,11 @@ class MetaQueue:
                                                                 chat_id=post["chat_id"],
                                                                 text=formatted_text)
                             case "video":
-                                result = await self._send_video()
+                                result = await self._send_video(marker_token=post["marker_token"], filepath=filepath,
+                                                                chat_id=post["chat_id"],
+                                                                text=formatted_text,
+                                                                title=post["title"]
+                                                                )
                 else:
                     result = await self._send_text(marker_token=post["marker_token"], chat_id=post["chat_id"],
                                                    text=formatted_text)
@@ -123,16 +160,23 @@ class MetaQueue:
             try:
                 loop = asyncio.get_event_loop()
                 await loop.run_in_executor(None, put_text_wrapper, graph, chat_id, "feed", text)
-                logger.info(f"Proxy is successfully worked: {self.current_proxy}")
+                await self.set_proxy_success()
                 break
-            except [ProxyError, SSLError, ConnectionError]:
+            except (ProxyError, SSLError, ProtocolError):
                 await self._remove_proxy()
                 current_attempt += 1
                 graph = await self._get_graph(marker_token)
             except Exception as e:
-                logger.error(f"_send_text: {str(e)}")
+                template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                message = template.format(type(e).__name__, e.args)
+                logger.error(f"_send_photo: {message}")
                 last_error = str(e)
-                break
+                if type(e).__name__ in ["ConnectionError", ]:
+                    await self._remove_proxy()
+                    current_attempt += 1
+                    graph = await self._get_graph(marker_token)
+                else:
+                    break
 
         if current_attempt > MAX_ATTEMPTS:
             result["success"] = False
@@ -153,7 +197,7 @@ class MetaQueue:
             try:
                 loop = asyncio.get_event_loop()
                 await loop.run_in_executor(None, put_photo_wrapper, graph, chat_id, filepath, text)
-                logger.info(f"Proxy is successfully worked: {self.current_proxy}")
+                await self.set_proxy_success()
                 break
             except (ProxyError, SSLError, ProtocolError):
                 await self._remove_proxy()
@@ -162,7 +206,7 @@ class MetaQueue:
             except Exception as e:
                 template = "An exception of type {0} occurred. Arguments:\n{1!r}"
                 message = template.format(type(e).__name__, e.args)
-                logger.error(f"_send_text: {message}")
+                logger.error(f"_send_photo: {message}")
                 last_error = str(e)
                 if type(e).__name__ in ["ConnectionError", ]:
                     await self._remove_proxy()
@@ -181,8 +225,46 @@ class MetaQueue:
         result["when"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return result
 
-    async def _send_video(self, chat_id, *, markdown_text, filenames, content_type):
-        pass
+    async def _send_video(self, *, marker_token, chat_id, text, title, filepath, link=""):
+        await self._check_proxy()
+        current_attempt = 1
+        result = {"success": True}
+        last_error = None
+        while current_attempt <= MAX_ATTEMPTS:
+            logger.info(f"Current Attempt: {current_attempt}")
+            try:
+                loop = asyncio.get_event_loop()
+                response = await loop.run_in_executor(None, put_video_wrapper, marker_token, chat_id, filepath, text, title, self.current_proxy)
+                await self.set_proxy_success()
+                if response.status_code >= 300:
+                    answer = response.json()
+                    last_error = answer["error"]["message"] if answer.get("error", None) else str(response.status_code)
+                break
+            except (ProxyError, SSLError, ProtocolError):
+                await self._remove_proxy()
+                current_attempt += 1
+                await self._check_proxy()
+            except Exception as e:
+                template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                message = template.format(type(e).__name__, e.args)
+                logger.error(f"_send_video: {message}")
+                last_error = str(e)
+                if type(e).__name__ in ["ConnectionError", ]:
+                    await self._remove_proxy()
+                    current_attempt += 1
+                    await self._check_proxy()
+                else:
+                    break
+
+        if current_attempt > MAX_ATTEMPTS:
+            result["success"] = False
+            result["msg"] = "Max attempts is exceeded"
+        elif last_error is not None:
+            result["success"] = False
+            result["msg"] = last_error
+
+        result["when"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return result
 
 
 if __name__ == '__main__':

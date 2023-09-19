@@ -22,7 +22,7 @@ const Page = ({params}) => {
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
     const router = useRouter()
-    const [value, setValue] = React.useState();
+    const [value, setValue] = useState();
     const [state_tg, dispatch_tg] = useReducer(reducer_tg, {}, () => {
     });
     const [state_fb, dispatch_fb] = useReducer(reducer_fb, {}, () => {
@@ -65,8 +65,8 @@ const Page = ({params}) => {
     const getConfigList = async () => {
         await ConfigAPI.getTelegramConfigList(sessionStorage.getItem("access-token")).then(res => {
             setChats(res.data)
-            if (Array.isArray(res.data) && res.data.length > 0)
-                setValue(res.data[0].chat_id)
+            if (!value && Array.isArray(res.data) && res.data.length > 0)
+                setValue(res.data[0].chat_id.toString())
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
@@ -75,8 +75,8 @@ const Page = ({params}) => {
 
         await ConfigAPI.getFacebookConfigList(sessionStorage.getItem("access-token")).then(res => {
             setFbChats(res.data)
-            // if (Array.isArray(res.data) && res.data.length > 0)
-            //     setValue(res.data[0].chat_id)
+            if (!value && Array.isArray(res.data) && res.data.length > 0)
+                setValue(res.data[0].chat_id)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
@@ -165,7 +165,7 @@ const Page = ({params}) => {
                 }
             </Box>
             <Box sx={{width: '100%', typography: 'body1'}}>
-                <TabContext value={value ? value.toString() : "None"}>
+                <TabContext value={value ? value : "None"}>
                     <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example">
                             {chats && chats.map(chat =>
@@ -173,7 +173,7 @@ const Page = ({params}) => {
                             )
                             }
                             {fbChats && fbChats.map(chat =>
-                                <Tab label={chat.description} value={chat.chat_id.toString()} key={chat.chat_id}/>
+                                <Tab label={chat.description} value={chat.chat_id} key={chat.chat_id}/>
                             )
                             }
                         </TabList>
