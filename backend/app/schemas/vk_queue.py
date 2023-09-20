@@ -18,7 +18,7 @@ class VkQueueBase(BaseModel):
 class VkQueueCreate(VkQueueBase):
     post_id: int
     user_id: int = None
-    facebook_config_id: int
+    vk_config_id: int
     is_posted: bool = False
 
 

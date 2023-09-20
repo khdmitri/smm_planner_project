@@ -108,7 +108,7 @@ const PostList = () => {
                 </Box>
                 <CardContent>
                     <Box sx={{width: '100%', typography: 'body1'}}>
-                        <TabContext value={value ? value.toString() : "None"}>
+                        <TabContext value={value ? value : "None"}>
                             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                                 <TabList onChange={handleChange} aria-label="queued tabs">
                                     {["telegram", "facebook", "vk"].map(name =>

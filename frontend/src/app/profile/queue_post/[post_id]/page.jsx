@@ -11,7 +11,7 @@ import {TabContext, TabList, TabPanel} from "@mui/lab";
 import ChatForm from "../(componnets)/chat_form";
 import QueueAPI from "../../../../lib/queue";
 import moment from "moment";
-import {reducer_tg, reducer_fb} from "../(lib)/reducers";
+import {reducer_tg, reducer_fb, reducer_vk} from "../(lib)/reducers";
 
 const Page = ({params}) => {
     const [post, setPost] = useState()
@@ -28,7 +28,7 @@ const Page = ({params}) => {
     });
     const [state_fb, dispatch_fb] = useReducer(reducer_fb, {}, () => {
     });
-    const [state_vk, dispatch_vk] = useReducer(reducer_fb, {}, () => {
+    const [state_vk, dispatch_vk] = useReducer(reducer_vk, {}, () => {
     });
 
     const handleChange = (event, newValue) => {
@@ -92,7 +92,7 @@ const Page = ({params}) => {
         await ConfigAPI.getVkConfigList(sessionStorage.getItem("access-token")).then(res => {
             setVkChats(res.data)
             if (!value && Array.isArray(res.data) && res.data.length > 0)
-                setValue(res.data[0].chat_id)
+                setValue(res.data[0].chat_id.toString())
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
@@ -217,6 +217,10 @@ const Page = ({params}) => {
                             }
                             {fbChats && fbChats.map(chat =>
                                 <Tab label={chat.description} value={chat.chat_id} key={chat.chat_id}/>
+                            )
+                            }
+                            {vkChats && vkChats.map(chat =>
+                                <Tab label={chat.description} value={chat.chat_id.toString()} key={chat.chat_id}/>
                             )
                             }
                         </TabList>
