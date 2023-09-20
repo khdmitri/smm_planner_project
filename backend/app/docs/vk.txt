@@ -1,0 +1,11 @@
+# Link to get access token
+https://oauth.vk.com/authorize?client_id=51753098&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,wall,groups&response_type=token
+# response
+https://oauth.vk.com/blank.html#access_token=vk1.a.0VjDGdVdYz3nxJw8urojAPf-Juf-LmKDBEXIAGUEKAqQoQnXapcBVxsVDCTnmLBKQv9koMjvGn5x4L9Inq9aYjy82cFuvzbtarDRJ3NDhshWPnC2et9WDSEXRWiV3PrfjfvJZgQ0aRgPqDC9rRF4YRKiU42pfzGy1R9p7FSTCns0asPsSkvyorcysI2Uk3pl1pL3cY_H3--utYEoELDXxA&expires_in=0&user_id=751080127
+# access-token
+vk1.a.0VjDGdVdYz3nxJw8urojAPf-Juf-LmKDBEXIAGUEKAqQoQnXapcBVxsVDCTnmLBKQv9koMjvGn5x4L9Inq9aYjy82cFuvzbtarDRJ3NDhshWPnC2et9WDSEXRWiV3PrfjfvJZgQ0aRgPqDC9rRF4YRKiU42pfzGy1R9p7FSTCns0asPsSkvyorcysI2Uk3pl1pL3cY_H3--utYEoELDXxA
+# owner id (group id, номер сообщества)
+public216048627
+-216048627
+# from_group
+1

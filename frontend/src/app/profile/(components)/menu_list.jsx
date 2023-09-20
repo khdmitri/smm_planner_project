@@ -15,6 +15,7 @@ import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import {useRouter} from "next/navigation";
 import FacebookIcon from '@mui/icons-material/Facebook';
+import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 
 const MenuList = (props) => {
     const {open} = props
@@ -73,7 +74,8 @@ const MenuList = (props) => {
             <List>
                 {[{text: 'Properties', icon: <PermDataSettingIcon/>, route: '/profile/config'},
                   {text: 'Telegram', icon: <TelegramIcon/>, route: '/profile/config/telegram'},
-                  {text: 'Facebook', icon: <FacebookIcon/>, route: '/profile/config/facebook'}
+                  {text: 'Facebook', icon: <FacebookIcon/>, route: '/profile/config/facebook'},
+                  {text: 'Vkontakte', icon: <DeveloperBoardIcon/>, route: '/profile/config/vk'}
                 ]
                     .map((item, index) => (
                         renderListItem(item)

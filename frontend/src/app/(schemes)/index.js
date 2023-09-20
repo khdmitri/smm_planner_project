@@ -34,6 +34,15 @@ const fbConfigFormSchema = yup.object().shape({
     days: yup.number().required().min(0).max(31).default(0),
 })
 
+const vkConfigFormSchema = yup.object().shape({
+    chat_id: yup.number().required("Required"),
+    access_token: yup.string().required("Required"),
+    description: yup.string().required("Required"),
+    minutes: yup.number().required().min(0).max(59).default(0),
+    hours: yup.number().required().min(0).max(23).default(0),
+    days: yup.number().required().min(0).max(31).default(0),
+})
+
 const resetPasswordFormSchema = yup.object().shape({
     password: yup
         .string()
@@ -46,4 +55,4 @@ const resetPasswordFormSchema = yup.object().shape({
         .required("Required")
 })
 
-export {signupFormSchema, tlgConfigFormSchema, resetPasswordFormSchema, fbConfigFormSchema};
+export {signupFormSchema, tlgConfigFormSchema, resetPasswordFormSchema, fbConfigFormSchema, vkConfigFormSchema};

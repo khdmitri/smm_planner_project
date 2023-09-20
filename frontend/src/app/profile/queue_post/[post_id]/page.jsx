@@ -18,6 +18,7 @@ const Page = ({params}) => {
     const [isPosted, setIsPosted] = useState(false)
     const [chats, setChats] = useState(null)
     const [fbChats, setFbChats] = useState(null)
+    const [vkChats, setVkChats] = useState(null)
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
@@ -26,6 +27,8 @@ const Page = ({params}) => {
     const [state_tg, dispatch_tg] = useReducer(reducer_tg, {}, () => {
     });
     const [state_fb, dispatch_fb] = useReducer(reducer_fb, {}, () => {
+    });
+    const [state_vk, dispatch_vk] = useReducer(reducer_fb, {}, () => {
     });
 
     const handleChange = (event, newValue) => {
@@ -60,7 +63,10 @@ const Page = ({params}) => {
         if (!state_fb && post && fbChats) {
             set_init_state(fbChats, dispatch_fb)
         }
-    }, [post, chats, state_tg, state_fb])
+        if (!state_vk && post && vkChats) {
+            set_init_state(vkChats, dispatch_vk)
+        }
+    }, [post, chats, fbChats, vkChats, state_tg, state_fb, state_vk])
 
     const getConfigList = async () => {
         await ConfigAPI.getTelegramConfigList(sessionStorage.getItem("access-token")).then(res => {
@@ -75,6 +81,16 @@ const Page = ({params}) => {
 
         await ConfigAPI.getFacebookConfigList(sessionStorage.getItem("access-token")).then(res => {
             setFbChats(res.data)
+            if (!value && Array.isArray(res.data) && res.data.length > 0)
+                setValue(res.data[0].chat_id)
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
+            setSeverity("error")
+        })
+
+        await ConfigAPI.getVkConfigList(sessionStorage.getItem("access-token")).then(res => {
+            setVkChats(res.data)
             if (!value && Array.isArray(res.data) && res.data.length > 0)
                 setValue(res.data[0].chat_id)
         }).catch(error => {
@@ -144,6 +160,33 @@ const Page = ({params}) => {
                         })
                 }
             })
+        const keys_vk = Object.keys(state_vk)
+        if (Array.isArray(keys_vk))
+            keys_vk.map(async (key) => {
+                const state_post = state_vk[key]
+                if (state_post.is_included) {
+                    const queued_post = {
+                        post_id: state_post.id,
+                        vk_config_id: key,
+                        title: state_post.title,
+                        text: state_post.plain_text,
+                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
+                    }
+                    await QueueAPI.newVkPost(queued_post, sessionStorage.getItem("access-token"))
+                        .then(() => {
+                            setIsPosted(true)
+                            setShowMessage(true)
+                            setMessage("Post was successfully appended to queue!")
+                            setSeverity("success")
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            setShowMessage(true)
+                            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
+                            setSeverity("error")
+                        })
+                }
+            })
         if (post) {
             post.is_posted = true
             post.post_date = moment().format("YYYY-MM-DD HH:mm")
@@ -187,6 +230,12 @@ const Page = ({params}) => {
                     {state_fb && Object.keys(state_fb).length > 0 && fbChats.map(chat =>
                         <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
                             <ChatForm chat={chat} post={state_fb[chat.id]} dispatch={dispatch_fb} formType="fb"/>
+                        </TabPanel>
+                    )
+                    }
+                    {state_vk && Object.keys(state_vk).length > 0 && vkChats.map(chat =>
+                        <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
+                            <ChatForm chat={chat} post={state_vk[chat.id]} dispatch={dispatch_vk} formType="vk"/>
                         </TabPanel>
                     )
                     }

@@ -19,6 +19,9 @@ const ChatForm = ({chat, post, dispatch, formType}) => {
             case "fb":
                 configFunc = ConfigAPI.getFacebookConfig
                 break
+            case "vk":
+                configFunc = ConfigAPI.getVkConfig
+                break
         }
         if (configFunc)
             await configFunc(config_id, sessionStorage.getItem("access-token"))

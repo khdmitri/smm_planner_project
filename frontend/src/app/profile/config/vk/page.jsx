@@ -7,9 +7,9 @@ import ConfigAPI from "../../../../lib/config";
 import UniAlert from "../../../../components/alert/alert";
 import {useRouter} from "next/navigation";
 import AddIcon from '@mui/icons-material/Add';
-import {FacebookOutlined, Telegram} from "@mui/icons-material";
+import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 
-const FacebookConfig = () => {
+const VkConfig = () => {
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
@@ -17,7 +17,7 @@ const FacebookConfig = () => {
     const router = useRouter()
 
     const configList = async () => {
-        await ConfigAPI.getFacebookConfigList(sessionStorage.getItem("access-token")).then(res => {
+        await ConfigAPI.getVkConfigList(sessionStorage.getItem("access-token")).then(res => {
             setData(res.data)
         }).catch(error => {
             setShowMessage(true)
@@ -27,7 +27,7 @@ const FacebookConfig = () => {
     }
 
     const deleteFunc = async (config_id) => {
-        await ConfigAPI.deleteFacebookConfig(config_id, sessionStorage.getItem("access-token")).then(async (res) => {
+        await ConfigAPI.deleteVkConfig(config_id, sessionStorage.getItem("access-token")).then(async (res) => {
             setShowMessage(true)
             setMessage(res.data.msg)
             setSeverity("success")
@@ -40,11 +40,11 @@ const FacebookConfig = () => {
     }
 
     const editFunc = (config_id) => {
-        router.push(`/profile/config/facebook/edit/${config_id}`)
+        router.push(`/profile/config/vk/edit/${config_id}`)
     }
 
     useEffect(() => {
-        sessionStorage.setItem("profile_menu_active", "Facebook")
+        sessionStorage.setItem("profile_menu_active", "Vkontakte")
         configList()
     }, [])
 
@@ -59,9 +59,9 @@ const FacebookConfig = () => {
             <Card>
                 <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
                     <Typography components="h1" variant="h4">
-                        Facebook Group List
+                        Vkontakte Group List
                     </Typography>
-                    <FacebookOutlined fontSize="large" color="info" m={2} p={2} />
+                    <DeveloperBoardIcon fontSize="large" color="info" m={2} p={2} />
                 </Box>
                 <CardContent>
                     <ConfigList data={data} deleteFunc={deleteFunc} editFunc={editFunc}/>
@@ -74,4 +74,4 @@ const FacebookConfig = () => {
     );
 };
 
-export default FacebookConfig;
+export default VkConfig;

@@ -103,6 +103,53 @@ export default class ConfigAPI {
         }
         return await instance.delete(`/facebook_config/${config_id}`, config)
     }
+
+    // VK
+
+    static async newVkConfig(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.post("/vk_config", form_data, config)
+    }
+
+    static async getVkConfigList(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get("/vk_config", config)
+    }
+
+    static async getVkConfig(config_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get(`/vk_config/${config_id}`, config)
+    }
+
+    static async updateVkConfig(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.put("/vk_config", form_data, config)
+    }
+
+    static async deleteVkConfig(config_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.delete(`/vk_config/${config_id}`, config)
+    }
 }
 
 

@@ -15,8 +15,8 @@ const PostList = () => {
     const [severity, setSeverity] = useState("info")
     const [dataTg, setDataTg] = useState([])
     const [dataFb, setDataFb] = useState([])
-    const router = useRouter()
-    const [value, setValue] = React.useState();
+    const [dataVk, setDataVk] = useState([])
+    const [value, setValue] = useState();
 
     const postList = async () => {
         await QueueAPI.getTelegramPosts(sessionStorage.getItem("access-token")).then(res => {
@@ -28,6 +28,13 @@ const PostList = () => {
         })
         await QueueAPI.getFacebookPosts(sessionStorage.getItem("access-token")).then(res => {
             setDataFb(res.data)
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setSeverity("error")
+        })
+        await QueueAPI.getVkPosts(sessionStorage.getItem("access-token")).then(res => {
+            setDataVk(res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -50,6 +57,19 @@ const PostList = () => {
 
     const deleteFuncFb = async (post_id) => {
         await QueueAPI.deleteFacebookPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
+            setShowMessage(true)
+            setMessage(res.data.msg)
+            setSeverity("success")
+            await postList()
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setSeverity("error")
+        })
+    }
+
+    const deleteFuncVk = async (post_id) => {
+        await QueueAPI.deleteVkPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
             setShowMessage(true)
             setMessage(res.data.msg)
             setSeverity("success")
@@ -91,20 +111,23 @@ const PostList = () => {
                         <TabContext value={value ? value.toString() : "None"}>
                             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                                 <TabList onChange={handleChange} aria-label="queued tabs">
-                                    {["telegram", "facebook"].map(name =>
+                                    {["telegram", "facebook", "vk"].map(name =>
                                         <Tab label={name.toUpperCase()} value={name}
                                              key={name}/>
                                     )
                                     }
                                 </TabList>
                             </Box>
-                            {["telegram", "facebook"].map(name =>
+                            {["telegram", "facebook", "vk"].map(name =>
                                 <TabPanel value={name.toUpperCase()} key={name}>
                                     {name === "telegram" &&
                                         <PostListTableTg data={dataTg} deleteFunc={deleteFuncTg} />
                                     }
                                     {name === "facebook" &&
                                         <PostListTableTg data={dataFb} deleteFunc={deleteFuncFb} />
+                                    }
+                                    {name === "vk" &&
+                                        <PostListTableTg data={dataVk} deleteFunc={deleteFuncVk} />
                                     }
                                 </TabPanel>
                             )

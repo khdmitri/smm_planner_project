@@ -33,7 +33,7 @@ oauth/access_token?
     grant_type=fb_exchange_token&
     client_id={app-id}&
     client_secret={app-secret}&
-    fb_exchange_token={your-access-token}"
+    fb_exchange_token={your-access-token}
 
 
 App Personal
@@ -52,3 +52,11 @@ UserMarker:EAAJsW8ehhbkBO6MFcCJjfdPs9tPzzPa0aRtS0sxPy2tDgWgKQaq3YRxnncf6d9cfeimL
 PageMarker:EAAJsW8ehhbkBO37ETQCWMU1pA850DWaTTDHB9VD6jrFx1yQZBD3MJo5mQTk5O0nfjW6tzW8Fjf0ErvfElCpZCc6QxVjhrndfSeCX3QMPd28z0fwyICQB8FaforNxeIlfZBirZCC3ZBv0KNKnyNofGwwM2LTLYfkPni9aunjOEb2usorvN4YH2mC5HUwFO8ZBsZD
 PageMarker2:EAAJsW8ehhbkBO8JZCnaWlzkaViXV2ZAnZCzzavYqINzBskqfMMOZApfQ2aAI4jB9onyWBPWD4rJaBdyYAomOxfdDLpcDEIftqptq6MRqBpCR1ri0a2AGonDm616lPrxtbx25GZAQ9qFwc0UzLzw6S4gGNeSOn2aIZAlH9JFCEDgYcsTB1Nd73ZAtMF9xcObEsQZD
 PageID:126753667189458
+
+--------------------------------------
+Try to execute instagram via facebook grap api
+Token:EAAJsW8ehhbkBO9G4RaXkR6X254pXjA41MHhltdpLKqfoYZAUGRWHnZAtKeAHUYYgj6tyfqjkcS3IxpAMUZBNMZA5Nzz901NvK4ZAqFwjJcScGvdiivRNs9ImtWZADKta1oVrUHLfraAZCQhQq2WUvUZCilPpMFaBjFzVDfXcbZBH6kHkiNNU13pcVYjNZBQOF49o9Ol0NRFGxgtQK8Ir0TDcsikPjr7mXsumKkkscKiIIMvcrUo0XTUIWhxp78ewm6wgZDZD
+Exchanged:EAAJsW8ehhbkBOZBOAfjvSuZC8vWhxughjc0lV09SVOrrZAlUEWg0mZAOehqqvoJeYsK3iJAcwndcUGKP3mLwuUaKj8Vmzcb0CKTJIkaEoDPqF34ZCeMRgHl7MzfdGOyNP85FD3bI3ebfUTHpSfIcKu14ZBGhZAmAJ3TgZCfe0OZA990KvyxmD2IoZAJRbm
+
+INSTAGRAM BUSINESS ACCOUNT
+ID:17841461782832849

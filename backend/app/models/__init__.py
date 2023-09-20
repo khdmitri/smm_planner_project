@@ -4,4 +4,6 @@ from .telegram_config import TelegramConfig
 from .telegram_queue import TelegramQueue
 from .facebook_config import FacebookConfig
 from .facebook_queue import FacebookQueue
+from .vk_config import VkConfig
+from .vk_queue import VkQueue
 from .proxy import Proxy
