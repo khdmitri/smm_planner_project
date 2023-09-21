@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE&amp;BE: telegram config done">
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/telegram_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/core/file_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/file_processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_telegram_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/models/telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/telegram_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/telegram_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/telegram_config.py" afterDir="false" />
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/docs/vk.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/docs/vk.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +16,8 @@
       <list>
         <option value="Python Script" />
         <option value="TypeScript JSX File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -62,6 +53,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\facebook" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -97,7 +89,15 @@
       <workItem from="1694003368771" duration="4178000" />
       <workItem from="1694185116413" duration="4653000" />
       <workItem from="1694227559699" duration="17910000" />
-      <workItem from="1694570442952" duration="6262000" />
+      <workItem from="1694570442952" duration="6528000" />
+      <workItem from="1694620923083" duration="1329000" />
+      <workItem from="1694661172337" duration="489000" />
+      <workItem from="1694836328799" duration="2500000" />
+      <workItem from="1694918235190" duration="4266000" />
+      <workItem from="1694957293940" duration="3402000" />
+      <workItem from="1695042085103" duration="2735000" />
+      <workItem from="1695088802441" duration="1809000" />
+      <workItem from="1695299062384" duration="2163000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -169,7 +169,28 @@
       <option name="project" value="LOCAL" />
       <updated>1694266977897</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="FE&amp;BE: post queue #3">
+      <created>1694578361106</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1694578361106</updated>
+    </task>
+    <task id="LOCAL-00012" summary="FE&amp;BE: post queue #3">
+      <created>1694578389905</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1694578389905</updated>
+    </task>
+    <task id="LOCAL-00013" summary="FE: start on facebook">
+      <created>1694926124986</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1694926124986</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +218,8 @@
     <MESSAGE value="FE&amp;BE: Save post done" />
     <MESSAGE value="FE&amp;BE: post reworked: markdown, json" />
     <MESSAGE value="FE&amp;BE: telegram config done" />
-    <option name="LAST_COMMIT_MESSAGE" value="FE&amp;BE: telegram config done" />
+    <MESSAGE value="FE&amp;BE: post queue #3" />
+    <MESSAGE value="FE: start on facebook" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE: start on facebook" />
   </component>
 </project>

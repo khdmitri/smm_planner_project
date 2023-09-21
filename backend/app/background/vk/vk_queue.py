@@ -1,5 +1,4 @@
 import asyncio
-import functools
 import json
 import logging
 import os
@@ -7,20 +6,16 @@ import re
 from datetime import datetime
 from typing import List
 
-import requests
 import vk_api
 from asyncpg import Record
-from facebook import GraphAPI
-from httpx import AsyncClient, ProtocolError
-from requests.exceptions import ProxyError, SSLError
-from vk_api import VkUpload, VkApi
+from httpx import AsyncClient
+from vk_api import VkUpload
 from vk_api.vk_api import VkApiMethod
 
 from app.background.db.database import database_instance
 from app.background.proxy import ProxyManager
 from app.background.utils import read_query
 from app.common.logger import get_logger
-from app.core.config import settings
 
 # FILE_BASE_PATH = "app/background/meta/queries"
 FILE_BASE_PATH = "./queries"
@@ -34,9 +29,11 @@ def text_wrapper(vk_core: VkApiMethod, chat_id: int, message: str):
 
 
 def photo_wrapper(vk_core: VkApiMethod, vk_upload: VkUpload, chat_id: int, title: str, message: str, files: str | list):
-    albums = vk_core.photos.getAlbums(owner_id=chat_id)
-    print(albums)
-    vk_upload.photo(photos=files, description=message, caption=title, group_id=chat_id, album_id=albums["items"][0]["id"])
+    result = vk_upload.photo_wall(photos=files, caption=message, group_id=-chat_id)
+    attachments = []
+    for ind, item in enumerate(result):
+        attachments.append(f"photo{item['owner_id']}_{item['id']}")
+    vk_core.wall.post(owner_id=chat_id, message=message, attachments=attachments)
 
 
 def video_wrapper(vk_upload: VkUpload, chat_id: int, name: str, message: str, file: str):
