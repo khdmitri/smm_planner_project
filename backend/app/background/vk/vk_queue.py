@@ -28,7 +28,7 @@ def text_wrapper(vk_core: VkApiMethod, chat_id: int, message: str):
     vk_core.wall.post(owner_id=chat_id, message=message)
 
 
-def photo_wrapper(vk_core: VkApiMethod, vk_upload: VkUpload, chat_id: int, title: str, message: str, files: str | list):
+def photo_wrapper(vk_core: VkApiMethod, vk_upload: VkUpload, chat_id: int, message: str, files: str | list):
     result = vk_upload.photo_wall(photos=files, caption=message, group_id=-chat_id)
     attachments = []
     for ind, item in enumerate(result):
@@ -36,8 +36,12 @@ def photo_wrapper(vk_core: VkApiMethod, vk_upload: VkUpload, chat_id: int, title
     vk_core.wall.post(owner_id=chat_id, message=message, attachments=attachments)
 
 
-def video_wrapper(vk_upload: VkUpload, chat_id: int, name: str, message: str, file: str):
-    vk_upload.video(video_file=file, group_id=chat_id, description=message, name=name)
+def video_wrapper(vk_upload: VkUpload, chat_id: int, name: str, message: str, files: list):
+    for ind, file in enumerate(files):
+        if ind == 0:
+            vk_upload.video(video_file=file, name=name, description=message, wallpost=True, group_id=-chat_id)
+        else:
+            vk_upload.video(video_file=file, wallpost=True, group_id=-chat_id)
 
 
 class VkQueue:
@@ -87,16 +91,14 @@ class VkQueue:
                     case "image":
                         result = await self._send_photo(access_token=post["access_token"],
                                                         filepath=files,
-                                                        title=post["title"],
                                                         chat_id=post["chat_id"],
                                                         text=formatted_text)
                     case "video":
-                        for ind, file in enumerate(files):
-                            result = await self._send_video(access_token=post["access_token"],
-                                                            filepath=file,
-                                                            title=post["title"] if ind == 0 else "",
-                                                            chat_id=post["chat_id"],
-                                                            text=formatted_text if ind == 0 else "")
+                        result = await self._send_video(access_token=post["access_token"],
+                                                        files=files,
+                                                        title=post["title"],
+                                                        chat_id=post["chat_id"],
+                                                        text=formatted_text)
                     case "text":
                         result = await self._send_text(access_token=post["access_token"], chat_id=post["chat_id"],
                                                        text=formatted_text)
@@ -138,12 +140,12 @@ class VkQueue:
         result["when"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return result
 
-    async def _send_photo(self, *, access_token, chat_id, title, text, filepath):
+    async def _send_photo(self, *, access_token, chat_id, text, filepath):
         result = {"success": True}
         try:
             vk_core, vk_upload = self._get_session(access_token)
             loop = asyncio.get_event_loop()
-            await loop.run_in_executor(None, photo_wrapper, vk_core, vk_upload, chat_id, title, text, filepath)
+            await loop.run_in_executor(None, photo_wrapper, vk_core, vk_upload, chat_id, text, filepath)
         except Exception as e:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)
@@ -154,12 +156,12 @@ class VkQueue:
         result["when"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return result
 
-    async def _send_video(self, *, access_token, chat_id, title, text, filepath):
+    async def _send_video(self, *, access_token, chat_id, title, text, files):
         result = {"success": True}
         try:
             _, vk_upload = self._get_session(access_token)
             loop = asyncio.get_event_loop()
-            await loop.run_in_executor(None, video_wrapper, vk_upload, chat_id, title, text, filepath)
+            await loop.run_in_executor(None, video_wrapper, vk_upload, chat_id, title, text, files)
         except Exception as e:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)
