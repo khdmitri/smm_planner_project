@@ -8,6 +8,7 @@ from app.schemas.facebook_config import FacebookConfig
 
 class FacebookQueueBase(BaseModel):
     title: Optional[str] = None
+    link: Optional[str] = None
     text: Optional[str] = None
     post_result: Optional[dict] = {}
     is_posted: Optional[bool] = None

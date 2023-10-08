@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 class Post(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = Column(String, index=True)
+    video_url: Mapped[str] = Column(String)
     markdown_text: Mapped[str] = Column(String)
     html_text: Mapped[str] = Column(String)
     plain_text: Mapped[str] = Column(String)

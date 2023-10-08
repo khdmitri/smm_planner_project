@@ -115,6 +115,7 @@ const Page = ({params}) => {
                         post_id: state_post.id,
                         telegram_config_id: key,
                         title: state_post.title,
+                        link: state_post.video_url,
                         text: state_post.html_text,
                         when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
                     }
@@ -142,6 +143,7 @@ const Page = ({params}) => {
                         post_id: state_post.id,
                         facebook_config_id: key,
                         title: state_post.title,
+                        link: state_post.video_url,
                         text: state_post.plain_text,
                         when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
                     }
@@ -169,6 +171,7 @@ const Page = ({params}) => {
                         post_id: state_post.id,
                         vk_config_id: key,
                         title: state_post.title,
+                        link: state_post.video_url,
                         text: state_post.plain_text,
                         when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
                     }

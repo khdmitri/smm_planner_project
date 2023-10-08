@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
-      <change afterPath="$PROJECT_DIR$/src/components/video-preview/video_preview.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/parsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/dcc6791080f8_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/meta/meta_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/meta/meta_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/meta/queries/queue.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/meta/queries/queue.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/telegram/queries/queue.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/telegram/queries/queue.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/telegram/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/telegram/telegram_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/vk/queries/queue.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/vk/queries/queue.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/facebook_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/facebook_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/telegram_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/vk_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/facebook_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/facebook_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/telegram_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/vk_queue.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/(lib)/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/(lib)/reducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/editor/plugins/OnChangeMarkdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/plugins/OnChangeMarkdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

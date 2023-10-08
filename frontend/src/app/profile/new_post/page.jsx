@@ -56,7 +56,6 @@ const NewPost = () => {
     }
 
     const onNewPost = async (event) => {
-        console.log("Submit")
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         if (user) {
@@ -64,8 +63,6 @@ const NewPost = () => {
             data.append("json_text", JSON.stringify(jsonText))
             data.append("html_text", htmlText)
             data.append("plain_text", plainText)
-            console.log("Data2Submit:", data)
-            console.log("Html:", htmlText)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
