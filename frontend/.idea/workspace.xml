@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
-      <change beforePath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/docs/vk.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/docs/vk.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/video-preview/video_preview.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/parsers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/(componnets)/chat_form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/(lib)/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/(lib)/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editor/plugins/OnChangeMarkdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/plugins/OnChangeMarkdown.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,30 +43,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/smm_planner_project/backend",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/projects/smm_planner_project/frontend&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\src" />
+      <recent name="C:\projects\smm_planner_project\frontend\public" />
+      <recent name="C:\projects\smm_planner_project\frontend\public\assets" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\facebook" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend" />
+      <recent name="C:\projects\smm_planner_project\frontend\src\app\landing" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\telegram\edit\[id]" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components\editor" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components" />
-      <recent name="C:\projects\smm_planner_project\frontend" />
-      <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -98,6 +108,12 @@
       <workItem from="1695042085103" duration="2735000" />
       <workItem from="1695088802441" duration="1809000" />
       <workItem from="1695299062384" duration="2163000" />
+      <workItem from="1695348711660" duration="3921000" />
+      <workItem from="1695387707162" duration="826000" />
+      <workItem from="1695644738628" duration="1177000" />
+      <workItem from="1695917257730" duration="1303000" />
+      <workItem from="1696658230679" duration="3529000" />
+      <workItem from="1696745772653" duration="14220000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -190,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694926124986</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="FE: start on facebook">
+      <created>1695387917870</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1695387917871</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

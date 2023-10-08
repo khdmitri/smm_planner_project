@@ -12,7 +12,7 @@ import ConfigAPI from "../../../../lib/config";
 const ChatForm = ({chat, post, dispatch, formType}) => {
     const get_full_config = async (config_id) => {
         let configFunc = null
-        switch(formType) {
+        switch (formType) {
             case "tg":
                 configFunc = ConfigAPI.getTelegramConfig
                 break
@@ -46,28 +46,33 @@ const ChatForm = ({chat, post, dispatch, formType}) => {
                 })
     }
 
-        useEffect(() => {
-            console.log("POST:", post)
-            if (!post.when)
-                get_full_config(chat.id)
-        }, [])
+    useEffect(() => {
+        if (!post.when)
+            get_full_config(chat.id)
+    }, [])
 
-        const onChange = (sub_key, value) => {
-            console.log("onChange:", sub_key, value)
-            dispatch({
-                type: "update_item",
-                key: chat.id,
-                payload: {
-                    ...post,
-                    [sub_key]: value
-                }
-            })
-        }
+    useEffect(() => {
+        console.log("POST CHANGED to", post)
+    }, [post])
 
-        return (
-            <Card>
-                <CardContent>
-                    <Box>
+    const onChange = (sub_key, value) => {
+        console.log("onChange:", sub_key, value)
+        const new_item = {[sub_key]: value}
+        console.log("new_item=", new_item)
+        const payload = {...post, ...new_item}
+        console.log("payload=", payload)
+        dispatch({
+            type: "update_item",
+            key: chat.id,
+            payload: {[sub_key]: value}
+        })
+    }
+
+    return (
+        <Card>
+            <CardContent>
+                <Box>
+                    {post &&
                         <Editor
                             onChange={(value, value_json, value_html, value_text) => {
                                 onChange("markdown_text", value)
@@ -77,37 +82,38 @@ const ChatForm = ({chat, post, dispatch, formType}) => {
                             }
                             }
                             initial_value={post.json_text}/>
-                        <Box component="form" key={chat.id} noValidate sx={{mt: 1}} name={`form_${chat.id.toString()}`}>
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="title"
-                                label="Post Title"
-                                value={post.title}
-                                name="title"
-                                onChange={event => onChange("title", event.target.value)}
-                                autoComplete="title"
-                                InputLabelProps={{shrink: true}}
-                                autoFocus
-                                focused
-                            />
-                            <FormGroup>
-                                <FormControlLabel
-                                    control={<Checkbox name="isIncluded" value={post.is_included}
-                                                       checked={post.is_included}
-                                                       onChange={() => onChange("is_included", !post.is_included)}/>
-                                    }
-                                    label="Include This Chat"/>
-                            </FormGroup>
-                            <LocalizationProvider dateAdapter={AdapterMoment}>
-                                <DateTimePicker value={post.when} onChange={(value) => onChange("when", value)}/>
-                            </LocalizationProvider>
-                        </Box>
+                    }
+                    <Box component="form" key={chat.id} noValidate sx={{mt: 1}} name={`form_${chat.id.toString()}`}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="title"
+                            label="Post Title"
+                            value={post.title}
+                            name="title"
+                            onChange={event => onChange("title", event.target.value)}
+                            autoComplete="title"
+                            InputLabelProps={{shrink: true}}
+                            autoFocus
+                            focused
+                        />
+                        <FormGroup>
+                            <FormControlLabel
+                                control={<Checkbox name="isIncluded" value={post ? post.is_included : false}
+                                                   checked={post.is_included}
+                                                   onChange={() => onChange("is_included", !post.is_included)}/>
+                                }
+                                label="Include This Chat"/>
+                        </FormGroup>
+                        <LocalizationProvider dateAdapter={AdapterMoment}>
+                            <DateTimePicker value={post.when} onChange={(value) => onChange("when", value)}/>
+                        </LocalizationProvider>
                     </Box>
-                </CardContent>
-            </Card>
-        );
-    };
+                </Box>
+            </CardContent>
+        </Card>
+    );
+};
 
-    export default ChatForm;
+export default ChatForm;
