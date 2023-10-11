@@ -2,65 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
-      <change afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/conversation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/schemas/chat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Provider.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/AiService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Aichat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Ails.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Bard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Better.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Bing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/ChatFree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/ChatgptAi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/ChatgptLogin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/DeepAi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Easychat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Ezcht.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Fakeopen.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Forefront.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/GetGpt.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Gravityengine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/H2o.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Liaobots.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Lockchat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Mishalsgpt.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Phind.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Theb.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Vercel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Weuseing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Wewordle.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Xiaor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/You.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Yqcloud.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/Zeabur.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/helpers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/helpers/gpt4love.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/helpers/phind.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/helpers/theb.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/helpers/you.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/hteyun.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/Provider/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/active_providers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/typing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/g4f/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chat/Chat.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chat/Message.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/dcc6791080f8_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/chat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,8 +18,8 @@
         <option value="Python Script" />
         <option value="TypeScript JSX File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -101,11 +46,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/freegpt-webui",
+    "last_opened_file_path": "C:/projects/Integrate-ChatGPT",
     "list.type.of.created.stylesheet": "CSS",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -158,6 +104,7 @@
       <workItem from="1696308738797" duration="1820000" />
       <workItem from="1696833104772" duration="594000" />
       <workItem from="1697001124609" duration="5353000" />
+      <workItem from="1697032325861" duration="7037000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
