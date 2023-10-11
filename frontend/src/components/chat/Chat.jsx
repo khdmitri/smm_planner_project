@@ -60,14 +60,14 @@ export default function App() {
             avatarDisp={false}
           />
           <MessageRight
-            message="messageRあめんぼあかいなあいうえおあめんぼあかいなあいうえおあめんぼあかいなあいうえお"
+            message="message"
             timestamp="MM/DD 00:00"
             photoURL="https://lh3.googleusercontent.com/a-/AOh14Gi4vkKYlfrbJ0QLJTg_DLjcYyyK7fYoWRpz2r4s=s96-c"
             displayName="まさりぶ"
             avatarDisp={true}
           />
           <MessageRight
-            message="messageRあめんぼあかいなあいうえおあめんぼあかいなあいうえお"
+            message="message"
             timestamp="MM/DD 00:00"
             photoURL="https://lh3.googleusercontent.com/a-/AOh14Gi4vkKYlfrbJ0QLJTg_DLjcYyyK7fYoWRpz2r4s=s96-c"
             displayName="まさりぶ"
