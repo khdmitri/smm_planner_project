@@ -32,8 +32,11 @@ proxy_https = [""]
 MAX_ATTEMPTS = 20
 
 
-def put_text_wrapper(graph, parent_object, connection_name, message):
-    graph.put_object(parent_object, connection_name, message=message)
+def put_text_wrapper(graph, parent_object, connection_name, message, link=None):
+    if link:
+        graph.put_object(parent_object, connection_name, message=message, link=link, source=link)
+    else:
+        graph.put_object(parent_object, connection_name, message=message)
 
 
 def put_photo_wrapper(graph: GraphAPI, parent_object, photo, message):
@@ -111,26 +114,30 @@ class MetaQueue:
             result = {}
             try:
                 formatted_text = self._format_text(post["text"])
-                stmt = read_query(os.path.join(FILE_BASE_PATH, "postfiles.sql"))
-                postfiles: List[Record] = await database_instance.fetch_rows(stmt, {"post_id": post["post_id"]})
-                if len(postfiles) > 0:
-                    for postfile in postfiles:
-                        filepath = os.path.join(BASE_FILE_DIRECTORY, str(post["user_id"]), postfile["filepath"])
-                        content_type = postfile["content_type"].split("/")[0]
-                        match content_type:
-                            case "image":
-                                result = await self._send_photo(marker_token=post["marker_token"], filepath=filepath,
-                                                                chat_id=post["chat_id"],
-                                                                text=formatted_text)
-                            case "video":
-                                result = await self._send_video(marker_token=post["marker_token"], filepath=filepath,
-                                                                chat_id=post["chat_id"],
-                                                                text=formatted_text,
-                                                                title=post["title"]
-                                                                )
-                else:
+                if post["link"]:
                     result = await self._send_text(marker_token=post["marker_token"], chat_id=post["chat_id"],
-                                                   text=formatted_text)
+                                                   text=formatted_text, link=post["link"])
+                else:
+                    stmt = read_query(os.path.join(FILE_BASE_PATH, "postfiles.sql"))
+                    postfiles: List[Record] = await database_instance.fetch_rows(stmt, {"post_id": post["post_id"]})
+                    if len(postfiles) > 0:
+                        for postfile in postfiles:
+                            filepath = os.path.join(BASE_FILE_DIRECTORY, str(post["user_id"]), postfile["filepath"])
+                            content_type = postfile["content_type"].split("/")[0]
+                            match content_type:
+                                case "image":
+                                    result = await self._send_photo(marker_token=post["marker_token"], filepath=filepath,
+                                                                    chat_id=post["chat_id"],
+                                                                    text=formatted_text)
+                                case "video":
+                                    result = await self._send_video(marker_token=post["marker_token"], filepath=filepath,
+                                                                    chat_id=post["chat_id"],
+                                                                    text=formatted_text,
+                                                                    title=post["title"]
+                                                                    )
+                    else:
+                        result = await self._send_text(marker_token=post["marker_token"], chat_id=post["chat_id"],
+                                                       text=formatted_text)
 
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],
@@ -151,7 +158,7 @@ class MetaQueue:
             logger.warning(f"Proxy removed: {self.current_proxy['https']}")
         self.current_proxy = None
 
-    async def _send_text(self, *, marker_token, chat_id, text, link=""):
+    async def _send_text(self, *, marker_token, chat_id, text, link=None):
         graph = await self._get_graph(marker_token)
         current_attempt = 1
         result = {"success": True}
@@ -159,7 +166,7 @@ class MetaQueue:
         while current_attempt <= MAX_ATTEMPTS:
             try:
                 loop = asyncio.get_event_loop()
-                await loop.run_in_executor(None, put_text_wrapper, graph, chat_id, "feed", text)
+                await loop.run_in_executor(None, put_text_wrapper, graph, chat_id, "feed", text, link)
                 await self.set_proxy_success()
                 break
             except (ProxyError, SSLError, ProtocolError):
@@ -225,7 +232,7 @@ class MetaQueue:
         result["when"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return result
 
-    async def _send_video(self, *, marker_token, chat_id, text, title, filepath, link=""):
+    async def _send_video(self, *, marker_token, chat_id, text, title, filepath, link=None):
         await self._check_proxy()
         current_attempt = 1
         result = {"success": True}
@@ -234,7 +241,8 @@ class MetaQueue:
             logger.info(f"Current Attempt: {current_attempt}")
             try:
                 loop = asyncio.get_event_loop()
-                response = await loop.run_in_executor(None, put_video_wrapper, marker_token, chat_id, filepath, text, title, self.current_proxy)
+                response = await loop.run_in_executor(None, put_video_wrapper, marker_token, chat_id, filepath, text,
+                                                      title, link, self.current_proxy)
                 await self.set_proxy_success()
                 if response.status_code >= 300:
                     answer = response.json()

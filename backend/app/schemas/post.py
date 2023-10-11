@@ -8,6 +8,7 @@ from app.schemas.post_file import PostFile
 
 class PostBase(BaseModel):
     title: Optional[str] = None
+    video_url: Optional[str] = None
     markdown_text: Optional[str] = None
     html_text: Optional[str] = None
     plain_text: Optional[str] = None

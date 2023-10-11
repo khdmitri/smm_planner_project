@@ -36,12 +36,15 @@ def photo_wrapper(vk_core: VkApiMethod, vk_upload: VkUpload, chat_id: int, messa
     vk_core.wall.post(owner_id=chat_id, message=message, attachments=attachments)
 
 
-def video_wrapper(vk_upload: VkUpload, chat_id: int, name: str, message: str, files: list):
-    for ind, file in enumerate(files):
-        if ind == 0:
-            vk_upload.video(video_file=file, name=name, description=message, wallpost=True, group_id=-chat_id)
-        else:
-            vk_upload.video(video_file=file, wallpost=True, group_id=-chat_id)
+def video_wrapper(vk_upload: VkUpload, chat_id: int, name: str, message: str, files: list, link=None):
+    if link:
+        vk_upload.video(link=link, name=name, description=message, wallpost=True, group_id=-chat_id)
+    else:
+        for ind, file in enumerate(files):
+            if ind == 0:
+                vk_upload.video(video_file=file, name=name, description=message, wallpost=True, group_id=-chat_id)
+            else:
+                vk_upload.video(video_file=file, wallpost=True, group_id=-chat_id)
 
 
 class VkQueue:
@@ -73,35 +76,43 @@ class VkQueue:
             result = {}
             try:
                 formatted_text = self._format_text(post["text"])
-                stmt = read_query(os.path.join(FILE_BASE_PATH, "postfiles.sql"))
-                postfiles: List[Record] = await database_instance.fetch_rows(stmt, {"post_id": post["post_id"]})
-                content_type = None
-                files = []
-                if len(postfiles) > 0:
-                    for ind, postfile in enumerate(postfiles):
-                        filepath = os.path.join(BASE_FILE_DIRECTORY, str(post["user_id"]), postfile["filepath"])
-                        if ind == 0:
-                            content_type = postfile["content_type"].split("/")[0]
-                        files.append(filepath)
+                if post["link"]:
+                    result = await self._send_video(access_token=post["access_token"],
+                                                    files=None,
+                                                    title=post["title"],
+                                                    chat_id=post["chat_id"],
+                                                    text=formatted_text,
+                                                    link=post["link"])
+                else:
+                    stmt = read_query(os.path.join(FILE_BASE_PATH, "postfiles.sql"))
+                    postfiles: List[Record] = await database_instance.fetch_rows(stmt, {"post_id": post["post_id"]})
+                    content_type = None
+                    files = []
+                    if len(postfiles) > 0:
+                        for ind, postfile in enumerate(postfiles):
+                            filepath = os.path.join(BASE_FILE_DIRECTORY, str(post["user_id"]), postfile["filepath"])
+                            if ind == 0:
+                                content_type = postfile["content_type"].split("/")[0]
+                            files.append(filepath)
 
-                if content_type is None:
-                    content_type = "text"
+                    if content_type is None:
+                        content_type = "text"
 
-                match content_type:
-                    case "image":
-                        result = await self._send_photo(access_token=post["access_token"],
-                                                        filepath=files,
-                                                        chat_id=post["chat_id"],
-                                                        text=formatted_text)
-                    case "video":
-                        result = await self._send_video(access_token=post["access_token"],
-                                                        files=files,
-                                                        title=post["title"],
-                                                        chat_id=post["chat_id"],
-                                                        text=formatted_text)
-                    case "text":
-                        result = await self._send_text(access_token=post["access_token"], chat_id=post["chat_id"],
-                                                       text=formatted_text)
+                    match content_type:
+                        case "image":
+                            result = await self._send_photo(access_token=post["access_token"],
+                                                            filepath=files,
+                                                            chat_id=post["chat_id"],
+                                                            text=formatted_text)
+                        case "video":
+                            result = await self._send_video(access_token=post["access_token"],
+                                                            files=files,
+                                                            title=post["title"],
+                                                            chat_id=post["chat_id"],
+                                                            text=formatted_text)
+                        case "text":
+                            result = await self._send_text(access_token=post["access_token"], chat_id=post["chat_id"],
+                                                           text=formatted_text)
 
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],
@@ -156,12 +167,12 @@ class VkQueue:
         result["when"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return result
 
-    async def _send_video(self, *, access_token, chat_id, title, text, files):
+    async def _send_video(self, *, access_token, chat_id, title, text, files, link=None):
         result = {"success": True}
         try:
             _, vk_upload = self._get_session(access_token)
             loop = asyncio.get_event_loop()
-            await loop.run_in_executor(None, video_wrapper, vk_upload, chat_id, title, text, files)
+            await loop.run_in_executor(None, video_wrapper, vk_upload, chat_id, title, text, files, link)
         except Exception as e:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)

@@ -1,7 +1,7 @@
 "use client"
 
 import React, {useEffect, useState} from 'react';
-import {Box, Button, createTheme} from "@mui/material";
+import {Box, Button, createTheme, Tab, Typography} from "@mui/material";
 import {DropzoneArea} from "mui-file-dropzone";
 import PreviewCard from "../(components)/preview_card";
 import Editor from "../../../components/editor/Editor";
@@ -10,6 +10,10 @@ import TextField from "@mui/material/TextField";
 import PostAPI from "../../../lib/post";
 import UniAlert from "../../../components/alert/alert";
 import {convertPureMarkdown} from "../../../lib/utils";
+import {TabContext, TabList, TabPanel} from "@mui/lab";
+import IconButton from "@mui/material/IconButton";
+import PreviewIcon from '@mui/icons-material/Preview';
+import VideoPreview from "../../../components/video-preview/video_preview";
 
 const NewPost = () => {
     const myTheme = createTheme({
@@ -21,12 +25,14 @@ const NewPost = () => {
     const [plainText, setPlainText] = useState("")
     const [isCreated, setIsCreated] = useState(false)
     const [files, setFiles] = useState([])
+    const [video_url, setVideoUrl] = useState("")
     const [user, setUser] = useState()
     const [title, setTitle] = useState("")
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
     const [post, setPost] = useState({})
+    const [value, setValue] = useState("Disk")
     const router = useRouter()
     const handlePreviewIcon = (fileObject) => {
         // console.log("FileObject=", fileObject)
@@ -34,6 +40,10 @@ const NewPost = () => {
             <PreviewCard fileObject={fileObject}/>
         )
     }
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     const resetPage = () => {
         sessionStorage.setItem("active_item", "New Post")
@@ -46,7 +56,6 @@ const NewPost = () => {
     }
 
     const onNewPost = async (event) => {
-        console.log("Submit")
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         if (user) {
@@ -54,8 +63,6 @@ const NewPost = () => {
             data.append("json_text", JSON.stringify(jsonText))
             data.append("html_text", htmlText)
             data.append("plain_text", plainText)
-            console.log("Data2Submit:", data)
-            console.log("Html:", htmlText)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
@@ -91,7 +98,7 @@ const NewPost = () => {
     }, [plainText])
 
     const onChangeEditor = (sub_key, value) => {
-        switch(sub_key) {
+        switch (sub_key) {
             case "markdown_text":
                 setMarkdown(value)
                 return true
@@ -114,25 +121,6 @@ const NewPost = () => {
                     {message}
                 </UniAlert>
             }
-            <DropzoneArea
-                acceptedFiles={[".jpeg", ".png", ".mp4"]}
-                maxFileSize={104857600}
-                getPreviewIcon={handlePreviewIcon}
-                onChange={(files) => {
-                    setFiles(files)
-                }}
-                value={files}
-                showPreviews={true}
-                showPreviewsInDropzone={false}
-                showFileNamesInPreview={true}
-            />
-            <Editor onChange={(value, value_json, value_html, value_text) => {
-                            onChangeEditor("markdown_text", value)
-                            onChangeEditor("json_text", value_json)
-                            onChangeEditor("html_text", value_html)
-                            onChangeEditor("plain_text", value_text)
-                        }
-                        } html_setter={setHtmlText}/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"
@@ -148,14 +136,71 @@ const NewPost = () => {
                     autoFocus
                     focused
                 />
+                <Typography variant="h5" color="primary" sx={{marginTop: 2, marginBottom: 0}}>
+                    Text Description*
+                </Typography>
+                <Editor onChange={(value, value_json, value_html, value_text) => {
+                    onChangeEditor("markdown_text", value)
+                    onChangeEditor("json_text", value_json)
+                    onChangeEditor("html_text", value_html)
+                    onChangeEditor("plain_text", value_text)
+                }
+                }/>
+
+                <Box sx={{width: '100%', typography: 'body1'}}>
+                    <Typography variant="h5" color="primary" sx={{marginTop: 2, marginBottom: 0}}>
+                        Media Content
+                    </Typography>
+                    <TabContext value={value}>
+                        <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                            <TabList onChange={handleChange} aria-label="source changer">
+                                <Tab label="From Disk" value="Disk"/>
+                                <Tab label="From URL" value="URL"/>
+                            </TabList>
+                        </Box>
+                        <TabPanel value="Disk">
+                            <DropzoneArea
+                                acceptedFiles={[".jpeg", ".png", ".mp4"]}
+                                maxFileSize={104857600}
+                                getPreviewIcon={handlePreviewIcon}
+                                onChange={(files) => {
+                                    setFiles(files)
+                                }}
+                                value={files}
+                                showPreviews={true}
+                                showPreviewsInDropzone={false}
+                                showFileNamesInPreview={true}
+                            />
+                        </TabPanel>
+                        <TabPanel value="URL">
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="video_url"
+                                label="Video URL"
+                                value={video_url}
+                                name="video_url"
+                                onChange={event => setVideoUrl(event.target.value)}
+                                autoComplete="video_url"
+                                InputLabelProps={{shrink: true}}
+                            />
+                            {video_url && video_url.length > 7 &&
+                                <VideoPreview url={video_url} />
+                            }
+                        </TabPanel>
+                    </TabContext>
+                </Box>
                 {!isCreated &&
-                    <Button type="submit" variant="contained">Create New Post</Button>
+                    <Button sx={{marginTop: 2}} type="submit" variant="contained">Create New Post</Button>
                 }
             </Box>
             {isCreated &&
                 <Box flexDirection="row" p={2}>
-                    <Button m={1} type="button" onClick={() => router.push(`/profile/queue_post/${post.id}`)} variant="contained">POST</Button>
-                    <Button m={1} type="button" color="secondary" onClick={resetPage} variant="outlined">Create Next Post</Button>
+                    <Button m={1} type="button" onClick={() => router.push(`/profile/queue_post/${post.id}`)}
+                            variant="contained">POST</Button>
+                    <Button m={1} type="button" color="secondary" onClick={resetPage} variant="outlined">Create Next
+                        Post</Button>
                 </Box>
             }
         </Box>

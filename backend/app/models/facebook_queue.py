@@ -19,6 +19,7 @@ class FacebookQueue(Base):
     facebook_config = relationship("FacebookConfig", back_populates="queued_posts", lazy="selectin")
     text: Mapped[str] = Column(String, index=True)
     title: Mapped[str] = Column(String, index=True)
+    link: Mapped[str] = Column(String)
     post_result = Column(JSON, default={})
     when = Column(DateTime, nullable=True)
     is_posted: Mapped[bool] = Column(Boolean, default=False)

@@ -56,7 +56,6 @@ function transformState(
       // and need to convert it back to the original, so the markdown is respected
       .replace(/^(&gt\;)(?=\s)(?!.*&lt\;)/gm, ">");
 
-    console.log("HTML_TEXT=", html_text)
     onChange(withBrs, editorState.toJSON(), html_text, plain_text);
   });
 }
