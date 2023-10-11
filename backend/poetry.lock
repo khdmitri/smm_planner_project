@@ -591,6 +591,21 @@ files = [
 ]
 
 [[package]]
+name = "chatgpt"
+version = "2.2212.0"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "chatgpt-2.2212.0-py3-none-any.whl", hash = "sha256:2927b9fa9238e6038cedce0f656266e4b145c47a1bb4e62d2f3a3dabd1d7950e"},
+]
+
+[package.dependencies]
+rich = "*"
+tls-client = "*"
+
+[[package]]
 name = "click"
 version = "8.1.7"
 description = "Composable command line interface toolkit"
@@ -2111,6 +2126,18 @@ anyio = ">=3.4.0,<5"
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart", "pyyaml"]
 
 [[package]]
+name = "tls-client"
+version = "0.2.2"
+description = "Advanced Python HTTP Client."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "tls_client-0.2.2-py3-none-any.whl", hash = "sha256:30934871397cdad6862e00b5634f382666314a452ddd3d774e18323a0ad9b765"},
+    {file = "tls_client-0.2.2.tar.gz", hash = "sha256:78bc0e291e3aadc6c5e903b62bb26c01374577691f2a9e5e17899900a5927a13"},
+]
+
+[[package]]
 name = "typer"
 version = "0.9.0"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
@@ -2307,4 +2334,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a34072e1c668e9f4169c2bc36176070b6e83f65613ef0f7d167de593d53e823f"
+content-hash = "93fd591e5792dc3a64b9905451eba54b4362c22c57752d2e0eda1c9c0172890e"

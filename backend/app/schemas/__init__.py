@@ -9,3 +9,4 @@ from .facebook_queue import FacebookQueue, FacebookQueueCreate, FacebookQueueUpd
 from .vk_config import VkConfig, VkConfigCreate, VkConfigUpdate
 from .vk_queue import VkQueue, VkQueueCreate, VkQueueUpdate
 from .token import Token, TokenPayload
+from .chat import ChatRequest

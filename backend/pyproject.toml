@@ -32,6 +32,7 @@ facebook-sdk = "^3.1.0"
 requests = "^2.31.0"
 asyncer = "^0.0.2"
 vk-api = "^11.9.9"
+chatgpt = "^2.2212.0"
 
 
 [build-system]
