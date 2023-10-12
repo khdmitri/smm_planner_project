@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from starlette.requests import Request
 from starlette.responses import StreamingResponse
 
@@ -30,17 +30,17 @@ async def conversation(
         response = ChatCompletion.create(
             model=chat_in.model,
             chatId=conversation_id,
-            messages=messages
+            messages=messages,
+            stream=False
         )
 
-        return StreamingResponse(generate_stream(response, chat_in.jailbreak))
+        # generate_stream(response, chat_in.jailbreak)
+
+        return StreamingResponse(response, media_type='text/event-stream')
 
     except Exception as e:
         print(e)
         print(e.__traceback__.tb_next)
-
-        return {
-                   '_action': '_ask',
-                   'success': False,
-                   "error": f"an error occurred {str(e)}"
-               }, 400
+        raise HTTPException(
+            status_code=400, detail=f"Temporary unavailable: {str(e)}"
+        )

@@ -1,11 +1,12 @@
 "use client"
 
 import TextField from '@material-ui/core/TextField';
-import {createStyles, makeStyles} from "@material-ui/core/styles";
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@material-ui/core/Button';
 import {useEffect, useState} from "react";
-
+import {makeStyles, createStyles} from "@mui/styles";
+import { Theme } from '@material-ui/core';
+import {Box} from "@mui/material";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -13,7 +14,7 @@ const useStyles = makeStyles((theme) =>
             display: "flex",
             justifyContent: "center",
             width: "95%",
-            margin: `${theme.spacing(0)} auto`
+            // margin: `${theme.spacing(0)} auto`
         },
         wrapText: {
             width: "100%"
@@ -38,18 +39,19 @@ const TextInput = ({setter, onSubmit}) => {
     }, [text])
 
     return (
-        <box className={classes.wrapForm} noValidate autoComplete="off">
+        <Box className={classes.wrapForm} noValidate autoComplete="off">
             <TextField
                 id="standard-text"
                 label="Prompt"
                 name="text"
                 className={classes.wrapText}
                 onChange={onChange}
+                focused
             />
-            <Button variant="contained" color="primary" className={classes.button} onClick={onSubmit}>
+            <Button variant="contained" color="primary" className={classes.button} onClick={onSubmit} sx={{marginX: 1}}>
                 <SendIcon/>
             </Button>
-        </box>
+        </Box>
     )
 }
 

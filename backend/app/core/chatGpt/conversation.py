@@ -4,7 +4,9 @@ from datetime import datetime
 from requests import get
 
 from app.core.chatGpt.config import special_instructions
+from app.core.utils import without_keys
 from app.schemas import ChatRequest
+from app.schemas.chat import PromptInput
 
 
 def build_messages(data: ChatRequest):
@@ -14,9 +16,9 @@ def build_messages(data: ChatRequest):
     :param data: Request data of ChatRequest schema
     :return: List of messages for the conversation
     """
-    _conversation = data.content.conversation.history
+    _conversation = data.content.conversation
     internet_access = data.content.internet_access
-    prompt = data.content.prompt
+    prompt: PromptInput = data.content.prompt
 
     # Add the existing conversation
     conversation = _conversation
@@ -24,7 +26,7 @@ def build_messages(data: ChatRequest):
     # Add web results if enabled
     if internet_access:
         current_date = datetime.now().strftime("%Y-%m-%d")
-        query = f'Current date: {current_date}. ' + prompt
+        query = f'Current date: {current_date}. ' + prompt.content
         search_results = fetch_search_results(query)
         conversation.extend(search_results)
 
@@ -39,7 +41,7 @@ def build_messages(data: ChatRequest):
     if len(conversation) > 3:
         conversation = conversation[-4:]
 
-    return conversation
+    return [without_keys(el.model_dump(), "timestamp") for el in conversation]
 
 
 def fetch_search_results(query):

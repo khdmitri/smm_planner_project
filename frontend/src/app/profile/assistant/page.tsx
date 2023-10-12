@@ -4,24 +4,35 @@ import React, {useEffect, useState} from 'react';
 import {
     Box,
     Card,
-    CardContent,
+    CardContent, createTheme,
     Divider,
     FormControl, FormControlLabel,
     InputLabel,
     MenuItem,
     Select,
-    Switch,
+    Switch, ThemeProvider,
     Typography
 } from "@mui/material";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import TextInput from "../../../components/chat/TextInput";
 import UniAlert from "../../../components/alert/alert";
+import ChatAPI from "../../../lib/chat";
+import moment from "moment";
+import ChatDisplay from "../../../components/chat/Chat";
+
+const MAX_LENGTH = 5
 
 function uuidv4() {
     return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
 }
+
+const decodeUnicode = (str) => {
+    return str.replace(/\\u([a-fA-F0-9]{4})/g, function (match, grp) {
+        return String.fromCharCode(parseInt(grp, 16));
+    });
+};
 
 const ChatGPT = () => {
     const [showMessage, setShowMessage] = useState(false)
@@ -34,19 +45,52 @@ const ChatGPT = () => {
     const [model, setModel] = useState("gpt-4")
     const [prompt, setPrompt] = useState("")
     const [history, setHistory] = useState([])
+    const [chat_answer, setChatAnswer] = useState("")
+    const theme = createTheme();
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         const chatRequest = {
             conversation_id,
             jailbreak,
             model,
             content: {
-                conversation: history,
+                conversation: [...history],
                 internet_access,
-                prompt
+                prompt: {
+                    role: "user",
+                    content: prompt,
+                    timestamp: moment()
+                }
             }
         }
+
+        if (history.length > 0) {
+            const last_in_history = history[history.length-1]
+            console.log("LastInHistory:", last_in_history)
+            if (last_in_history.role === "user")
+                setHistory([history.slice(0, history.length-1), chatRequest.content.prompt])
+            else
+                setHistory([...history, chatRequest.content.prompt])
+        } else
+            setHistory([...history, chatRequest.content.prompt])
+
+        await ChatAPI.conversation(chatRequest, sessionStorage.getItem("access-token"))
+            .then(async (res) => {
+                setHistory([...history, {role: "assistant", content: res.data, timestamp: moment()}])
+            })
+            .catch(error => {
+                console.log("ERROR:", error)
+                console.log("HisInConversation:", history)
+                setHistory([...history, {role: "assistant", content: error.response && error.response.data.detail ? error.response.data.detail : "Unknown error", timestamp: moment()}])
+            })
     }
+
+    useEffect(() => {
+        console.log("History:", history)
+        if (history.length > MAX_LENGTH) {
+            setHistory(history.slice(history.length - MAX_LENGTH, history.length))
+        }
+    }, [history])
 
     useEffect(() => {
         sessionStorage.setItem("profile_menu_active", "Assistant")
@@ -65,61 +109,64 @@ const ChatGPT = () => {
     }, [])
 
     return (
-        <Box>
-            {showMessage &&
-                <UniAlert severity={severity}>
-                    {message}
-                </UniAlert>
-            }
-            <Divider/>
-            <Card>
-                <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between"
-                     alignItems="center">
-                    <Typography components="h1" variant="h4">
-                        AI Chat Assistant
-                    </Typography>
-                    <DynamicFeedIcon fontSize="large" color="info" m={2} p={2}/>
-                </Box>
-                <CardContent>
-                    <TextInput setter={setPrompt} onSubmit={onSubmit}/>
-                    <Box display="flex" direction="row">
-                        <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
-                            <InputLabel id="demo-simple-select-standard-label">Model</InputLabel>
-                            <Select
-                                labelId="model-label"
-                                id="model-id"
-                                value={model}
-                                onChange={setModel}
-                                label="Model"
-                            >
-                                <MenuItem value="gpt-3.5-turbo">GPT-3.5</MenuItem>
-                                <MenuItem value="gpt-4">GPT-4</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
-                            <InputLabel id="demo-simple-select-standard-label">Jailbreak</InputLabel>
-                            <Select
-                                labelId="jailbreak-label"
-                                id="jailbreak-id"
-                                value={jailbreak}
-                                onChange={setJailbreak}
-                                label="Jailbreak"
-                            >
-                                <MenuItem value="default">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value="gpt-dan-11.0">DAN</MenuItem>
-                                <MenuItem value="gpt-evil">Evil</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControlLabel
-                            control={<Switch checked={internet_access}
-                                             onChange={() => setInternetAccess(!internet_access)} />}
-                            label="Use Web Search" />
+        <ThemeProvider theme={theme}>
+            <Box>
+                {showMessage &&
+                    <UniAlert severity={severity}>
+                        {message}
+                    </UniAlert>
+                }
+                <Divider/>
+                <Card>
+                    <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between"
+                         alignItems="center">
+                        <Typography components="h1" variant="h4">
+                            AI Chat Assistant
+                        </Typography>
+                        <DynamicFeedIcon fontSize="large" color="info" m={2} p={2}/>
                     </Box>
-                </CardContent>
-            </Card>
-        </Box>
+                    <CardContent>
+                        <ChatDisplay history={history}/>
+                        <TextInput setter={setPrompt} onSubmit={onSubmit}/>
+                        <Box display="flex" direction="row">
+                            <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
+                                <InputLabel id="demo-simple-select-standard-label">Model</InputLabel>
+                                <Select
+                                    labelId="model-label"
+                                    id="model-id"
+                                    value={model}
+                                    onChange={event => setModel(event.target.value)}
+                                    label="Model"
+                                >
+                                    <MenuItem value="gpt-3.5-turbo">GPT-3.5</MenuItem>
+                                    <MenuItem value="gpt-4">GPT-4</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
+                                <InputLabel id="demo-simple-select-standard-label">Jailbreak</InputLabel>
+                                <Select
+                                    labelId="jailbreak-label"
+                                    id="jailbreak-id"
+                                    value={jailbreak}
+                                    onChange={event => setJailbreak(event.target.value)}
+                                    label="Jailbreak"
+                                >
+                                    <MenuItem value="default">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value="gpt-dan-11.0">DAN</MenuItem>
+                                    <MenuItem value="gpt-evil">Evil</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <FormControlLabel
+                                control={<Switch checked={internet_access}
+                                                 onChange={() => setInternetAccess(!internet_access)}/>}
+                                label="Use Web Search"/>
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Box>
+        </ThemeProvider>
     );
 };
 

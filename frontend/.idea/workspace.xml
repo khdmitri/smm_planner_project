@@ -2,10 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
-      <change afterPath="$PROJECT_DIR$/src/lib/chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/core/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/icons/gpt.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/core/chatGpt/conversation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/conversation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/GetGpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/GetGpt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Message.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/chat.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +59,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/Integrate-ChatGPT",
+    "last_opened_file_path": "C:/projects/smm_planner_project/frontend/public/images/icons",
     "list.type.of.created.stylesheet": "CSS",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
@@ -56,6 +69,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\public\images\icons" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\facebook" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>

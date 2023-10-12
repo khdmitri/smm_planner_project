@@ -10,12 +10,13 @@ import Divider from "@mui/material/Divider";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import ScheduleIcon from '@mui/icons-material/Schedule';
 import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import {useRouter} from "next/navigation";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
+import QueueIcon from '@mui/icons-material/Queue';
+import AssistantIcon from '@mui/icons-material/Assistant';
 
 const MenuList = (props) => {
     const {open} = props
@@ -65,7 +66,9 @@ const MenuList = (props) => {
                 {[{text: 'Dashboard', icon: <DashboardIcon/>, route: '/profile'},
                     {text: 'New Post', icon: <PostAddIcon/>, route: '/profile/new_post'},
                     {text: 'Posts', icon: <DynamicFeedIcon/>, route: '/profile/posts_list'},
-                    {text: 'Queue', icon: <ScheduleIcon/>, route: '/profile/queue_post'}]
+                    {text: 'Queue', icon: <QueueIcon />, route: '/profile/queue_post'},
+                    {text: 'AI Assistant', icon: <AssistantIcon />, route: '/profile/assistant'}
+                ]
                     .map((item, index) => (
                         renderListItem(item)
                     ))}

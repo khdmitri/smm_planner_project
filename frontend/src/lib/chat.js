@@ -13,10 +13,11 @@ export default class ChatAPI {
         const config = {
             headers: {
                 "Authorization": `Bearer ${access_token}`,
-                "Accept": "text/event-stream"
+                "Accept": "text/event-stream",
+                responseType: 'stream',
             }
         }
         console.log("Sending data=", data)
-        return await instance.post("conversation", data, config)
+        return await instance.post("chat/conversation", data, config)
     }
 }

@@ -5,7 +5,7 @@ from g4f.models import Model, ModelUtils
 
 class ChatCompletion:
     @staticmethod
-    def create(model: Model.model or str, messages: list, provider: g4f.Provider.Provider = None, stream: bool = False, auth: str = False, **kwargs):
+    def create(model: Model.model or str, messages: list, provider: Provider.Provider = None, stream: bool = False, auth: str = False, **kwargs):
         kwargs['auth'] = auth
 
         if provider and provider.needs_auth and not auth:

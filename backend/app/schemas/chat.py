@@ -1,16 +1,19 @@
+from datetime import datetime
 from typing import List
 
 from pydantic import BaseModel
 
 
-class Conversation(BaseModel):
-    history: List[str] = []
+class PromptInput(BaseModel):
+    role: str
+    content: str
+    timestamp: datetime = None
 
 
 class Content(BaseModel):
-    conversation: Conversation
+    conversation: List[PromptInput]
     internet_access: bool = False
-    prompt: str
+    prompt: PromptInput
 
 
 class ChatRequest(BaseModel):

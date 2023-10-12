@@ -33,6 +33,10 @@ requests = "^2.31.0"
 asyncer = "^0.0.2"
 vk-api = "^11.9.9"
 chatgpt = "^2.2212.0"
+browser-cookie3 = "^0.19.1"
+pycryptodome = "^3.19.0"
+pyexecjs = "^1.5.1"
+curl-cffi = "^0.5.9"
 
 
 [build-system]
