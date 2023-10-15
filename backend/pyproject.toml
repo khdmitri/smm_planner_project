@@ -37,6 +37,7 @@ browser-cookie3 = "^0.19.1"
 pycryptodome = "^3.19.0"
 pyexecjs = "^1.5.1"
 curl-cffi = "^0.5.9"
+nest-asyncio = "^1.5.8"
 
 
 [build-system]

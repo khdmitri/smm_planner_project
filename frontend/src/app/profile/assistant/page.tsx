@@ -42,7 +42,7 @@ const ChatGPT = () => {
     const [conversation_id, setConversationId] = useState("")
     const [jailbreak, setJailbreak] = useState("default")
     const [internet_access, setInternetAccess] = useState(false)
-    const [model, setModel] = useState("gpt-4")
+    const [model, setModel] = useState("")
     const [prompt, setPrompt] = useState("")
     const [history, setHistory] = useState([])
     const theme = createTheme();
@@ -155,10 +155,10 @@ const ChatGPT = () => {
                                 >
                                     <MenuItem value="gpt-3.5-turbo">GPT-3.5</MenuItem>
                                     <MenuItem value="gpt-3.5-turbo-16k">GPT-3.5-16k</MenuItem>
-                                    <MenuItem value="text-davinci-002">Vercel</MenuItem>
-                                    <MenuItem value="falcon-40b">HuggingFace</MenuItem>
-                                    <MenuItem value="palm2">Google</MenuItem>
+                                    <MenuItem value="gpt-3.5-turbo-0613">Test</MenuItem>
+                                    <MenuItem value="gpt-4-0613">GPT-4-0613</MenuItem>
                                     <MenuItem value="gpt-4">GPT-4</MenuItem>
+                                    <MenuItem value="claude-v2">Vercel</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>

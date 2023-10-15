@@ -11,6 +11,7 @@ from app.common.logger import get_logger
 from app.core.chatGpt.conversation import build_messages, generate_stream
 from app.schemas import ChatRequest
 from g4f import ChatCompletion
+from g4f.Provider import GptChatly, GPTalk, Bing
 
 router = APIRouter()
 logger = get_logger(logging.INFO)
@@ -27,8 +28,9 @@ async def conversation(
         messages = build_messages(chat_in)
 
         # Generate response
-        response = ChatCompletion.create(
-            model=chat_in.model,
+        response = await ChatCompletion.create_async(
+            provider=Bing,
+            model="gpt-4",
             chatId=conversation_id,
             messages=messages,
         )
