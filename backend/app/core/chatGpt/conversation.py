@@ -41,7 +41,7 @@ def build_messages(data: ChatRequest):
     if len(conversation) > 3:
         conversation = conversation[-4:]
 
-    return [without_keys(el.model_dump(), "timestamp") for el in conversation]
+    return [without_keys(el.model_dump() if isinstance(el, PromptInput) else el, "timestamp") for el in conversation]
 
 
 def fetch_search_results(query):

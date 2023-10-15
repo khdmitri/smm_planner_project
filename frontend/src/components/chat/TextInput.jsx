@@ -30,13 +30,16 @@ const TextInput = ({setter, onSubmit}) => {
     const [text, setText] = useState("")
     const classes = useStyles();
 
-    const onChange = (event) => {
-        setText(event.target.value)
+    const onComponentSubmit = () => {
+        onSubmit()
+        setText("")
     }
 
-    useEffect(() => {
-        setter(text)
-    }, [text])
+    const onChange = (event) => {
+        setText(event.target.value)
+        if (event.target.value)
+            setter(event.target.value)
+    }
 
     return (
         <Box className={classes.wrapForm} noValidate autoComplete="off">
@@ -44,11 +47,12 @@ const TextInput = ({setter, onSubmit}) => {
                 id="standard-text"
                 label="Prompt"
                 name="text"
+                value={text}
                 className={classes.wrapText}
                 onChange={onChange}
                 focused
             />
-            <Button variant="contained" color="primary" className={classes.button} onClick={onSubmit} sx={{marginX: 1}}>
+            <Button variant="contained" color="primary" className={classes.button} onClick={onComponentSubmit} sx={{marginX: 1}} disabled={!text}>
                 <SendIcon/>
             </Button>
         </Box>

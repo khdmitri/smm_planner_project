@@ -20,7 +20,7 @@ import ChatAPI from "../../../lib/chat";
 import moment from "moment";
 import ChatDisplay from "../../../components/chat/Chat";
 
-const MAX_LENGTH = 5
+const MAX_LENGTH = 10
 
 function uuidv4() {
     return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
@@ -45,50 +45,65 @@ const ChatGPT = () => {
     const [model, setModel] = useState("gpt-4")
     const [prompt, setPrompt] = useState("")
     const [history, setHistory] = useState([])
-    const [chat_answer, setChatAnswer] = useState("")
     const theme = createTheme();
 
     const onSubmit = async () => {
-        const chatRequest = {
-            conversation_id,
-            jailbreak,
-            model,
-            content: {
-                conversation: [...history],
-                internet_access,
-                prompt: {
+        const new_prompt = {
                     role: "user",
                     content: prompt,
                     timestamp: moment()
                 }
-            }
-        }
-
         if (history.length > 0) {
-            const last_in_history = history[history.length-1]
+            const last_in_history = history[history.length - 1]
             console.log("LastInHistory:", last_in_history)
             if (last_in_history.role === "user")
-                setHistory([history.slice(0, history.length-1), chatRequest.content.prompt])
+                setHistory([history.slice(0, history.length - 1), new_prompt])
             else
-                setHistory([...history, chatRequest.content.prompt])
+                setHistory([...history, new_prompt])
         } else
-            setHistory([...history, chatRequest.content.prompt])
-
-        await ChatAPI.conversation(chatRequest, sessionStorage.getItem("access-token"))
-            .then(async (res) => {
-                setHistory([...history, {role: "assistant", content: res.data, timestamp: moment()}])
-            })
-            .catch(error => {
-                console.log("ERROR:", error)
-                console.log("HisInConversation:", history)
-                setHistory([...history, {role: "assistant", content: error.response && error.response.data.detail ? error.response.data.detail : "Unknown error", timestamp: moment()}])
-            })
+            setHistory([...history, new_prompt])
     }
 
     useEffect(() => {
         console.log("History:", history)
         if (history.length > MAX_LENGTH) {
             setHistory(history.slice(history.length - MAX_LENGTH, history.length))
+        }
+
+        if (history.length > 0) {
+            const last_in_history = history[history.length - 1]
+            if (last_in_history.role === "user") {
+                const chatRequest = {
+                    conversation_id,
+                    jailbreak,
+                    model,
+                    content: {
+                        conversation: history.slice(0, history.length-1),
+                        internet_access,
+                        prompt: {
+                            role: "user",
+                            content: prompt,
+                            timestamp: moment()
+                        }
+                    }
+                }
+                const chat_completion = async () => {
+                    await ChatAPI.conversation(chatRequest, sessionStorage.getItem("access-token"))
+                        .then(async (res) => {
+                            setHistory([...history, {role: "assistant", content: res.data, timestamp: moment()}])
+                        })
+                        .catch(error => {
+                            console.log("ERROR:", error)
+                            console.log("HisInConversation:", history)
+                            setHistory([...history, {
+                                role: "assistant",
+                                content: error.response && error.response.data.detail ? error.response.data.detail : "Unknown error",
+                                timestamp: moment()
+                            }])
+                        })
+                }
+                chat_completion()
+            }
         }
     }, [history])
 
@@ -139,6 +154,10 @@ const ChatGPT = () => {
                                     label="Model"
                                 >
                                     <MenuItem value="gpt-3.5-turbo">GPT-3.5</MenuItem>
+                                    <MenuItem value="gpt-3.5-turbo-16k">GPT-3.5-16k</MenuItem>
+                                    <MenuItem value="text-davinci-002">Vercel</MenuItem>
+                                    <MenuItem value="falcon-40b">HuggingFace</MenuItem>
+                                    <MenuItem value="palm2">Google</MenuItem>
                                     <MenuItem value="gpt-4">GPT-4</MenuItem>
                                 </Select>
                             </FormControl>

@@ -31,12 +31,11 @@ async def conversation(
             model=chat_in.model,
             chatId=conversation_id,
             messages=messages,
-            stream=False
         )
 
         # generate_stream(response, chat_in.jailbreak)
 
-        return StreamingResponse(response, media_type='text/event-stream')
+        return StreamingResponse(generate_stream(response, chat_in.jailbreak), media_type='text/event-stream')
 
     except Exception as e:
         print(e)

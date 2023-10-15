@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
-      <change afterPath="$PROJECT_DIR$/../backend/app/core/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/icons/gpt.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/app/core/chatGpt/conversation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/conversation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/GetGpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/Provider/Providers/GetGpt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/g4f/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Message.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/chat.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +19,6 @@
         <option value="Python Script" />
         <option value="TypeScript JSX File" />
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -53,32 +40,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/smm_planner_project/frontend/public/images/icons",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/projects/smm_planner_project/frontend&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\smm_planner_project\frontend\public\images\icons" />
+      <recent name="C:\projects\smm_planner_project\frontend\src" />
+      <recent name="C:\projects\smm_planner_project\frontend\public" />
+      <recent name="C:\projects\smm_planner_project\frontend\public\assets" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\facebook" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend" />
+      <recent name="C:\projects\smm_planner_project\frontend\src\app\landing" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\telegram\edit\[id]" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components\editor" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components" />
-      <recent name="C:\projects\smm_planner_project\frontend" />
-      <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -115,10 +105,13 @@
       <workItem from="1695042085103" duration="2735000" />
       <workItem from="1695088802441" duration="1809000" />
       <workItem from="1695299062384" duration="2163000" />
-      <workItem from="1696308738797" duration="1820000" />
-      <workItem from="1696833104772" duration="594000" />
-      <workItem from="1697001124609" duration="5353000" />
-      <workItem from="1697032325861" duration="7037000" />
+      <workItem from="1695348711660" duration="3921000" />
+      <workItem from="1695387707162" duration="826000" />
+      <workItem from="1695644738628" duration="1177000" />
+      <workItem from="1695917257730" duration="1303000" />
+      <workItem from="1696658230679" duration="3529000" />
+      <workItem from="1696745772653" duration="14220000" />
+      <workItem from="1697351890653" duration="5012000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -211,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694926124986</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="FE: start on facebook">
+      <created>1695387917870</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1695387917871</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
