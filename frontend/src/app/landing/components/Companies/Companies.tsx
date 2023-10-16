@@ -1,37 +1,35 @@
 "use client"
 import Image from "next/image";
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
+import {Box, Grid, Typography} from "@mui/material";
 
 // IMAGES DATA FOR CAROUSEL
 interface Data {
-    imgSrc: string;
+    imgSrc: string,
+    label: string
 }
 
 const data: Data[] = [
     {
-        imgSrc: "/assets/carousel/airbnb.svg"
+        imgSrc: "/assets/carousel/facebook.svg",
+        label: "FACEBOOK"
     },
     {
-        imgSrc: "/assets/carousel/fedex.svg"
+        imgSrc: "/assets/carousel/youtube.svg",
+        label: "YOUTUBE"
     },
     {
-        imgSrc: "/assets/carousel/google.svg"
+        imgSrc: "/assets/carousel/instagram.svg",
+        label: "INSTAGRAM"
     },
     {
-        imgSrc: "/assets/carousel/hubspot.svg"
+        imgSrc: "/assets/carousel/telegram.svg",
+        label: "TELEGRAM"
     },
     {
-        imgSrc: "/assets/carousel/microsoft.svg"
-    },
-    {
-        imgSrc: "/assets/carousel/walmart.svg"
-    },
-    {
-        imgSrc: "/assets/carousel/airbnb.svg"
-    },
-    {
-        imgSrc: "/assets/carousel/fedex.svg"
+        imgSrc: "/assets/carousel/vk-circled.svg",
+        label: "VK-Circled"
     }
 ]
 
@@ -84,17 +82,24 @@ export default class MultipleItems extends Component {
 
             <div className='text-center my-20'>
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                    <h2 className="text-midnightblue text-2xl font-semibold">Trusted by companies of all sizes</h2>
+                    <h2 className="text-midnightblue text-2xl font-semibold">Social Networks supported</h2>
                     <div className="py-14">
                         <Slider {...settings}>
                             {data.map((item, i) =>
-                                <div key={i}>
-                                    <Image src={item.imgSrc} alt={item.imgSrc} width={116} height={36} />
-                                </div>
+                                <Grid container spacing={1}>
+                                    <Grid item xs={6} display="flex" justifyContent="center">
+                                        <Box key={i}>
+                                            <Image src={item.imgSrc} alt={item.imgSrc} width={96} height={36}/>
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" component="h2">{item.label}</Typography>
+                                    </Grid>
+                                </Grid>
                             )}
                         </Slider>
                     </div>
-                    <hr />
+                    <hr/>
                 </div>
             </div>
 

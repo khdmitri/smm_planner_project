@@ -2,22 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: chatgpt day2...">
-      <change afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/active_providers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/chat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/Provider/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/GetGpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/GetGpt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/carousel/facebook.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/carousel/instagram.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/carousel/telegram.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/carousel/vk-circled.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/carousel/youtube.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Banner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Banner/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Footer/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Drawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Drawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/TextInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/carousel/airbnb.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/carousel/fedex.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/carousel/google.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/carousel/hubspot.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/carousel/microsoft.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/carousel/walmart.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Companies/Companies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Companies/Companies.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Courses/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Courses/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,35 +49,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/projects/smm_planner_project/backend&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/projects/smm_planner_project/frontend/public/assets/carousel",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\public\assets\carousel" />
       <recent name="C:\projects\smm_planner_project\frontend\src" />
       <recent name="C:\projects\smm_planner_project\frontend\public" />
       <recent name="C:\projects\smm_planner_project\frontend\public\assets" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\facebook" />
-      <recent name="C:\projects\smm_planner_project\frontend\src\app\authentication\signup" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\public\assets\carousel" />
       <recent name="C:\projects\smm_planner_project\frontend" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\landing" />
       <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\telegram\edit\[id]" />
       <recent name="C:\projects\smm_planner_project\frontend\src\components\editor" />
-      <recent name="C:\projects\smm_planner_project\frontend\src\components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -123,6 +122,7 @@
       <workItem from="1696658230679" duration="3529000" />
       <workItem from="1696745772653" duration="14220000" />
       <workItem from="1697351890653" duration="9454000" />
+      <workItem from="1697465702569" duration="6025000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
