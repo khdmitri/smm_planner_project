@@ -52,19 +52,19 @@ export default function ChatDisplay({history}) {
                 <Paper id="style-1" className={classes.messagesBody}>
                     {history && Array.isArray(history) &&
                         history.map((message) => {
-                            if (message.role === "assistant")
+                            if (message.role === "assistant" || message.role === "system")
                                 return <MessageLeft
-                                    key={message.timestamp}
+                                    key={message.timestamp ? message.timestamp : message.content}
                                     message={message.content}
-                                    timestamp={message.timestamp.toString()}
+                                    timestamp={message.timestamp ? message.timestamp.toString() : ""}
                                     displayName=""
                                     avatarDisp={true}
                                 />
                             else if (message.role === "user")
                                 return <MessageRight
-                                    key={message.timestamp}
+                                    key={message.timestamp ? message.timestamp : message.content}
                                     message={message.content}
-                                    timestamp={message.timestamp.toString()}
+                                    timestamp={message.timestamp ? message.timestamp.toString() : ""}
                                     displayName=""
                                     avatarDisp={false}
                                 />

@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Button from '@material-ui/core/Button';
 import {useEffect, useState} from "react";
 import {makeStyles, createStyles} from "@mui/styles";
-import { Theme } from '@material-ui/core';
+import {Theme} from '@material-ui/core';
 import {Box} from "@mui/material";
 
 const useStyles = makeStyles((theme) =>
@@ -41,6 +41,13 @@ const TextInput = ({setter, onSubmit}) => {
             setter(event.target.value)
     }
 
+    const handleKeyDown = (event) => {
+        console.log("Event=", event)
+        if (event.key === 'Enter') {
+            onComponentSubmit()
+        }
+    }
+
     return (
         <Box className={classes.wrapForm} noValidate autoComplete="off">
             <TextField
@@ -51,8 +58,16 @@ const TextInput = ({setter, onSubmit}) => {
                 className={classes.wrapText}
                 onChange={onChange}
                 focused
+                onKeyDown={handleKeyDown}
             />
-            <Button variant="contained" color="primary" className={classes.button} onClick={onComponentSubmit} sx={{marginX: 1}} disabled={!text}>
+            <Button variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={onComponentSubmit}
+                    sx={{marginX: 1}}
+                    disabled={!text}
+                    onKeyDown={handleKeyDown}
+            >
                 <SendIcon/>
             </Button>
         </Box>

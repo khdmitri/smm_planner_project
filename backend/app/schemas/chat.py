@@ -19,6 +19,7 @@ class Content(BaseModel):
 class ChatRequest(BaseModel):
     conversation_id: str
     jailbreak: str
-    model: str
+    model: str = None
+    provider: str = None
     content: Content
 

@@ -20,4 +20,14 @@ export default class ChatAPI {
         console.log("Sending data=", data)
         return await instance.post("chat/conversation", data, config)
     }
+
+    static async providers(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+                "Accept": "application/json"
+            }
+        }
+        return await instance.get("chat/providers", config)
+    }
 }

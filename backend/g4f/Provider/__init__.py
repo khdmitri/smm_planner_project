@@ -100,10 +100,7 @@ class ProviderUtils:
         'Ylokh': Ylokh,
         'You': You,
         'Yqcloud': Yqcloud,
-        
-        'BaseProvider': BaseProvider,
-        'AsyncProvider': AsyncProvider,
-        'AsyncGeneratorProvider': AsyncGeneratorProvider,
+
         'RetryProvider': RetryProvider,
     }
 
