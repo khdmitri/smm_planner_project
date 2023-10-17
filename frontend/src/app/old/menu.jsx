@@ -1,4 +1,4 @@
-import PrimaryAppBar from "./(components)/top_menu";
+import PrimaryAppBar from "../(components)/top_menu";
 
 const MenuLayer = () => {
     return (

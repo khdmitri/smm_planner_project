@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuLayer from "../../app/menu";
+import MenuLayer from "../../app/old/menu";
 
 const RootPageLayout = (props) => {
     const {children} = props

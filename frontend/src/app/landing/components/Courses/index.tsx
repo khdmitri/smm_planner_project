@@ -30,9 +30,9 @@ const postData: DataType[] = [
         rating: 4.7,
     },
     {
-        heading: 'Design system',
-        heading2: 'with React programme',
-        name: "Colt stelle",
+        heading: 'Create post.',
+        heading2: 'AI Assistant available',
+        name: "ChatGPT-3.5, ChatGPT-4",
         imgSrc: '/assets/courses/coursetwo.png',
         students: 130,
         classes: 12,
@@ -40,45 +40,15 @@ const postData: DataType[] = [
         rating: 4.7,
     },
     {
-        heading: 'Design banner',
-        heading2: 'with Figma',
-        name: "Colt stelle",
+        heading: 'Manage auto-posting.',
+        heading2: 'Smart schedule',
+        name: "Youtube embed, group media",
         imgSrc: '/assets/courses/coursethree.png',
         students: 120,
         classes: 12,
         price: 20,
         rating: 4.7,
-    },
-    {
-        heading: 'We Launch Delia',
-        heading2: 'Webflow this Week!',
-        name: "Colt stelle",
-        imgSrc: '/assets/courses/courseone.png',
-        students: 150,
-        classes: 12,
-        price: 20,
-        rating: 4.7,
-    },
-    {
-        heading: 'We Launch Delia',
-        heading2: 'Webflow this Week!',
-        name: "Colt stelle",
-        imgSrc: '/assets/courses/coursetwo.png',
-        students: 150,
-        classes: 12,
-        price: 20,
-        rating: 4.7,
-    },
-    {
-        heading: 'We Launch Delia',
-        heading2: 'Webflow this Week!',
-        name: "Colt stelle",
-        imgSrc: '/assets/courses/coursethree.png',
-        students: 150,
-        classes: 12,
-        price: 20,
-        rating: 4.7,
-    },
+    }
 ]
 
 // CAROUSEL SETTINGS
@@ -171,12 +141,14 @@ export default class MultipleItems extends Component {
                                         <div className="flex justify-between pt-6">
                                             <div className="flex gap-4">
                                                 <Image src={'/assets/courses/book-open.svg'} alt="users" width={24} height={24} className="inline-block m-auto" />
-                                                <h3 className="text-base font-medium text-black opacity-75">{items.classes} classes</h3>
+                                                <h3 className="text-base font-medium text-black opacity-75">
+                                                    <Link href="/">Read more</Link>
+                                                </h3>
                                             </div>
-                                            <div className="flex gap-4">
-                                                <Image src={'/assets/courses/users.svg'} alt="users" width={24} height={24} className="inline-block m-auto" />
-                                                <h3 className="text-base font-medium text-black opacity-75">{items.students} students</h3>
-                                            </div>
+                                            {/*<div className="flex gap-4">*/}
+                                            {/*    <Image src={'/assets/courses/users.svg'} alt="users" width={24} height={24} className="inline-block m-auto" />*/}
+                                            {/*    <h3 className="text-base font-medium text-black opacity-75">{items.students} students</h3>*/}
+                                            {/*</div>*/}
                                         </div>
                                     </div>
                                 </div>

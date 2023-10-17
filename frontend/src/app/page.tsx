@@ -1,31 +1,26 @@
-// app/page.js - no directives needed
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import RootPageLayout from '../components/layout/root_page_layout'
+import './globals.css';
+import Banner from './landing/components/Banner';
+import Companies from './landing/components/Companies/Companies';
+import Courses from './landing/components/Courses';
+import Mentor from './landing/components/Mentor';
+import Newsletter from './landing/components/Newsletter/Newsletter';
+import Navbar from "@/app/landing/components/Navbar";
+import Footer from "@/app/landing/components/Footer/Footer";
+
 
 export default function Home() {
     return (
-        <RootPageLayout>
+        <>
+            <Navbar/>
             <main>
-                <Container sx={{
-                    height: '90vh',
-                    marginTop: 8,
-                    backgroundColor: 'primary.dark',
-                    color: 'white',
-                    '&:hover': {
-                        backgroundColor: 'primary.main',
-                        opacity: [0.9, 0.8, 0.7],
-                    },
-                }}>
-                    <Box>
-                        <Typography component="p" variant="h2">
-                            SLOGAN HERE
-                        </Typography>
-                    </Box>
-                </Container>
+                <Banner/>
+                <Companies/>
+                <Courses/>
+                <Mentor/>
+                {/*<Testimonials />*/}
+                <Newsletter/>
             </main>
-        </RootPageLayout>
-    );
+            <Footer/>
+        </>
+    )
 }
