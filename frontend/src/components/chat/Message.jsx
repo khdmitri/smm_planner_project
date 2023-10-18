@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) =>
     messageRow: {
       display: "flex"
     },
+    image: {
+      position: "relative",
+      width: "48px",
+      height: "48px"
+    },
     messageRowRight: {
       display: "flex",
       justifyContent: "flex-end"
@@ -133,8 +138,8 @@ export const MessageLeft = (props) => {
       <Box className={classes.messageRow}>
         <Image
           alt={displayName}
-          className={classes.orange}
           src={ChatGPT}
+          className={classes.image}
         ></Image>
         <div>
           <div className={classes.displayName}>{displayName}</div>

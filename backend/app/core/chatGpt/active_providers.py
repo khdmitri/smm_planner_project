@@ -21,7 +21,8 @@ class ActiveProviders:
                         "gpt_35_turbo": provider_class.supports_gpt_35_turbo if hasattr(
                             provider_class, "supports_gpt_35_turbo") else False,
                         "gpt_4": provider_class.supports_gpt_4 if hasattr(
-                            provider_class, "supports_gpt_4") else False
+                            provider_class, "supports_gpt_4") else False,
+                        "isFailed": False
                     }
 
         return active_providers

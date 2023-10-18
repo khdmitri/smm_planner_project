@@ -104,12 +104,24 @@ const ChatGPT = () => {
                 const chat_completion = async () => {
                     await ChatAPI.conversation(chatRequest, sessionStorage.getItem("access-token"))
                         .then(async (res) => {
-                            setHistory([...history.slice(0, history.length-1), {role: "assistant", content: res.data, timestamp: moment()}])
+                            const data = res.data
+                            setHistory([...history.slice(0, history.length - 1), {
+                                role: "assistant",
+                                content: data.answer,
+                                timestamp: moment()
+                            }])
+                            if (chatRequest.provider !== data.provider) {
+                                get_providers().then(res => {
+                                    localStorage.setItem("providers", JSON.stringify(res.data))
+                                    setProviders(res.data)
+                                    setProvider(data.provider)
+                                })
+                            }
                         })
                         .catch(error => {
                             console.log("ERROR:", error)
                             console.log("HisInConversation:", history)
-                            setHistory([...history.slice(0, history.length-1), {
+                            setHistory([...history.slice(0, history.length - 1), {
                                 role: "assistant",
                                 content: error.response && error.response.data.detail ? error.response.data.detail : "Unknown error",
                                 timestamp: moment()

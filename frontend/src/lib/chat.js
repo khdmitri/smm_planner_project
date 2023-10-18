@@ -12,9 +12,7 @@ export default class ChatAPI {
     static async conversation(data, access_token) {
         const config = {
             headers: {
-                "Authorization": `Bearer ${access_token}`,
-                "Accept": "text/event-stream",
-                responseType: 'stream',
+                "Authorization": `Bearer ${access_token}`
             }
         }
         console.log("Sending data=", data)

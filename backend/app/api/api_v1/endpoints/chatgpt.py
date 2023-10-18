@@ -10,19 +10,21 @@ from app.api import deps
 from app.common.logger import get_logger
 from app.core.chatGpt.active_providers import ActiveProviders
 from app.core.chatGpt.conversation import build_messages, generate_stream
+from app.core.chatGpt.utils import GptStateSingleton
 from app.schemas import ChatRequest
 from g4f import ChatCompletion
 from g4f.Provider import GptChatly, GPTalk, Bing, ProviderUtils
 
 router = APIRouter()
 logger = get_logger(logging.INFO)
+gptSingleton = GptStateSingleton()
 
 
 @router.get("/providers")
 async def get_providers(
     current_user: models.User = Depends(deps.get_current_active_user)
 ) -> Any:
-    result = ActiveProviders.get_providers()
+    result = gptSingleton.get_providers()
     return JSONResponse(result)
 
 
@@ -37,31 +39,10 @@ async def conversation(
         messages = build_messages(chat_in)
 
         # Generate response
+        response = await gptSingleton.get_answer(chat_in.provider, chat_in.model, conversation_id, messages)
 
-        if chat_in.provider:
-            provider_class = ProviderUtils.convert[chat_in.provider]
-            if hasattr(provider_class, "supports_gpt_4") and provider_class.supports_gpt_4:
-                model = "gpt-4"
-            else:
-                model = "gpt-3.5-turbo"
-
-            response = await ChatCompletion.create_async(
-                provider=provider_class,
-                model=model,
-                chatId=conversation_id,
-                messages=messages,
-            )
-        else:
-            response = await ChatCompletion.create_async(
-                model=chat_in.model,
-                chatId=conversation_id,
-                messages=messages,
-            )
-
-        # generate_stream(response, chat_in.jailbreak)
-
-        return StreamingResponse(generate_stream(response, chat_in.jailbreak), media_type='text/event-stream')
-
+        # return StreamingResponse(generate_stream(response, chat_in.jailbreak), media_type='text/event-stream')
+        return JSONResponse(response)
     except Exception as e:
         print(e)
         print(e.__traceback__.tb_next)
