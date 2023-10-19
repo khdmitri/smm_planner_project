@@ -1,11 +1,16 @@
-import { Disclosure } from '@headlessui/react';
+import {Disclosure} from '@headlessui/react';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import React, {useState} from 'react';
+import {Bars3Icon} from '@heroicons/react/24/outline';
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
 import Signdialog from "./Signdialog";
 import Registerdialog from "./Registerdialog";
+import {Button} from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
+import {useRouter} from "next/navigation";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 interface NavigationItem {
     name: string;
@@ -14,16 +19,16 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-    { name: 'Home', href: '#/', current: true },
-    { name: 'Applicability', href: '#courses', current: false },
-    { name: 'Get started', href: '#mentor', current: false },
+    {name: 'Home', href: '#/', current: true},
+    {name: 'Applicability', href: '#courses', current: false},
+    {name: 'Get started', href: '#mentor', current: false},
 ];
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
-const CustomLink = ({ href, onClick, children }: { href: string; onClick: () => void; children: React.ReactNode }) => {
+const CustomLink = ({href, onClick, children}: { href: string; onClick: () => void; children: React.ReactNode }) => {
     return (
         <Link href={href} passHref>
             <span
@@ -36,8 +41,13 @@ const CustomLink = ({ href, onClick, children }: { href: string; onClick: () => 
     );
 };
 
+const logout = () => {
+    sessionStorage.removeItem("user")
+}
+
 
 const Navbar = () => {
+    const navigate = useRouter()
     const [isOpen, setIsOpen] = React.useState(false);
 
     const [currentLink, setCurrentLink] = useState('/');
@@ -93,14 +103,23 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        {/* SIGNIN DIALOG */}
-
-                        <Signdialog />
-
-
-                        {/* REGISTER DIALOG */}
-
-                        <Registerdialog />
+                        {sessionStorage.getItem("user") ?
+                            <>
+                                <Button variant="contained" startIcon={<PersonIcon/>}
+                                        onClick={() => navigate.push("/profile")}>
+                                    Profile
+                                </Button>
+                                <Button variant="outlined" startIcon={<LogoutIcon/>}
+                                        onClick={logout}>
+                                    Logout
+                                </Button>
+                            </>
+                            :
+                            <>
+                                <Signdialog/>
+                                <Registerdialog/>
+                            </>
+                        }
 
 
                         {/* DRAWER FOR MOBILE VIEW */}
@@ -108,13 +127,13 @@ const Navbar = () => {
                         {/* DRAWER ICON */}
 
                         <div className='block lg:hidden'>
-                            <Bars3Icon className="block h-6 w-6" aria-hidden="true" onClick={() => setIsOpen(true)} />
+                            <Bars3Icon className="block h-6 w-6" aria-hidden="true" onClick={() => setIsOpen(true)}/>
                         </div>
 
                         {/* DRAWER LINKS DATA */}
 
                         <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-                            <Drawerdata />
+                            <Drawerdata/>
                         </Drawer>
 
 

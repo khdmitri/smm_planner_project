@@ -9,9 +9,6 @@ instance.defaults.headers.post["Content-Type"] = "application/json"
 export default class UserAPI {
 
     static async createNewUser(form) {
-        console.log("Axios headers=", instance.defaults.headers)
-        console.log("Form=", form)
-
         return await instance.post('/users', form)
     }
 }
