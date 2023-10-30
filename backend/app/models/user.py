@@ -17,3 +17,4 @@ class User(Base):
     allow_extra_emails: bool = Column(Boolean(), default=True)
     is_superuser: bool = Column(Boolean(), default=False)
     is_active: bool = Column(Boolean(), default=True)
+    disk_usage_limit: int = Column(Integer, default=0)

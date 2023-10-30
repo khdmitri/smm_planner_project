@@ -1,0 +1,6 @@
+# Re-Captcha Enterprise
+# Key: 6LfzWt0oAAAAAC9jLKkrQswgxsyfma-v7tXTo2BE
+
+# Re-Captcha v.3
+# Site Key: 6LcRrt4oAAAAAC3guUTUGbAYmEjiW0pGYjBwinyO
+# Secret Key: 6LcRrt4oAAAAAIxaoUTa9ETs1HudbyugtUMLOQGz

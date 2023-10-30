@@ -86,9 +86,9 @@ export default class MultipleItems extends Component {
                     <div className="py-14">
                         <Slider {...settings}>
                             {data.map((item, i) =>
-                                <Grid container spacing={1}>
+                                <Grid container spacing={1} key={i}>
                                     <Grid item xs={6} display="flex" justifyContent="center">
-                                        <Box key={i}>
+                                        <Box>
                                             <Image src={item.imgSrc} alt={item.imgSrc} width={96} height={36}/>
                                         </Box>
                                     </Grid>

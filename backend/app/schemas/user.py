@@ -10,6 +10,7 @@ class UserBase(BaseModel):
     last_name: Optional[str] = None
     is_superuser: Optional[bool] = None
     is_active: Optional[bool] = None
+    disk_usage_limit: int = 0
 
 
 # Properties to receive via API on creation

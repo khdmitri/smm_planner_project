@@ -11,4 +11,13 @@ export default class UserAPI {
     static async createNewUser(form) {
         return await instance.post('/users', form)
     }
+
+    static async getStatistic(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get('/users/statistic', config)
+    }
 }

@@ -1,4 +1,4 @@
-from .msg import Msg
+from .msg import Msg, UserStatistic
 from .post_date import PostDate
 from .user import User, UserCreate, UserInDB, UserUpdate
 from .post import Post, PostCreate, PostInDB, PostUpdate

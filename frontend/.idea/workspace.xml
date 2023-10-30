@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: landing reworking">
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: Alpha. Run on remote notebook">
+      <change afterPath="$PROJECT_DIR$/src/lib/hooks/UsePieData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/cf9308b5d1bb_post_plain_text.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/cfa237f3916d_postfiles_save_result.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/msg.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/msg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Provider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/AiService.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Aichat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Ails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Bard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Better.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Bing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/ChatFree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/ChatgptAi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/ChatgptLogin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/DeepAi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Easychat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Ezcht.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Fakeopen.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Forefront.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/GetGpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Gravityengine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/H2o.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Liaobots.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Lockchat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Mishalsgpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Phind.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Theb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Vercel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Weuseing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Wewordle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Xiaor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/You.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Yqcloud.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/Zeabur.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/docs/google.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/helpers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/pie.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/helpers/gpt4love.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/helpers/phind.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/helpers/theb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/helpers/you.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/Providers/hteyun.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/Provider/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/active_providers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/typing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f_old/utils.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Companies/Companies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Companies/Companies.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chat/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Message.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +75,8 @@
       <list>
         <option value="Python Script" />
         <option value="TypeScript JSX File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -40,22 +97,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/projects/smm_planner_project/frontend&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/projects/DataAnalysis/frontend",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\smm_planner_project\frontend\public\assets\carousel" />
@@ -116,7 +173,8 @@
       <workItem from="1697465702569" duration="6025000" />
       <workItem from="1697515555149" duration="8370000" />
       <workItem from="1697622877601" duration="2381000" />
-      <workItem from="1697690599226" duration="2806000" />
+      <workItem from="1697690599226" duration="4129000" />
+      <workItem from="1698651572086" duration="6259000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -230,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697629622605</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="BE&amp;FE: Alpha. Run on remote notebook">
+      <created>1697693600307</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1697693600307</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +326,7 @@
     <MESSAGE value="FE&amp;BE: post queue #3" />
     <MESSAGE value="FE: start on facebook" />
     <MESSAGE value="BE&amp;FE: landing reworking" />
-    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: landing reworking" />
+    <MESSAGE value="BE&amp;FE: Alpha. Run on remote notebook" />
+    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: Alpha. Run on remote notebook" />
   </component>
 </project>

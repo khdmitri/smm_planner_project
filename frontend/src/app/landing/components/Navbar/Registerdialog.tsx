@@ -1,5 +1,5 @@
 import {Dialog, Transition} from '@headlessui/react'
-import {Fragment, useEffect, useState} from 'react'
+import {Fragment, useCallback, useEffect, useState} from 'react'
 import {LockClosedIcon} from '@heroicons/react/20/solid'
 import {useFormik} from "formik";
 import {signupFormSchema} from "../../../(schemes)";
@@ -11,9 +11,18 @@ import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import UniAlert from "@/components/alert/alert";
 import Link from "@mui/material/Link";
+import * as React from "react";
+import {GoogleReCaptcha, GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
 
 
 const Register = () => {
+    const [token, setToken] = useState(null);
+    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+
+    const onVerify = useCallback((token) => {
+        setToken(token);
+    }, []);
+
     const onSubmit = async () => {
         console.log(`Submitted: ${JSON.stringify(values)}`)
         console.log("allowExtraEmails:", allowExtraEmails)
@@ -32,6 +41,7 @@ const Register = () => {
         } else {
             console.log("Creation Error:", onCreateComplete)
         }
+        setRefreshReCaptcha(r => !r)
     };
 
     const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
@@ -69,6 +79,12 @@ const Register = () => {
 
     return (
         <>
+            <GoogleReCaptchaProvider reCaptchaKey="6LcRrt4oAAAAAC3guUTUGbAYmEjiW0pGYjBwinyO">
+                <GoogleReCaptcha
+                    onVerify={onVerify}
+                    refreshReCaptcha={refreshReCaptcha}
+                />
+            </GoogleReCaptchaProvider>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
                 <div className='hidden lg:block'>
                     <button
@@ -244,7 +260,7 @@ const Register = () => {
                                                     </div>
 
                                                     <div>
-                                                        <button
+                                                        {token && <button
                                                             type="submit"
                                                             className="group relative flex w-full justify-center rounded-md border border-transparent bg-Blueviolet py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                         >
@@ -256,6 +272,7 @@ const Register = () => {
                                                         </span>
                                                             Register Now
                                                         </button>
+                                                        }
                                                     </div>
                                                 </form>
                                             }

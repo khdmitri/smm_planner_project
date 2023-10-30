@@ -1,12 +1,12 @@
 import {Disclosure} from '@headlessui/react';
 import Link from 'next/link';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Bars3Icon} from '@heroicons/react/24/outline';
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
 import Signdialog from "./Signdialog";
 import Registerdialog from "./Registerdialog";
-import {Button} from "@mui/material";
+import {Box, Button} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import {useRouter} from "next/navigation";
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -49,12 +49,17 @@ const logout = () => {
 const Navbar = () => {
     const navigate = useRouter()
     const [isOpen, setIsOpen] = React.useState(false);
+    const [user, setUser] = useState(null)
 
     const [currentLink, setCurrentLink] = useState('/');
 
     const handleLinkClick = (href: string) => {
         setCurrentLink(href);
     };
+
+    useEffect(() => {
+        setUser(JSON.parse(sessionStorage.getItem("user")))
+    }, [])
 
     return (
         <Disclosure as="nav" className="navbar">
@@ -103,16 +108,20 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        {sessionStorage.getItem("user") ?
+                        {user ?
                             <>
-                                <Button variant="contained" startIcon={<PersonIcon/>}
-                                        onClick={() => navigate.push("/profile")}>
-                                    Profile
-                                </Button>
-                                <Button variant="outlined" startIcon={<LogoutIcon/>}
-                                        onClick={logout}>
-                                    Logout
-                                </Button>
+                                <Box>
+                                    <Button startIcon={<PersonIcon/>}
+                                            onClick={() => navigate.push("/profile")}>
+                                        Profile
+                                    </Button>
+                                    &nbsp;&nbsp;
+                                    <Button variant="outlined"
+                                            startIcon={<LogoutIcon/>}
+                                            onClick={logout}>
+                                        Logout
+                                    </Button>
+                                </Box>
                             </>
                             :
                             <>
