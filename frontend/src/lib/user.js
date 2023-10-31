@@ -5,6 +5,7 @@ const instance = axios.create({
 })
 instance.defaults.headers.common["Access-Control-Allow-Origin"] = "*"
 instance.defaults.headers.post["Content-Type"] = "application/json"
+instance.defaults.headers.get["Content-Type"] = "application/json"
 
 export default class UserAPI {
 
@@ -13,6 +14,7 @@ export default class UserAPI {
     }
 
     static async getStatistic(access_token) {
+        console.log("access-token=", access_token)
         const config = {
             headers: {
                 "Authorization": `Bearer ${access_token}`,

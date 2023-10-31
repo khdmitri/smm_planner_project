@@ -26,6 +26,17 @@ async def read_users(
     return users
 
 
+@router.get("/statistic", response_model=schemas.UserStatistic)
+async def read_user_statistic(
+    current_user: models.User = Depends(deps.get_current_active_user),
+    db: AsyncSession = Depends(deps.get_db_async),
+) -> Any:
+    """
+    Get a specific user by id.
+    """
+    return await crud.user.get_statistic(db, user=current_user)
+
+
 @router.post("/", response_model=schemas.User)
 async def create_user(
     *,
@@ -149,14 +160,3 @@ async def update_user(
         )
     user = await crud.user.update(db, db_obj=user, obj_in=user_in)
     return user
-
-
-@router.get("/statistic", response_model=schemas.UserStatistic)
-async def read_user_statistic(
-    current_user: models.User = Depends(deps.get_current_active_user),
-    db: AsyncSession = Depends(deps.get_db_async),
-) -> Any:
-    """
-    Get a specific user by id.
-    """
-    return await crud.user.get_statistic(db, user=current_user)
