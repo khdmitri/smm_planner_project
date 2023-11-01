@@ -5,7 +5,7 @@ import moment from "moment/moment";
 
 const CardAvatar = ({caption, children}) => {
     return (
-        <Card sx={{width: 400}}>
+        <Card sx={{width: 400, height: "50vh"}}>
             <CardHeader
                 avatar={
                     <UserAvatar />
@@ -13,7 +13,7 @@ const CardAvatar = ({caption, children}) => {
                 title={caption}
                 subheader={moment().format("YYYY-MM-DD")}
             />
-            <CardContent>
+            <CardContent sx={{width: 400}}>
                 {children}
             </CardContent>
         </Card>

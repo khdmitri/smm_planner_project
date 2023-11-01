@@ -34,7 +34,7 @@ async def read_user_statistic(
     """
     Get a specific user by id.
     """
-    return await crud.user.get_statistic(db, user=current_user)
+    return await crud.user.get_statistic(db, current_user=current_user)
 
 
 @router.post("/", response_model=schemas.User)

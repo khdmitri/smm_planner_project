@@ -1,3 +1,4 @@
+import datetime
 from typing import Any, Dict, Optional, Union, List
 
 from sqlalchemy import select
@@ -5,8 +6,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 
 from app.core.security import get_password_hash, verify_password
-from app.crud import crud_post
 from app.crud.base import CRUDBase
+from app.models import Post
 from app.models.user import User
 from app.schemas import UserStatistic
 from app.schemas.user import UserCreate, UserUpdate
@@ -63,22 +64,27 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
     def is_superuser(self, user: User) -> bool:
         return user.is_superuser
 
-    async def get_statistic(self, db: AsyncSession, *, user: User) -> UserStatistic:
-        posts = await crud_post.get_multi_by_user(db, user_id=user.id)
+    async def get_statistic(self, db: AsyncSession, *, current_user: User) -> UserStatistic:
+        # posts = await self.get_multi_by_user(db, user_id=current_user.id)
+        posts = await db.execute(select(Post).filter(Post.user_id == current_user.id).order_by(
+            Post.when.desc()
+        ))
+        posts = posts.scalars().all()
         disk_loaded = 0
         posts_created = len(posts)
         posts_sent = 0
         last_activity = None
         for post in posts:
-            if last_activity is None or last_activity < post.post_date:
-                last_activity = post.post_date
+            if isinstance(post.post_date, datetime.datetime):
+                if last_activity is None or last_activity < post.post_date:
+                    last_activity = post.post_date
             if post.is_posted:
                 posts_sent += 1
             post_files = post.post_files
             for file in post_files:
                 disk_loaded += file.filesize
         user_statistic = UserStatistic(
-            disk_usage_limit=user.disk_usage_limit,
+            disk_usage_limit=current_user.disk_usage_limit,
             disk_loaded=disk_loaded // (1024*1024),
             posts_created=posts_created,
             posts_sent=posts_sent,

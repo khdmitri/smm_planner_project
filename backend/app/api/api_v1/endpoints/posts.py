@@ -9,7 +9,7 @@ from app.api import deps
 from app.api.deps import get_db_async
 from app.common.logger import get_logger
 from app.core.file_processing import FileProcessing
-from app.crud import crud_post, crud_post_file
+from app.crud import crud_post_inst, crud_post_file
 from app.schemas.post import PostCreate
 from app.schemas.post_file import PostFileCreate
 
@@ -56,7 +56,7 @@ async def new_post(
             html_text=html_text,
             plain_text=plain_text
         )
-        new_post = await crud_post.create(db, obj_in=new_post)
+        new_post = await crud_post_inst.create(db, obj_in=new_post)
 
         # Create PostFiles
         assert new_post is not None, "Post was not created for unknown reason"
@@ -88,7 +88,7 @@ async def read_post(
     """
     Get a specific post by id.
     """
-    post = await crud_post.get(db, id=post_id)
+    post = await crud_post_inst.get(db, id=post_id)
 
     if not post.user_id == current_user.id:
         raise HTTPException(
@@ -106,7 +106,7 @@ async def read_posts(
     """
     Retrieve posts by user.
     """
-    posts = await crud_post.get_multi_by_user(db, user_id=current_user.id)
+    posts = await crud_post_inst.get_multi_by_user(db, user_id=current_user.id)
     return posts if posts is not None else []
 
 
@@ -120,7 +120,7 @@ async def update_post(
     """
     Update post.
     """
-    post = await crud_post.get(db, id=post_in.id)
+    post = await crud_post_inst.get(db, id=post_in.id)
     if not post:
         raise HTTPException(
             status_code=404,
@@ -132,7 +132,7 @@ async def update_post(
             detail="User can update only self posts",
         )
 
-    post = await crud_post.update(db, db_obj=post, obj_in=post_in)
+    post = await crud_post_inst.update(db, db_obj=post, obj_in=post_in)
     return post
 
 
@@ -146,7 +146,7 @@ async def delete_post(
     """
     Delete post.
     """
-    post = await crud_post.get(db=db, id=id)
+    post = await crud_post_inst.get(db=db, id=id)
     if not post:
         raise HTTPException(status_code=404, detail="Post not found")
     if post.user_id != current_user.id:
@@ -166,5 +166,5 @@ async def delete_post(
         file_processing = FileProcessing(current_user, file_names)
         file_processing.delete_files()
 
-    await crud_post.remove(db=db, id=id)
+    await crud_post_inst.remove(db=db, id=id)
     return {"msg": "Post was successfully deleted"}

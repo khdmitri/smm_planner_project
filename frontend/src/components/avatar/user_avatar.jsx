@@ -12,7 +12,9 @@ const UserAvatar = () => {
         if (user) {
             const f_letter = user.first_name.split("", 1)
             const l_letter = user.last_name.split("", 1)
-            setUserInitials(f_letter ? f_letter.toUpperCase() : "" + l_letter ? l_letter.split("", 1).toUpperCase() : "")
+            let initials = f_letter ? f_letter[0].toUpperCase() : ""
+            initials += l_letter ? l_letter[0].toUpperCase() : ""
+            setUserInitials(initials)
         }
     })
     return (

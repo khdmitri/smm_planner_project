@@ -64,3 +64,5 @@ const PieChart = ({ data /* see data tab */ }) => (
         ]}
     />
 )
+
+export default PieChart;

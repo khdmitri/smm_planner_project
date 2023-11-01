@@ -16,4 +16,4 @@ class CRUDPost(CRUDBase[Post, PostCreate, PostUpdate]):
         return result.scalars().all()
 
 
-crud_post = CRUDPost(Post)
+crud_post_inst = CRUDPost(Post)
