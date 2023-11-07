@@ -1,13 +1,13 @@
 const usePieData = (statisticData) => {
     const result = []
     result.push({
-        id: 1,
+        id: "Remains",
         label: "Disk Space Remains",
         value: statisticData.disk_usage_limit - statisticData.disk_loaded,
-        color: "hsl(180, 70%, 50%)"
+        color: "hsl(113, 100%, 32%)"
     })
     result.push({
-        id: 2,
+        id: "Loaded",
         label: "Disk Loaded",
         value: statisticData.disk_loaded,
         color: "hsl(130, 70%, 50%)"

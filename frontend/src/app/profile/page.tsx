@@ -28,7 +28,7 @@ const Profile = () => {
                 <>
                     <CardAvatar caption="Post Statistic">
                         <Divider/>
-                        <Box sx={{width: 400}}>
+                        <Box sx={{width: 400, height: 250}}>
                             <PieChart data={usePieData(userStatistic)}/>
                         </Box>
                         <Divider/>
@@ -57,9 +57,6 @@ const Profile = () => {
                             </Typography>
                         </Box>
                     </CardAvatar>
-                    <Box sx={{width: 400}}>
-                        <PieChart data={usePieData(userStatistic)}/>
-                    </Box>
                 </>
             }
         </>

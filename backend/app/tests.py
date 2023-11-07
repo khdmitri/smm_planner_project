@@ -41,7 +41,7 @@ def calc():
     U3 = 1
     print(f"{U3=}")
 
-    U2_Lex_8h = C1am**2*(U1am**2 + U2**2 + U3**2) + (C1bm*U1bm)
+    U2_Lex_8h = C1am**2*(U1am**2 + U2**2 + U3**2) + (C1bm*U1bm)**2
     print(f"{U2_Lex_8h=}")
 
 

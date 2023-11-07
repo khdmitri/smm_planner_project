@@ -8,8 +8,9 @@ import { ResponsivePie } from '@nivo/pie'
 const PieChart = ({ data /* see data tab */ }) => (
     <ResponsivePie
         data={data}
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-        innerRadius={0.5}
+        colors={{ scheme: 'category10' }}
+        margin={{ top: 10, right: 40, bottom: 70, left: 40 }}
+        innerRadius={0.1}
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
@@ -40,10 +41,10 @@ const PieChart = ({ data /* see data tab */ }) => (
         legends={[
             {
                 anchor: 'bottom',
-                direction: 'row',
+                direction: 'column',
                 justify: false,
                 translateX: 0,
-                translateY: 56,
+                translateY: 65,
                 itemsSpacing: 0,
                 itemWidth: 100,
                 itemHeight: 18,
