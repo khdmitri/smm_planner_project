@@ -10,7 +10,7 @@ import {Box, Typography} from "@mui/material";
 import moment from "moment/moment";
 
 const Profile = () => {
-    const [userStatistic, setUserStatistic] = useState()
+    const [userStatistic, setUserStatistic] = useState<any>({})
     const getUserStatistic = async () => {
         await UserAPI.getStatistic(sessionStorage.getItem("access-token")).then(response => {
             setUserStatistic(response.data)

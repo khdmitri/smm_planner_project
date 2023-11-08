@@ -49,7 +49,7 @@ const logout = () => {
 const Navbar = () => {
     const navigate = useRouter()
     const [isOpen, setIsOpen] = React.useState(false);
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState("")
 
     const [currentLink, setCurrentLink] = useState('/');
 
@@ -58,7 +58,7 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        setUser(JSON.parse(sessionStorage.getItem("user")))
+        setUser(JSON.parse(sessionStorage.getItem("user") || ""))
     }, [])
 
     return (
@@ -108,7 +108,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        {user ?
+                        {user !== "" ?
                             <>
                                 <Box>
                                     <Button startIcon={<PersonIcon/>}

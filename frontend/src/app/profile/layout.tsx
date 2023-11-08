@@ -2,7 +2,7 @@ import AppMenu from "./(components)/app_menu"
 import React from "react";
 import {Box, createTheme, CssBaseline} from "@mui/material";
 
-export default function ProfileLayout(props) {
+export default function ProfileLayout(props: any) {
     const {children} = props;
     return (
         <AppMenu>

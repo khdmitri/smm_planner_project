@@ -101,7 +101,7 @@ const PostList = () => {
             <Card>
                 <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between"
                      alignItems="center">
-                    <Typography components="h1" variant="h4">
+                    <Typography component="h1" variant="h4">
                         Queued Post List
                     </Typography>
                     <DynamicFeedIcon fontSize="large" color="info" m={2} p={2}/>

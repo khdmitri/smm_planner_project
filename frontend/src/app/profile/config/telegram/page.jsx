@@ -58,7 +58,7 @@ const TelegramConfig = () => {
             <Divider/>
             <Card>
                 <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
-                    <Typography components="h1" variant="h4">
+                    <Typography component="h1" variant="h4">
                         Telegram Chat List
                     </Typography>
                     <Telegram fontSize="large" color="info" m={2} p={2} />

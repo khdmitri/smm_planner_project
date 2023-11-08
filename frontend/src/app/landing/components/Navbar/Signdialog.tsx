@@ -29,11 +29,11 @@ const Signin = () => {
         setIsOpen(true)
     }
 
-    const onVerify = useCallback((token) => {
+    const onVerify = useCallback((token: any) => {
         setToken(token);
     }, []);
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({

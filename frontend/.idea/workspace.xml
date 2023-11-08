@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: User profile, day 2">
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/crud/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/crud/crud_user.py" afterDir="false" />
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: User profile, day 3">
+      <change afterPath="$PROJECT_DIR$/../backend/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/conf/postmasterhub.store" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/conf/default.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(components)/top_menu/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/authentication/(components)/signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Banner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Banner/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/sub_components/embed_youtube.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/sub_components/embed_youtube.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/old/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/old/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/old/menu.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/old/page.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/old/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/config/facebook/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/config/facebook/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/config/telegram/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/config/telegram/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/config/vk/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/config/vk/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/posts_list/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/posts_list/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/avatar/user_avatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/avatar/user_avatar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cards/card_avatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cards/card_avatar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/pie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/pie.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editor/plugins/OnChangeMarkdown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editor/plugins/OnChangeMarkdown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/video-preview/video_preview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/video-preview/video_preview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,29 +66,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/projects/smm_planner_project/frontend&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/projects/smm_planner_project/frontend",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\projects\\smm_planner_project\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend" />
       <recent name="C:\projects\smm_planner_project\frontend\public\assets\carousel" />
       <recent name="C:\projects\smm_planner_project\frontend\src" />
       <recent name="C:\projects\smm_planner_project\frontend\public" />
       <recent name="C:\projects\smm_planner_project\frontend\public\assets" />
-      <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config\facebook" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projects\smm_planner_project\frontend\src\app" />
@@ -124,7 +145,10 @@
       <workItem from="1697690599226" duration="4129000" />
       <workItem from="1698651572086" duration="6914000" />
       <workItem from="1698727878677" duration="5731000" />
-      <workItem from="1698815673684" duration="4233000" />
+      <workItem from="1698815673684" duration="4280000" />
+      <workItem from="1698899557576" duration="2003000" />
+      <workItem from="1699342596109" duration="594000" />
+      <workItem from="1699420934042" duration="7927000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -259,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698759765292</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="BE&amp;FE: User profile, day 3">
+      <created>1698847963958</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1698847963958</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +324,7 @@
     <MESSAGE value="BE&amp;FE: Alpha. Run on remote notebook" />
     <MESSAGE value="BE&amp;FE: User profile" />
     <MESSAGE value="BE&amp;FE: User profile, day 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: User profile, day 2" />
+    <MESSAGE value="BE&amp;FE: User profile, day 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: User profile, day 3" />
   </component>
 </project>

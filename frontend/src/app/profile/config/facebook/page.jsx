@@ -58,7 +58,7 @@ const FacebookConfig = () => {
             <Divider/>
             <Card>
                 <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
-                    <Typography components="h1" variant="h4">
+                    <Typography component="h1" variant="h4">
                         Facebook Group List
                     </Typography>
                     <FacebookOutlined fontSize="large" color="info" m={2} p={2} />

@@ -42,7 +42,7 @@ const Banner = () => {
                     </div>
 
                     <div className='col-span-6 flex justify-center'>
-                        <Image src="/assets/banner/banner.png" alt="nothing" width={450} height={505} sx={{opacity: 0.1}} />
+                        <Image src="/assets/banner/banner.png" alt="nothing" width={450} height={505} />
                     </div>
                 </div>
             </div>

@@ -32,7 +32,6 @@ export default function OnChangeMarkdown({
   return (
     <OnChangePlugin
       onChange={OnChangeMarkdown}
-      ignoreInitialChange
       ignoreSelectionChange
     />
   );

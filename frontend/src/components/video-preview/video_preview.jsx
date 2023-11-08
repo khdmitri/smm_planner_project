@@ -7,7 +7,7 @@ const VideoPreview = ({url}) => {
     const parsed_url = parse_video_url(url)
 
     return (
-        < div
+        <div
             className="video-responsive">
             < iframe
                 width="420"
@@ -19,7 +19,7 @@ const VideoPreview = ({url}) => {
                 allowFullScreen
                 title="Video Preview"
             />
-        < /div>
+        </div>
     )
 };
 

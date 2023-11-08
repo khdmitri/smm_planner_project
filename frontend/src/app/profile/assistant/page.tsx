@@ -28,13 +28,13 @@ import LoupeIcon from '@mui/icons-material/Loupe';
 const MAX_LENGTH = 10
 
 function uuidv4() {
-    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c: any) =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
 }
 
-const decodeUnicode = (str) => {
-    return str.replace(/\\u([a-fA-F0-9]{4})/g, function (match, grp) {
+const decodeUnicode = (str: any) => {
+    return str.replace(/\\u([a-fA-F0-9]{4})/g, function (match: any, grp: any) {
         return String.fromCharCode(parseInt(grp, 16));
     });
 };
@@ -44,13 +44,13 @@ const ChatGPT = () => {
     const [message, setMessage] = useState("")
     const [severity, setSeverity] = useState("info")
 
-    const [conversation_id, setConversationId] = useState("")
+    const [conversation_id, setConversationId] = useState<any>("")
     const [jailbreak, setJailbreak] = useState("default")
     const [internet_access, setInternetAccess] = useState(false)
     const [model, setModel] = useState("")
     const [prompt, setPrompt] = useState("")
-    const [history, setHistory] = useState([])
-    const [providers, setProviders] = useState({})
+    const [history, setHistory] = useState<any[]>([])
+    const [providers, setProviders] = useState<any>({})
     const [provider, setProvider] = useState("None")
     const theme = createTheme();
 
@@ -67,7 +67,7 @@ const ChatGPT = () => {
             }
         ]
         if (history.length > 0) {
-            const last_in_history = history[history.length - 1]
+            const last_in_history: any = history[history.length - 1]
             console.log("LastInHistory:", last_in_history)
             if (last_in_history.role === "system")
                 setHistory([history.slice(0, history.length - 2), ...new_prompt])
@@ -164,7 +164,7 @@ const ChatGPT = () => {
                 setProviders(res.data)
             })
         else
-            setProviders(JSON.parse(localStorage.getItem("providers")))
+            setProviders(JSON.parse(localStorage.getItem("providers") || "{}"))
 
     }, [])
 
@@ -181,7 +181,7 @@ const ChatGPT = () => {
                     <Box display="flex" justifyContent="space-between">
                         <Box sx={{padding: 2}} display="flex" flexDirection="row" justifyContent="space-between"
                              alignItems="center">
-                            <Typography components="h1" variant="h4">
+                            <Typography component="h1" variant="h4">
                                 AI Chat Assistant
                             </Typography>
                         </Box>
@@ -194,7 +194,7 @@ const ChatGPT = () => {
                     <CardContent>
                         <ChatDisplay history={history}/>
                         <TextInput setter={setPrompt} onSubmit={onSubmit}/>
-                        <Box display="flex" direction="row">
+                        <Box display="flex" flexDirection="row">
                             <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
                                 <InputLabel id="demo-simple-select-standard-label">Model</InputLabel>
                                 <Select

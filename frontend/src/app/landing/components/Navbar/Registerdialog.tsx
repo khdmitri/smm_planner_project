@@ -16,10 +16,10 @@ import {GoogleReCaptcha, GoogleReCaptchaProvider} from "react-google-recaptcha-v
 
 
 const Register = () => {
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState("");
     const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
-    const onVerify = useCallback((token) => {
+    const onVerify = useCallback((token: any) => {
         setToken(token);
     }, []);
 
@@ -62,7 +62,7 @@ const Register = () => {
     let user = null
 
     useEffect(() => {
-        user = JSON.parse(sessionStorage.getItem("user"))
+        user = JSON.parse(sessionStorage.getItem("user") || "")
     }, [])
 
     const allowExtraEmailsChanged = () => {
@@ -179,7 +179,7 @@ const Register = () => {
                                                                     label="First Name"
                                                                     value={values.first_name}
                                                                     onChange={handleChange}
-                                                                    error={errors.first_name && touched.first_name}
+                                                                    error={!!(errors.first_name && touched.first_name)}
                                                                     helperText={errors.first_name && touched.first_name ? errors.first_name : ""}
                                                                     autoFocus
                                                                 />
@@ -195,7 +195,7 @@ const Register = () => {
                                                                     value={values.last_name}
                                                                     onBlur={handleBlur}
                                                                     onChange={handleChange}
-                                                                    error={errors.last_name && touched.last_name}
+                                                                    error={!!(errors.last_name && touched.last_name)}
                                                                     helperText={errors.last_name && touched.last_name ? errors.last_name : ""}
                                                                 />
                                                             </Grid>
@@ -211,7 +211,7 @@ const Register = () => {
                                                                     value={values.email}
                                                                     onBlur={handleBlur}
                                                                     onChange={handleChange}
-                                                                    error={errors.email && touched.email}
+                                                                    error={!!(errors.email && touched.email)}
                                                                     helperText={errors.email && touched.email ? errors.email : ""}
                                                                 />
                                                             </Grid>
@@ -227,7 +227,7 @@ const Register = () => {
                                                                     value={values.password}
                                                                     onChange={handleChange}
                                                                     onBlur={handleBlur}
-                                                                    error={errors.password && touched.password}
+                                                                    error={!!(errors.password && touched.password)}
                                                                     helperText={errors.password && touched.password ? errors.password : ""}
                                                                 />
                                                             </Grid>
@@ -243,7 +243,7 @@ const Register = () => {
                                                                     value={values.password2}
                                                                     onChange={handleChange}
                                                                     onBlur={handleBlur}
-                                                                    error={errors.password2 && touched.password2}
+                                                                    error={!!(errors.password2 && touched.password2)}
                                                                     helperText={errors.password2 && touched.password2 ? errors.password2 : ""}
                                                                 />
                                                             </Grid>

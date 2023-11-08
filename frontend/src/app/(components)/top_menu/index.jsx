@@ -74,7 +74,7 @@ export default function PrimaryAppBar() {
     const router = useRouter()
 
     useEffect(() => {
-        user = JSON.parse(sessionStorage.getItem("user"))
+        user = JSON.parse(sessionStorage.getItem("user") || "")
     }, [])
 
     const handleProfileMenuOpen = (event) => {
