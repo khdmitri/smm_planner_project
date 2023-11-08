@@ -13,3 +13,17 @@ server {
         return 301 https://postmasterhub.store$request_uri;
     }
 }
+
+server {
+    listen 443 default_server ssl http2;
+    listen [::]:443 ssl http2;
+
+    server_name example.org;
+
+    ssl_certificate /etc/nginx/ssl/live/postmasterhub.store/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/postmaster.store/privkey.pem;
+
+    location / {
+    	# ...
+    }
+}
