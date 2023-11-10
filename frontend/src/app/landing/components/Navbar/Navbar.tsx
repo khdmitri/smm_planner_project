@@ -58,7 +58,7 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        setUser(JSON.parse(sessionStorage.getItem("user") || ""))
+        setUser(JSON.parse(sessionStorage.getItem("user") || "{}"))
     }, [])
 
     return (
@@ -108,7 +108,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        {user !== "" ?
+                        {Object.keys(user).length > 0 ?
                             <>
                                 <Box>
                                     <Button startIcon={<PersonIcon/>}

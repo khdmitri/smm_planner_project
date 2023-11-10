@@ -8,8 +8,8 @@ const UserAvatar = () => {
     const [userInitials, setUserInitials] = useState("-")
 
     useEffect(() => {
-        const user = JSON.parse(sessionStorage.getItem("user") || "")
-        if (user) {
+        const user = JSON.parse(sessionStorage.getItem("user") || "{}")
+        if (Object.keys(user).length > 0) {
             const f_letter = user.first_name.split("", 1)
             const l_letter = user.last_name.split("", 1)
             let initials = f_letter ? f_letter[0].toUpperCase() : ""

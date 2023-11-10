@@ -14,5 +14,8 @@ RUN poetry config virtualenvs.create false && poetry install --no-interaction --
 COPY . /app
 
 ENV PYTHONPATH=/app
-RUN chmod 777 /app/app/entrypoint.sh
-CMD ["/app/app/entrypoint.sh"]
+#RUN chmod 777 /app/app/entrypoint.sh
+#CMD ["./app/entrypoint.sh"]
+#RUN alembic revision --autogenerate -m "first db creation"
+#RUN alembic upgrade head
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
