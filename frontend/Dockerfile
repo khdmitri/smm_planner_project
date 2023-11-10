@@ -10,6 +10,8 @@ COPY package.json yarn.lock ./
 COPY . ./
 RUN yarn
 ENV PATH ./node_modules/.bin:$PATH
+ENV NODE_OPTIONS=--max_old_space_size=2048
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN yarn build
 #EXPOSE 80
 
