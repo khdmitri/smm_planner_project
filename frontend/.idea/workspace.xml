@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: start on facebook">
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: docker version 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx/conf/default.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/conf/default.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Companies/Companies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Companies/Companies.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Courses/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Courses/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Testimonials/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Testimonials/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +120,10 @@
       <workItem from="1698651572086" duration="6914000" />
       <workItem from="1698727878677" duration="5731000" />
       <workItem from="1698815673684" duration="4233000" />
+      <workItem from="1699695373039" duration="3857000" />
+      <workItem from="1700050286829" duration="623000" />
+      <workItem from="1700050987747" duration="800000" />
+      <workItem from="1700104431473" duration="933000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -252,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698759765292</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="FE: docker version 3">
+      <created>1699684245333</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699684245333</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +299,7 @@
     <MESSAGE value="BE&amp;FE: Alpha. Run on remote notebook" />
     <MESSAGE value="BE&amp;FE: User profile" />
     <MESSAGE value="BE&amp;FE: User profile, day 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: User profile, day 2" />
+    <MESSAGE value="FE: docker version 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE: docker version 3" />
   </component>
 </project>
