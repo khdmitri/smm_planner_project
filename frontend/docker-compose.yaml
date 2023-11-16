@@ -1,23 +1,18 @@
 services:
-  next_build:
+  nextjs:
     build:
       context: .
-      dockerfile: Dockerfile.build
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    networks:
-      - frontend
-
-  next_static:
-    build:
-      context: .
-      dockerfile: Dockerfile.static
     volumes:
-      - staticbuild:/app/dist
+      - staticbuild:/app/static
     networks:
       - frontend
 
   nginx:
+    depends_on:
+      - nextjs
     build:
       context: ./nginx
     volumes:
