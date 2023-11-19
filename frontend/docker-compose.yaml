@@ -5,8 +5,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - staticbuild:/app/static
+    env_file: ./.env.local
+    #volumes:
+    #  - next_static:/app/.next/static
     networks:
       - frontend
 
@@ -16,7 +17,7 @@ services:
     build:
       context: ./nginx
     volumes:
-      - staticbuild:/usr/share/nginx/html
+      #- next_static:/usr/share/nginx/html
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
@@ -30,5 +31,5 @@ networks:
   frontend:
     driver: bridge
 
-volumes:
-  staticbuild:
+#volumes:
+#  next_static:
