@@ -52,14 +52,11 @@ class VkQueue:
                           SET is_posted=TRUE, post_result={post_result} 
                           WHERE id={post_id}'''
 
-    def __init__(self, use_proxy=True):
+    def __init__(self):
         self.current_proxy = None
         self.proxy_success = False
         self.async_client = AsyncClient()
-        if use_proxy:
-            self.proxy_manager: ProxyManager = ProxyManager(self.async_client)
-        else:
-            self.proxy_manager = None
+        self.proxy_manager = None
 
     def _format_text(self, text):
         text = re.sub(r"([\r\n]+)", "\n", text)

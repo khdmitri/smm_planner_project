@@ -108,6 +108,7 @@ class Settings(BaseSettings):
     BASE_FILE_DIRECTORY: str
     TELEGRAM_BOT_TOKEN: str
     APP_VERSION: str
+    USE_PROXY_FOR_SOCIAL: bool = True
 
 
 settings = Settings()
