@@ -10,6 +10,7 @@ import {Box, Button} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import {useRouter} from "next/navigation";
 import LogoutIcon from '@mui/icons-material/Logout';
+import DialogsCaptcha from './captcha';
 
 
 interface NavigationItem {
@@ -124,10 +125,7 @@ const Navbar = () => {
                                 </Box>
                             </>
                             :
-                            <>
-                                <Signdialog/>
-                                <Registerdialog/>
-                            </>
+                            <DialogsCaptcha />
                         }
 
 

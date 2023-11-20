@@ -101,7 +101,7 @@ export default class MultipleItems extends Component {
 
 
                     <Slider {...settings}>
-                        {postData.map((items, i) => (
+                        {postData.map((items, i): any =>
                             <div key={i}>
 
                                 <div className='bg-white m-3 px-3 pt-3 pb-12 my-20 shadow-courses rounded-2xl'>
@@ -120,22 +120,6 @@ export default class MultipleItems extends Component {
                                             <h3 className='text-base font-normal pt-6 opacity-75'>{items.name}</h3>
                                         </div>
 
-                                        {/*<div className="flex justify-between items-center py-6">*/}
-                                        {/*    <div className="flex gap-4">*/}
-                                        {/*        <h3 className="text-red text-22xl font-medium">{items.rating}</h3>*/}
-                                        {/*        <div className="flex">*/}
-                                        {/*            <StarIcon className="h-5 w-5 text-gold" />*/}
-                                        {/*            <StarIcon className="h-5 w-5 text-gold" />*/}
-                                        {/*            <StarIcon className="h-5 w-5 text-gold" />*/}
-                                        {/*            <StarIcon className="h-5 w-5 text-gold" />*/}
-                                        {/*            <StarIcon className="h-5 w-5 text-gold" />*/}
-                                        {/*        </div>*/}
-                                        {/*    </div>*/}
-                                        {/*    <div>*/}
-                                        {/*        <h3 className="text-3xl font-medium">${items.price}</h3>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
-
                                         <hr style={{ color: "#C4C4C4", marginTop: 4 }} />
 
                                         <div className="flex justify-between pt-6">
@@ -153,7 +137,7 @@ export default class MultipleItems extends Component {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        )}
                     </Slider>
                 </div>
             </div>

@@ -85,7 +85,7 @@ export default class MultipleItems extends Component {
                     <h2 className="text-midnightblue text-2xl font-semibold">Social Networks supported</h2>
                     <div className="py-14">
                         <Slider {...settings}>
-                            {data.map((item, i) =>
+                            {data.map((item, i): any =>
                                 <Grid container spacing={1} key={i}>
                                     <Grid item xs={6} display="flex" justifyContent="center">
                                         <Box>

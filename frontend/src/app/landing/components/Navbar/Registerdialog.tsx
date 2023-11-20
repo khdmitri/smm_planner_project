@@ -15,14 +15,7 @@ import * as React from "react";
 import {GoogleReCaptcha, GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
 
 
-const Register = () => {
-    const [token, setToken] = useState("");
-    const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
-
-    const onVerify = useCallback((token: any) => {
-        setToken(token);
-    }, []);
-
+const Register = ({token, setRefreshReCaptcha}) => {
     const onSubmit = async () => {
         console.log(`Submitted: ${JSON.stringify(values)}`)
         console.log("allowExtraEmails:", allowExtraEmails)
@@ -79,12 +72,6 @@ const Register = () => {
 
     return (
         <>
-            <GoogleReCaptchaProvider reCaptchaKey="6LcRrt4oAAAAAC3guUTUGbAYmEjiW0pGYjBwinyO">
-                <GoogleReCaptcha
-                    onVerify={onVerify}
-                    refreshReCaptcha={refreshReCaptcha}
-                />
-            </GoogleReCaptchaProvider>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
                 <div className='hidden lg:block'>
                     <button
@@ -260,7 +247,7 @@ const Register = () => {
                                                     </div>
 
                                                     <div>
-                                                        {token && <button
+                                                        {token && token.length > 0 && <button
                                                             type="submit"
                                                             className="group relative flex w-full justify-center rounded-md border border-transparent bg-Blueviolet py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                         >

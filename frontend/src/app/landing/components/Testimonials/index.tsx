@@ -105,7 +105,7 @@ export default class MultipleItems extends Component {
             <div className="pt-40 pb-10 sm:pb-32 lg:py-32" id="testimonial">
                 <div className='mx-auto max-w-7xl sm:py-4 lg:px-8'>
                     <Slider {...settings}>
-                        {postData.map((items, i) => (
+                        {postData.map((items, i): any =>
                             <div key={i}>
                                 <div className={`bg-white m-4 p-5 my-20 relative ${i % 2 ? 'middleDiv' : 'testimonial-shadow'}`}>
                                     <div className="absolute top-[-45px]">
@@ -128,7 +128,7 @@ export default class MultipleItems extends Component {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        )}
                     </Slider>
                 </div>
             </div>
