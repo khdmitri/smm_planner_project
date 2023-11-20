@@ -7,8 +7,9 @@ import LoginAPI from "../../../../lib/login"
 import {useRouter} from "next/navigation";
 import UniAlert from "@/components/alert/alert";
 import * as React from "react";
+import {tokenInput} from "@/app/landing/components/Navbar/common";
 
-const Signin = ({token, setRefreshReCaptcha}) => {
+const Signin = (props: tokenInput) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [showMessage, setShowMessage] = useState(false)
@@ -58,7 +59,7 @@ const Signin = ({token, setRefreshReCaptcha}) => {
             setMessage(`Sign In failed: ${error.message}`)
             setSeverity("error")
         })
-        setRefreshReCaptcha(r => !r)
+        props.setRefreshReCaptcha(true)
     };
 
     return (
@@ -177,7 +178,7 @@ const Signin = ({token, setRefreshReCaptcha}) => {
                                                 </div>
 
                                                 <div>
-                                                    {token && token.length > 0 && <button
+                                                    {props.token && props.token.length > 0 && <button
                                                         type="submit"
                                                         className="group relative flex w-full justify-center rounded-md border border-transparent bg-Blueviolet py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                     >

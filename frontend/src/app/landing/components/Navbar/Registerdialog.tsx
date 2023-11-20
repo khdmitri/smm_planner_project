@@ -12,10 +12,9 @@ import Box from "@mui/material/Box";
 import UniAlert from "@/components/alert/alert";
 import Link from "@mui/material/Link";
 import * as React from "react";
-import {GoogleReCaptcha, GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
+import {tokenInput} from "@/app/landing/components/Navbar/common";
 
-
-const Register = ({token, setRefreshReCaptcha}) => {
+const Register = (props: tokenInput) => {
     const onSubmit = async () => {
         console.log(`Submitted: ${JSON.stringify(values)}`)
         console.log("allowExtraEmails:", allowExtraEmails)
@@ -34,7 +33,7 @@ const Register = ({token, setRefreshReCaptcha}) => {
         } else {
             console.log("Creation Error:", onCreateComplete)
         }
-        setRefreshReCaptcha(r => !r)
+        props.setRefreshReCaptcha(true)
     };
 
     const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
@@ -247,7 +246,7 @@ const Register = ({token, setRefreshReCaptcha}) => {
                                                     </div>
 
                                                     <div>
-                                                        {token && token.length > 0 && <button
+                                                        {props.token && props.token.length > 0 && <button
                                                             type="submit"
                                                             className="group relative flex w-full justify-center rounded-md border border-transparent bg-Blueviolet py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                         >
