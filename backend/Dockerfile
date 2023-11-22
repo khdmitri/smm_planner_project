@@ -18,4 +18,6 @@ ENV PYTHONPATH=/app
 #CMD ["./app/entrypoint.sh"]
 #RUN alembic revision --autogenerate -m "first db creation"
 #RUN alembic upgrade head
+#RUN python arq_runner.py
+#RUN arq arq_runner.WorkerSettings
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

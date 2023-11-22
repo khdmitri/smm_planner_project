@@ -33,7 +33,7 @@ async def shutdown(ctx):
 
 
 async def main():
-    await create_pool(RedisSettings())
+    await create_pool(RedisSettings(host="cache"))
     # await redis.enqueue_job('regular_check')
 
 

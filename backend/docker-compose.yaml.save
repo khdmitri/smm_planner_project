@@ -1,12 +1,5 @@
 services:
-  cache:
-    image: redis:7-alpine
-    restart: always
-    ports:
-      - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning
-    volumes: 
-      - cache:/data
+  
   db:
     image: postgres:13
     volumes:
@@ -23,7 +16,6 @@ services:
   backend:
     depends_on:
       - db
-      - cache
     ports:
       - "8000:8000"
     env_file:
@@ -42,8 +34,6 @@ services:
 
 volumes:
   app-db-data:
-    driver: local
-  cache:
     driver: local
 
 networks:
