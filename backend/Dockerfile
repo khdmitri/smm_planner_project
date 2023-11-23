@@ -20,4 +20,4 @@ ENV PYTHONPATH=/app
 #RUN alembic upgrade head
 #RUN python arq_runner.py
 #RUN arq arq_runner.WorkerSettings
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+#CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
