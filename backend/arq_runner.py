@@ -10,6 +10,8 @@ from app.background.db.database import database_instance
 
 logger = get_logger(logging.INFO)
 
+redis_settings = RedisSettings(host="cache")
+
 
 def at_every_x_minutes(x: int, start: int = 0, end: int = 59):
     return {*list(range(start, end, x))}
@@ -33,7 +35,7 @@ async def shutdown(ctx):
 
 
 async def main():
-    await create_pool(RedisSettings(host="cache"))
+    await create_pool(redis_settings)
     # await redis.enqueue_job('regular_check')
 
 
@@ -50,6 +52,7 @@ class WorkerSettings:
     ]
     on_startup = startup
     on_shutdown = shutdown
+    redis_settings = redis_settings
 
 
 if __name__ == '__main__':
