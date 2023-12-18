@@ -3,6 +3,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+from app.core.config import settings
 from app.schemas.facebook_config import FacebookConfig
 
 
@@ -13,6 +14,7 @@ class FacebookQueueBase(BaseModel):
     post_result: Optional[dict] = {}
     is_posted: Optional[bool] = None
     when: Optional[datetime] = None
+    tz_offset: int = settings.SERVER_TZ_OFFSET
 
 
 # Properties to receive via API on creation

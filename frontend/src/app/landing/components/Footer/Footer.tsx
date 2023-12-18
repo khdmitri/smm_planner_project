@@ -16,17 +16,17 @@ interface socialLinks {
 const socialLinks: socialLinks[] = [
     {
         imgSrc: '/assets/footer/facebook.svg',
-        link: 'www.facebook.com',
+        link: 'https://www.facebook.com/groups/1190060288622168',
         width: 10
     },
     {
         imgSrc: '/assets/footer/insta.svg',
-        link: 'www.instagram.com',
+        link: 'https://www.instagram.com/postmasterhub2023?igshid=OGQ5ZDc2ODk2ZA==',
         width: 14
     },
     {
-        imgSrc: '/assets/footer/twitter.svg',
-        link: 'www.twitter.com',
+        imgSrc: '/assets/footer/telegram.svg',
+        link: 'https://t.me/postmasterhub',
         width: 14
     },
 
@@ -36,22 +36,18 @@ const products: ProductType[] = [
     {
         id: 1,
         section: "Company",
-        link: ['About', 'Careers', 'Mobile', 'Blog', 'How we work?'],
+        link: ['About', 'How it works'],
     },
     {
         id: 2,
         section: "Contact",
-        link: ['Help/FAQ', 'Press', 'Affiliates', 'Hotel owners', 'Partners']
-    }
-    ,
-    {
-        id: 3,
-        section: "More",
-        link: ['Airline fees', 'Airlines', 'Low fare tips', 'Badges &', 'Certificates']
+        link: ['Help/FAQ']
     }
 ]
 
 const footer = () => {
+    const policyUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL + "/document/privacy"
+    const eulaUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL + "/document/eula"
     return (
 
         <div className="mx-auto max-w-2xl sm:pt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -63,11 +59,11 @@ const footer = () => {
                     <div className="flex flex-shrink-0 items-center border-right">
                         <Image src="/assets/logo/logo.png" alt="logo" width={214} height={66} />
                     </div>
-                    <h3 className='text-xs font-medium text-gunmetalgray lh-160 mt-5 mb-4 lg:mb-16'> Open an account in minutes, get full financial <br /> control for much longer.</h3>
+                    <h3 className='text-xs font-medium text-gunmetalgray lh-160 mt-5 mb-4 lg:mb-16'> Open an account in minute, manage your <br /> social posts in one place.</h3>
                     <div className='flex gap-4'>
 
                         {socialLinks.map((items, i) => (
-                        <Link href={items.link} key={i}>
+                        <Link href={items.link} key={i} target="_blank">
                             <div className="bg-white h-12 w-12 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-ultramarine">
                                 <Image src={items.imgSrc} alt={items.imgSrc} width={items.width} height={2} className="sepiaa" />
                             </div>
@@ -98,11 +94,11 @@ const footer = () => {
             {/* All Rights Reserved */}
 
             <div className='py-10 md:flex items-center justify-between border-t border-t-gray-blue'>
-                <h4 className='text-dark-red opacity-75 text-sm text-center md:text-start font-normal'>@2023.E-learnings.All rights reserved</h4>
+                <h4 className='text-dark-red opacity-75 text-sm text-center md:text-start font-normal'>@2023-2024.PostMasterHub.All rights reserved</h4>
                 <div className="flex gap-5 mt-5 md:mt-0 justify-center md:justify-start">
-                    <h4 className='text-dark-red opacity-75 text-sm font-normal'><Link href="/" target="_blank">Privacy policy</Link></h4>
+                    <h4 className='text-dark-red opacity-75 text-sm font-normal'><Link href={policyUrl} target="_blank">Privacy policy</Link></h4>
                     <div className="h-5 bg-dark-red opacity-25 w-0.5"></div>
-                    <h4 className='text-dark-red opacity-75 text-sm font-normal'><Link href="/" target="_blank">Terms & conditions</Link></h4>
+                    <h4 className='text-dark-red opacity-75 text-sm font-normal'><Link href={eulaUrl} target="_blank">Terms & conditions</Link></h4>
                 </div>
             </div>
         </div>

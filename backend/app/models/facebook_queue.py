@@ -22,4 +22,5 @@ class FacebookQueue(Base):
     link: Mapped[str] = Column(String)
     post_result = Column(JSON, default={})
     when = Column(DateTime, nullable=True)
+    tz_offset: Mapped[int] = Column(Integer)
     is_posted: Mapped[bool] = Column(Boolean, default=False)

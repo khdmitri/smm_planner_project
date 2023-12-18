@@ -1,0 +1,44 @@
+# Create VK account. Use real phone number.
+name: Vietnamese
+second: Journal
+pass: Vbp-dnv_422
+
+# Создаем приложение VK
+User ID: 838053521
+Application ID: 51813153
+
+# Request access token
+https://oauth.vk.com/authorize?client_id=51813153&group_ids=223819575&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=messages,wall,photos,manage&response_type=token&v=5.131
+https://oauth.vk.com/authorize?client_id=51813153&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,wall,groups,photos,video,manage&response_type=token
+https://oauth.vk.com/blank.html#access_token=vk1.a.313187pQzzEh-GfqKttgbF8Lc5QSnLXgY0RtliZCaaxt1M0a6nUiw9TJ2DQxYsKhL8xCayJTmkPIaiKc3mOhUuO3U39ZaonFBWnUpqDJPR6H7MxmzWdPhkysgW6x8d1ESI--3pCTb6ZYJiwdR48ZZ3_k1NYvtDTcMV8dRNiPXh63CaCe9bSicdXJKfIqIg4-E0_OBFofSKnM4Yt2bUCPQw&expires_in=0&user_id=838053521
+# Get maximum alive access token
+vk1.a.313187pQzzEh-GfqKttgbF8Lc5QSnLXgY0RtliZCaaxt1M0a6nUiw9TJ2DQxYsKhL8xCayJTmkPIaiKc3mOhUuO3U39ZaonFBWnUpqDJPR6H7MxmzWdPhkysgW6x8d1ESI--3pCTb6ZYJiwdR48ZZ3_k1NYvtDTcMV8dRNiPXh63CaCe9bSicdXJKfIqIg4-E0_OBFofSKnM4Yt2bUCPQw
+
+# Переходим в ранее созданное сообщество -> Настройки -> смотрим ID
+club223819575
+-223819575 (Номера сообществ указываются со знаком минус, чтобы они отличались от персональных страниц)
+
+# Резервные коды
+1.
+6179 5994
+2.
+7229 9532
+3.
+6940 3698
+4.
+7550 3314
+5.
+9640 4667
+6.
+0856 7221
+7.
+9874 8113
+8.
+7453 8248
+9.
+1406 1253
+10.
+6635 9510
+
+Групповой Access Token
+vk1.a.QsYbZOn-Y4W6S5e_GYcPJNX2iOYOGlkuJ99hqVAYgm6gKniyGo5mMCEKvD6AUn-N5xfc3IRlqaGHd8WaiGrSLZvLcDMGAUG3LUWM2AvPVfP-6IQas5STGh13fct8CXMw0o-cr-R05sO9odjUP6LilWG9GXIl7nSGBAMAcbKvACNDG93lZvx9TtfM-PtPqVtSuG-YBDu9Q0TbMvbg9_QFaw

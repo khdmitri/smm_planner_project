@@ -117,7 +117,8 @@ const Page = ({params}) => {
                         title: state_post.title,
                         link: state_post.video_url,
                         text: state_post.html_text,
-                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
+                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm"),
+                        tz_offset: new Date().getTimezoneOffset()
                     }
                     await QueueAPI.newTelegramPost(queued_post, sessionStorage.getItem("access-token"))
                         .then(() => {
@@ -145,7 +146,8 @@ const Page = ({params}) => {
                         title: state_post.title,
                         link: state_post.video_url,
                         text: state_post.plain_text,
-                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
+                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm"),
+                        tz_offset: new Date().getTimezoneOffset()
                     }
                     await QueueAPI.newFacebookPost(queued_post, sessionStorage.getItem("access-token"))
                         .then(() => {
@@ -173,7 +175,8 @@ const Page = ({params}) => {
                         title: state_post.title,
                         link: state_post.video_url,
                         text: state_post.plain_text,
-                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm")
+                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm"),
+                        tz_offset: new Date().getTimezoneOffset()
                     }
                     await QueueAPI.newVkPost(queued_post, sessionStorage.getItem("access-token"))
                         .then(() => {

@@ -1,0 +1,34 @@
+# 1. Find telegram bot
+SMMPlannerBot
+@smm_schedule_bot (https://t.me/smm_schedule_bot)
+
+# 2. Create channel or group
+# 3. Edit group or channel: Click Administrators and ADD @smm_schedule_bot to administrator's list
+
+# 4. Now, we need to acquire Group or Channel ID
+You can use any of instruction searched in internet.
+The one of it:
+1. Find special bot: LeadСonverter (https://t.me/LeadConverterToolkitBot)
+2. Send /start command
+3. Add bot to group/channel administrator list
+4. write the command /get_chat_id in YOUR group or channel (you will see nothing on it, its normal)
+5. FORWARD this message to @LeadConverterToolkitBot
+6. Enjoy your ID in bot chat. It looks something like this
+
+Vietnamese Journal (CHANNEL)
+Тип: channel
+Название канала: Vietnamese Journal
+ID: -1002031191091
+
+Vietnamese Journal (GROUP)
+ID чата (chat_id):
+-1001870986707
+
+# 5. Configure Telegram Chat
+Add as many telegram chats as you are planning to use same time
+- Click on telegram config Link
+- Click Add New
+- Add ID, Description (used to Group/Channel name)
+- Choose a scheduler: default (0, 0, 0) is posting as fast as event handler meet new post
+- Finally click "CREATE CONFIG"
+

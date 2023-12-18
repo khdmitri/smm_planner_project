@@ -1,0 +1,13 @@
+# 1. We need to create Meta APP
+# Open https://developers.facebook.com/ -> My apps -> Create New App
+App Type: Other -> Company
+# 2. Find your app in apps list and configure it
+ID: 321334317379579
+Secret: e2b60f50f02d922c04b1e30f35da8263
+Short Marker: EAAEkQHnXbZCsBO3JBWEo9AsRbyQMfW5Dl0I75FLpWdGfYGZBNFQnjNkdAZAFV6SGbrZAGaYsuvl9GSoaiZAwndnILUyzZAZBJV3DgnD1xUxmOSffvn235ZCy1ayHsoUIP1Yb70LhDngpwfVDMuuxs3ifuGfaj1TwVsagWbfvuppo2tFijFE5ztMAB5d8EnvnQZB6CN57GmdriviwxOzqO5tMcXQTMcZBwZD
+# 3. Long Live Marker (60 days) request
+https://graph.facebook.com/{graph-api-version}/oauth/access_token?grant_type=fb_exchange_token&client_id=321334317379579&client_secret=e2b60f50f02d922c04b1e30f35da8263&fb_exchange_token=EAAEkQHnXbZCsBO3JBWEo9AsRbyQMfW5Dl0I75FLpWdGfYGZBNFQnjNkdAZAFV6SGbrZAGaYsuvl9GSoaiZAwndnILUyzZAZBJV3DgnD1xUxmOSffvn235ZCy1ayHsoUIP1Yb70LhDngpwfVDMuuxs3ifuGfaj1TwVsagWbfvuppo2tFijFE5ztMAB5d8EnvnQZB6CN57GmdriviwxOzqO5tMcXQTMcZBwZD
+# After this request server returns Long Live Marker
+EAAEkQHnXbZCsBO2WiH3OTF4f8H4Mv3Yw1ZA2ijZCIFxLTJjHG7bDTbaF52zlcYmgxsqPjZCXjs77y6SsZBWeQYhuBclNPbprbhA4qSY40IYpv9PbooQ4LwAjhz7VX47dv9WX08HwajD5nogj7WUcVwxzMpFp3unb01BgP5ZCDsFECVNuzx56GZCe3OJ
+# 4. Create group you would like to post. Find an ID in group address
+Group ID: 363659043014798

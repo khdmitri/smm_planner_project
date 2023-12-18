@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app import schemas, models
 from app.api import deps
 from app.common.logger import get_logger
+from app.core.utils import update_time_2_server
 from app.crud.crud_telegram_queue import crud_telegram_queue
 from app.crud.crud_vk_queue import crud_vk_queue
 
@@ -49,6 +50,7 @@ async def new_post(
     try:
         # Create New VK Post
         vk_queue_in.user_id = current_user.id
+        vk_queue_in.when = update_time_2_server(vk_queue_in.when, vk_queue_in.tz_offset)
         new_vk_post = await crud_vk_queue.create(db, obj_in=vk_queue_in)
     except AssertionError as ae:
         raise HTTPException(

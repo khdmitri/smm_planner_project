@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app import schemas, models
 from app.api import deps
 from app.common.logger import get_logger
+from app.core.utils import update_time_2_server
 from app.crud.crud_telegram_queue import crud_telegram_queue
 
 router = APIRouter()
@@ -48,6 +49,7 @@ async def new_post(
     try:
         # Create New Telegram Post
         telegram_queue_in.user_id = current_user.id
+        telegram_queue_in.when = update_time_2_server(telegram_queue_in.when, telegram_queue_in.tz_offset)
         new_telegram_post = await crud_telegram_queue.create(db, obj_in=telegram_queue_in)
     except AssertionError as ae:
         raise HTTPException(

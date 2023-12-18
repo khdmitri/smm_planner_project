@@ -27,11 +27,13 @@ class TelegramQueue:
     INSERT_IS_POSTED = '''UPDATE telegramqueue 
                           SET is_posted=TRUE, post_result={post_result} 
                           WHERE id={post_id}'''
+
     def __init__(self):
         self._session = AiohttpSession()
         self.bot = Bot(token=settings.TELEGRAM_BOT_TOKEN, parse_mode="HTML", session=self._session)
 
-    def _format_html(self, text):
+    def _format_html(self, text, title):
+        text = "<b>"+title+"</b>\n\n"+text
         text = re.sub(r"(<p.*?>)", "", text)
         text = re.sub(r"(<\/p.*?>)", "\n", text)
         text = re.sub(r"(<\/?span.*?>)", "", text)
@@ -48,7 +50,7 @@ class TelegramQueue:
         posts: List[Record] = await database_instance.fetch_rows(stmt)
         for post in posts:
             try:
-                formatted_text = self._format_html(post["text"])
+                formatted_text = self._format_html(post["text"], post["title"])
                 stmt = read_query(os.path.join(FILE_BASE_PATH, "postfiles.sql"))
                 postfiles: List[Record] = await database_instance.fetch_rows(stmt, {"post_id": post["post_id"]})
                 media_group = []

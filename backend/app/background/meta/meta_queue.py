@@ -19,8 +19,8 @@ from app.background.utils import read_query
 from app.common.logger import get_logger
 from app.core.config import settings
 
-# FILE_BASE_PATH = "app/background/meta/queries"
-FILE_BASE_PATH = "./queries"
+FILE_BASE_PATH = "app/background/meta/queries"
+# FILE_BASE_PATH = "./queries"
 BASE_FILE_DIRECTORY = "../../media"
 FACEBOOK_BASE_URL = "https://graph-video.facebook.com/v18.0/"
 
@@ -126,9 +126,10 @@ class MetaQueue:
                             content_type = postfile["content_type"].split("/")[0]
                             match content_type:
                                 case "image":
+                                    message = post["title"] + "\n\n" + formatted_text if post["title"] else formatted_text
                                     result = await self._send_photo(marker_token=post["marker_token"], filepath=filepath,
                                                                     chat_id=post["chat_id"],
-                                                                    text=formatted_text)
+                                                                    text=message)
                                 case "video":
                                     result = await self._send_video(marker_token=post["marker_token"], filepath=filepath,
                                                                     chat_id=post["chat_id"],
@@ -136,8 +137,9 @@ class MetaQueue:
                                                                     title=post["title"]
                                                                     )
                     else:
+                        message = post["title"] + "\n\n" + formatted_text if post["title"] else formatted_text
                         result = await self._send_text(marker_token=post["marker_token"], chat_id=post["chat_id"],
-                                                       text=formatted_text)
+                                                       text=message)
 
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],

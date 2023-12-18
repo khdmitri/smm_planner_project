@@ -27,7 +27,12 @@ def create_access_token(
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+    res = False
+    try:
+        res = pwd_context.verify(plain_password, hashed_password, scheme="bcrypt")
+    except Exception as e:
+        print(str(e))
+    return res
 
 
 def get_password_hash(password: str) -> str:

@@ -17,8 +17,8 @@ from app.background.proxy import ProxyManager
 from app.background.utils import read_query
 from app.common.logger import get_logger
 
-# FILE_BASE_PATH = "app/background/meta/queries"
-FILE_BASE_PATH = "./queries"
+FILE_BASE_PATH = "app/background/vk/queries"
+# FILE_BASE_PATH = "./queries"
 BASE_FILE_DIRECTORY = "../../media"
 
 logger = get_logger(logging.INFO)
@@ -97,10 +97,11 @@ class VkQueue:
 
                     match content_type:
                         case "image":
+                            message = post["title"] + "\n\n" + formatted_text if post["title"] else formatted_text
                             result = await self._send_photo(access_token=post["access_token"],
                                                             filepath=files,
                                                             chat_id=post["chat_id"],
-                                                            text=formatted_text)
+                                                            text=message)
                         case "video":
                             result = await self._send_video(access_token=post["access_token"],
                                                             files=files,
@@ -108,8 +109,9 @@ class VkQueue:
                                                             chat_id=post["chat_id"],
                                                             text=formatted_text)
                         case "text":
+                            message = post["title"] + "\n\n" + formatted_text if post["title"] else formatted_text
                             result = await self._send_text(access_token=post["access_token"], chat_id=post["chat_id"],
-                                                           text=formatted_text)
+                                                           text=message)
 
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],

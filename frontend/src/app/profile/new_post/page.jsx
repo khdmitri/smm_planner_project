@@ -57,6 +57,7 @@ const NewPost = () => {
 
     const onNewPost = async (event) => {
         event.preventDefault();
+        console.log("Submit event:", event)
         const data = new FormData(event.currentTarget);
         if (user) {
             data.append("markdown_text", convertPureMarkdown(markdown))
@@ -65,6 +66,7 @@ const NewPost = () => {
             data.append("plain_text", plainText)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
+            console.log("Form Data:", data)
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
                 setPost(res.data)
                 setIsCreated(true)
@@ -121,6 +123,16 @@ const NewPost = () => {
                     {message}
                 </UniAlert>
             }
+            <Typography variant="h5" color="primary" sx={{marginTop: 2, marginBottom: 0}}>
+                Text Description*
+            </Typography>
+            <Editor onChange={(value, value_json, value_html, value_text) => {
+                onChangeEditor("markdown_text", value)
+                onChangeEditor("json_text", value_json)
+                onChangeEditor("html_text", value_html)
+                onChangeEditor("plain_text", value_text)
+            }
+            }/>
             <Box component="form" onSubmit={onNewPost} noValidate sx={{mt: 1}}>
                 <TextField
                     margin="normal"
@@ -136,16 +148,6 @@ const NewPost = () => {
                     autoFocus
                     focused
                 />
-                <Typography variant="h5" color="primary" sx={{marginTop: 2, marginBottom: 0}}>
-                    Text Description*
-                </Typography>
-                <Editor onChange={(value, value_json, value_html, value_text) => {
-                    onChangeEditor("markdown_text", value)
-                    onChangeEditor("json_text", value_json)
-                    onChangeEditor("html_text", value_html)
-                    onChangeEditor("plain_text", value_text)
-                }
-                }/>
 
                 <Box sx={{width: '100%', typography: 'body1'}}>
                     <Typography variant="h5" color="primary" sx={{marginTop: 2, marginBottom: 0}}>
@@ -186,7 +188,7 @@ const NewPost = () => {
                                 InputLabelProps={{shrink: true}}
                             />
                             {video_url && video_url.length > 7 &&
-                                <VideoPreview url={video_url} />
+                                <VideoPreview url={video_url}/>
                             }
                         </TabPanel>
                     </TabContext>

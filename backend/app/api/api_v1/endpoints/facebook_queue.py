@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app import schemas, models
 from app.api import deps
 from app.common.logger import get_logger
+from app.core.utils import update_time_2_server
 from app.crud import crud_facebook_queue
 from app.crud.crud_telegram_queue import crud_telegram_queue
 
@@ -49,6 +50,7 @@ async def new_post(
     try:
         # Create New Telegram Post
         facebook_queue_in.user_id = current_user.id
+        facebook_queue_in.when = update_time_2_server(facebook_queue_in.when, facebook_queue_in.tz_offset)
         new_facebook_post = await crud_facebook_queue.create(db, obj_in=facebook_queue_in)
     except AssertionError as ae:
         raise HTTPException(
