@@ -21,7 +21,7 @@ from app.core.config import settings
 
 FILE_BASE_PATH = "app/background/meta/queries"
 # FILE_BASE_PATH = "./queries"
-BASE_FILE_DIRECTORY = "../../media"
+BASE_FILE_DIRECTORY = "app/media"
 FACEBOOK_BASE_URL = "https://graph-video.facebook.com/v18.0/"
 
 logger = get_logger(logging.INFO)
@@ -43,13 +43,12 @@ def put_photo_wrapper(graph: GraphAPI, parent_object, photo, message):
     graph.put_photo(image=open(photo, 'rb'), message=message)
 
 
-def put_video_wrapper(access_token, parent_object, video, message, title, proxies):
+def put_video_wrapper(access_token, parent_object, video, message, title, link, proxies):
     params = {
         "access_token": access_token,
         "source": video,
-        "message": message,
         "title": title,
-        "description": message
+        "description": message if link is None else message + "\n" + link
     }
     if proxies:
         response = requests.post(f"{FACEBOOK_BASE_URL}{parent_object}/videos", params=params,
@@ -57,7 +56,7 @@ def put_video_wrapper(access_token, parent_object, video, message, title, proxie
     else:
         response = requests.post(
             f"{FACEBOOK_BASE_URL}{parent_object}/videos", params=params,
-            files=dict(video=video))
+            files=dict(video=open(video, 'rb')))
     return response
 
 
@@ -69,8 +68,8 @@ class MetaQueue:
     def __init__(self):
         self.current_proxy = None
         self.proxy_success = False
-        self.async_client = AsyncClient()
         if settings.USE_PROXY_FOR_SOCIAL:
+            self.async_client = AsyncClient()
             self.proxy_manager: ProxyManager = ProxyManager(self.async_client)
         else:
             self.proxy_manager = None
@@ -169,7 +168,8 @@ class MetaQueue:
             try:
                 loop = asyncio.get_event_loop()
                 await loop.run_in_executor(None, put_text_wrapper, graph, chat_id, "feed", text, link)
-                await self.set_proxy_success()
+                if self.proxy_manager is not None:
+                    await self.set_proxy_success()
                 break
             except (ProxyError, SSLError, ProtocolError):
                 await self._remove_proxy()
@@ -178,7 +178,7 @@ class MetaQueue:
             except Exception as e:
                 template = "An exception of type {0} occurred. Arguments:\n{1!r}"
                 message = template.format(type(e).__name__, e.args)
-                logger.error(f"_send_photo: {message}")
+                logger.error(f"_send_text: {message}")
                 last_error = str(e)
                 if type(e).__name__ in ["ConnectionError", ]:
                     await self._remove_proxy()
@@ -206,7 +206,8 @@ class MetaQueue:
             try:
                 loop = asyncio.get_event_loop()
                 await loop.run_in_executor(None, put_photo_wrapper, graph, chat_id, filepath, text)
-                await self.set_proxy_success()
+                if self.proxy_manager is not None:
+                    await self.set_proxy_success()
                 break
             except (ProxyError, SSLError, ProtocolError):
                 await self._remove_proxy()
@@ -245,7 +246,8 @@ class MetaQueue:
                 loop = asyncio.get_event_loop()
                 response = await loop.run_in_executor(None, put_video_wrapper, marker_token, chat_id, filepath, text,
                                                       title, link, self.current_proxy)
-                await self.set_proxy_success()
+                if self.proxy_manager is not None:
+                    await self.set_proxy_success()
                 if response.status_code >= 300:
                     answer = response.json()
                     last_error = answer["error"]["message"] if answer.get("error", None) else str(response.status_code)

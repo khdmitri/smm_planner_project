@@ -7,6 +7,9 @@ from app.db.base_class import Base
 
 if TYPE_CHECKING:
     from .user import User # Noqa
+    from .telegram_queue import TelegramQueue
+    from .facebook_queue import FacebookQueue
+    from .vk_queue import VkQueue
 
 
 class Post(Base):
@@ -21,7 +24,10 @@ class Post(Base):
     when = Column(DateTime, server_default=func.now())
     is_posted: Mapped[bool] = Column(Boolean, default=False)
     post_date = Column(DateTime, nullable=True)
-    post_files: Mapped[List["PostFile"]] = relationship(lazy="selectin")
+    post_files: Mapped[List["PostFile"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
+    tg_queue: Mapped[List["TelegramQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
+    fb_queue: Mapped[List["FacebookQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
+    vk_queue: Mapped[List["VkQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
 
 
 class PostFile(Base):

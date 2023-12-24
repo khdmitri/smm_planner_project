@@ -29,11 +29,7 @@ EAAPZAzEIdmDQBO4ZAadxtXqHHRhO188pm9ZASQPFx1rtMkfrzLOTe2gJMqx2cplDFRgu1qZBiCOdgWB
 New Token
 EAAPZAzEIdmDQBO4P7ZClvpK1PurxKacSu8ZAYgaCYAONhrfXqqWXxWVc3Ixfh2tHWHxa2r3so695QMhfdDvDr7oLYJuhi1yql5fvuhr8hMrO8FUZCRlSho1u5l562cHWFYFRYVKZCXo07SbdcbzOmGdSEOwSzHjVobeSPyKw3YAV5FIQWZB8Q7xgRe
 ShortLifeToken -> LongLife
-oauth/access_token?
-    grant_type=fb_exchange_token&
-    client_id={app-id}&
-    client_secret={app-secret}&
-    fb_exchange_token={your-access-token}
+oauth/access_token?grant_type=fb_exchange_token&client_id={app-id}&client_secret={app-secret}&fb_exchange_token={your-access-token}
 
 
 App Personal
