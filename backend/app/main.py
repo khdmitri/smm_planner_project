@@ -3,6 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from app.api.api_v1.api import api_router
 from app.core.config import settings
+from app.definitions import ROOT_DIR, QUERIES_ROOT_DIR, MEDIA_ROOT_DIR
 from global_const import app
 
 # Set all CORS enabled origins
@@ -34,4 +35,7 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
 if __name__ == '__main__':
+    print("ROOT_DIR=", ROOT_DIR)
+    print("QUERY_DIR=", QUERIES_ROOT_DIR)
+    print("MEDIA_DIR=", MEDIA_ROOT_DIR)
     uvicorn.run(app, host="0.0.0.0", port=8000)

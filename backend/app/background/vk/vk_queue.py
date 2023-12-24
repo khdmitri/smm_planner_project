@@ -16,10 +16,12 @@ from app.background.db.database import database_instance
 from app.background.proxy import ProxyManager
 from app.background.utils import read_query
 from app.common.logger import get_logger
+from app.definitions import QUERIES_ROOT_DIR, MEDIA_ROOT_DIR
 
-FILE_BASE_PATH = "app/background/vk/queries"
+FILE_BASE_PATH = os.path.join(QUERIES_ROOT_DIR, "vk/queries")
+BASE_FILE_DIRECTORY = MEDIA_ROOT_DIR
+
 # FILE_BASE_PATH = "./queries"
-BASE_FILE_DIRECTORY = "../../media"
 
 logger = get_logger(logging.INFO)
 

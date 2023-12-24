@@ -11,6 +11,7 @@ from app.core.config import settings
 
 from fastapi import UploadFile
 
+from app.definitions import MEDIA_ROOT_DIR
 from app.models import User
 
 
@@ -21,7 +22,7 @@ class FileProcessing(object):
 
     def _get_directory(self):
         assert self.user is not None, "User not found"
-        check_dir: str = os.path.join(settings.BASE_FILE_DIRECTORY, str(self.user.id))
+        check_dir: str = os.path.join(MEDIA_ROOT_DIR, str(self.user.id))
         Path(check_dir).mkdir(parents=True, exist_ok=True)
         return check_dir
 

@@ -18,11 +18,13 @@ from app.background.proxy import ProxyManager
 from app.background.utils import read_query
 from app.common.logger import get_logger
 from app.core.config import settings
+from app.definitions import QUERIES_ROOT_DIR, MEDIA_ROOT_DIR
 
-FILE_BASE_PATH = "app/background/meta/queries"
+FILE_BASE_PATH = os.path.join(QUERIES_ROOT_DIR, "meta/queries")
+BASE_FILE_DIRECTORY = MEDIA_ROOT_DIR
+
 # FILE_BASE_PATH = "./queries"
-BASE_FILE_DIRECTORY = "app/media"
-FACEBOOK_BASE_URL = "https://graph-video.facebook.com/v18.0/"
+FACEBOOK_BASE_URL = settings.FACEBOOK_BASE_URL
 
 logger = get_logger(logging.INFO)
 

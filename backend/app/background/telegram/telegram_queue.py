@@ -15,9 +15,10 @@ from app.background.db.database import database_instance
 from app.background.utils import read_query
 from app.common.logger import get_logger
 from app.core.config import settings
+from app.definitions import QUERIES_ROOT_DIR, MEDIA_ROOT_DIR
 
-FILE_BASE_PATH = "app/background/telegram/queries"
-BASE_FILE_DIRECTORY = "app/media"
+FILE_BASE_PATH = os.path.join(QUERIES_ROOT_DIR, "telegram/queries")
+BASE_FILE_DIRECTORY = MEDIA_ROOT_DIR
 # FILE_BASE_PATH = "./queries"
 
 logger = get_logger(logging.INFO)
