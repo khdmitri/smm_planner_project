@@ -107,7 +107,6 @@ class InstagramApi:
     @staticmethod
     async def _create_container(session: AsyncClient, ig_config: InstagramConfig, setter, media_url: str,
                                 media: PostFile, caption="", is_carousel_item=False):
-        media_full_url = os.path.join(media_url, media.filepath)
         params = {
             "access_token": ig_config.marker_token,
             "caption": caption,
@@ -115,9 +114,9 @@ class InstagramApi:
         if is_carousel_item:
             params["is_carousel_item"] = True
         if "image" in media.content_type:
-            params["image_url"] = media_full_url
+            params["image_url"] = media_url
         elif "video" in media.content_type:
-            params["video_url"] = media_full_url
+            params["video_url"] = media_url
             params["media_type"] = "REELS"
         res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media"), params=params)
         if res.status_code in [200, 201]:
