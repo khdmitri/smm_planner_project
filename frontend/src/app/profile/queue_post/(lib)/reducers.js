@@ -25,6 +25,11 @@ export const reducer_fb = (state, action) => {
     return update_state(state, action)
 }
 
+export const reducer_ig = (state, action) => {
+    console.log("action_ig=", action)
+    return update_state(state, action)
+}
+
 export const reducer_vk = (state, action) => {
     console.log("action_vk=", action)
     return update_state(state, action)

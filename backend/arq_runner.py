@@ -4,13 +4,14 @@ import os
 
 from arq import create_pool, cron
 from arq.connections import RedisSettings
+from dotenv import load_dotenv
+from httpx import AsyncClient
 
+from app.background.meta.meta_inst_queue import MetaInstQueue
 from app.background.meta.meta_queue import MetaQueue
 from app.background.telegram.telegram_queue import TelegramQueue
 from app.background.vk.vk_queue import VkQueue
 from app.common.logger import get_logger
-from app.background.db.database import database_instance
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -28,6 +29,7 @@ def at_every_x_minutes(x: int, start: int = 0, end: int = 59):
 
 
 async def regular_check(ctx):
+    session: AsyncClient = ctx['session']
     logger.info("---REGULAR TASK---")
     logger.info("===Running TelegramQueue instance...")
     tq = TelegramQueue()
@@ -40,17 +42,24 @@ async def regular_check(ctx):
     await vk.send_all()
     logger.info("===VkQueue work complete...")
 
-    logger.info("===Running MetaQueue instance...")
-    meta = MetaQueue()
+    logger.info("===Running MetaFacebookQueue instance...")
+    meta = MetaQueue(session)
     await meta.send_all()
-    logger.info("===MetaQueue work complete...")
+    logger.info("===MetaFacebookQueue work complete...")
+
+    logger.info("===Running MetaInstagramQueue instance...")
+    meta_inst = MetaInstQueue(session)
+    await meta_inst.send_all()
+    logger.info("===MetaInstagramQueue work complete...")
 
 
 async def startup(ctx):
     logger.info("---STARTUP---")
+    ctx['session'] = AsyncClient()
 
 
 async def shutdown(ctx):
+    await ctx['session'].aclose()
     logger.info("---SHUTDOWN---")
 
 

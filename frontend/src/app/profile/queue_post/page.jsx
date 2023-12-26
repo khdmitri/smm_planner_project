@@ -15,6 +15,7 @@ const PostList = () => {
     const [severity, setSeverity] = useState("info")
     const [dataTg, setDataTg] = useState([])
     const [dataFb, setDataFb] = useState([])
+    const [dataIg, setDataIg] = useState([])
     const [dataVk, setDataVk] = useState([])
     const [value, setValue] = useState();
 
@@ -28,6 +29,13 @@ const PostList = () => {
         })
         await QueueAPI.getFacebookPosts(sessionStorage.getItem("access-token")).then(res => {
             setDataFb(res.data)
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setSeverity("error")
+        })
+        await QueueAPI.getInstagramPosts(sessionStorage.getItem("access-token")).then(res => {
+            setDataIg(res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -57,6 +65,19 @@ const PostList = () => {
 
     const deleteFuncFb = async (post_id) => {
         await QueueAPI.deleteFacebookPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
+            setShowMessage(true)
+            setMessage(res.data.msg)
+            setSeverity("success")
+            await postList()
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.data && error.data.detail ? error.data.detail : error.message)
+            setSeverity("error")
+        })
+    }
+
+    const deleteFuncIg = async (post_id) => {
+        await QueueAPI.deleteInstagramPost(post_id, sessionStorage.getItem("access-token")).then(async (res) => {
             setShowMessage(true)
             setMessage(res.data.msg)
             setSeverity("success")
@@ -111,20 +132,23 @@ const PostList = () => {
                         <TabContext value={value ? value : "None"}>
                             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                                 <TabList onChange={handleChange} aria-label="queued tabs">
-                                    {["telegram", "facebook", "vk"].map(name =>
+                                    {["telegram", "facebook", "instagram", "vk"].map(name =>
                                         <Tab label={name.toUpperCase()} value={name}
                                              key={name}/>
                                     )
                                     }
                                 </TabList>
                             </Box>
-                            {["telegram", "facebook", "vk"].map(name =>
+                            {["telegram", "facebook", "instagram", "vk"].map(name =>
                                 <TabPanel value={name.toUpperCase()} key={name}>
                                     {name === "telegram" &&
                                         <PostListTableTg data={dataTg} deleteFunc={deleteFuncTg} />
                                     }
                                     {name === "facebook" &&
                                         <PostListTableTg data={dataFb} deleteFunc={deleteFuncFb} />
+                                    }
+                                    {name === "instagram" &&
+                                        <PostListTableTg data={dataIg} deleteFunc={deleteFuncIg} />
                                     }
                                     {name === "vk" &&
                                         <PostListTableTg data={dataVk} deleteFunc={deleteFuncVk} />

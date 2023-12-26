@@ -19,6 +19,9 @@ const ChatForm = ({chat, post, dispatch, formType}) => {
             case "fb":
                 configFunc = ConfigAPI.getFacebookConfig
                 break
+            case "ig":
+                configFunc = ConfigAPI.getInstagramConfig
+                break
             case "vk":
                 configFunc = ConfigAPI.getVkConfig
                 break

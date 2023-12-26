@@ -36,4 +36,5 @@ class PostFile(Base):
     content_type: Mapped[str] = mapped_column(String)
     filesize: Mapped[int] = mapped_column(Integer)
     post_id: Mapped[int] = mapped_column(ForeignKey("post.id"))
+    post: Mapped[Post] = relationship("Post", lazy="selectin", viewonly=True)
     save_result = Column(JSON, default={})

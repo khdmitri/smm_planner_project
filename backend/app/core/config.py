@@ -111,6 +111,7 @@ class Settings(BaseSettings):
     USE_PROXY_FOR_SOCIAL: bool = False
     SERVER_TZ_OFFSET: int
     FACEBOOK_BASE_URL: str
+    INSTAGRAM_BASE_URL: str
 
 
 settings = Settings()

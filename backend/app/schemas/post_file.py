@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class PostFileBase(BaseModel):
     filepath: Optional[str] = None
-    content_type: Optional[str] = True
+    content_type: Optional[str] = None
     filesize: Optional[int] = None
     save_result: Optional[dict] = None
 

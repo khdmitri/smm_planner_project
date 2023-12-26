@@ -67,6 +67,35 @@ export default class QueueAPI {
         return await instance.delete(`facebook_queue/${post_id}`, config)
     }
 
+    // INSTAGRAM
+
+    static async newInstagramPost(data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.post("instagram_queue", data, config)
+    }
+
+    static async getInstagramPosts(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get(`instagram_queue`, config)
+    }
+
+    static async deleteInstagramPost(post_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.delete(`instagram_queue/${post_id}`, config)
+    }
+
     // VK
 
     static async newVkPost(data, access_token) {

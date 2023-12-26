@@ -17,6 +17,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import QueueIcon from '@mui/icons-material/Queue';
 import AssistantIcon from '@mui/icons-material/Assistant';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const MenuList = (props) => {
     const {open} = props
@@ -66,8 +67,8 @@ const MenuList = (props) => {
                 {[{text: 'Dashboard', icon: <DashboardIcon/>, route: '/profile'},
                     {text: 'New Post', icon: <PostAddIcon/>, route: '/profile/new_post'},
                     {text: 'Posts', icon: <DynamicFeedIcon/>, route: '/profile/posts_list'},
-                    {text: 'Queue', icon: <QueueIcon />, route: '/profile/queue_post'},
-                    {text: 'AI Assistant', icon: <AssistantIcon />, route: '/profile/assistant'}
+                    {text: 'Queue', icon: <QueueIcon/>, route: '/profile/queue_post'},
+                    {text: 'AI Assistant', icon: <AssistantIcon/>, route: '/profile/assistant'}
                 ]
                     .map((item, index) => (
                         renderListItem(item)
@@ -76,9 +77,10 @@ const MenuList = (props) => {
             <Divider/>
             <List>
                 {[{text: 'Properties', icon: <PermDataSettingIcon/>, route: '/profile/config'},
-                  {text: 'Telegram', icon: <TelegramIcon/>, route: '/profile/config/telegram'},
-                  {text: 'Facebook', icon: <FacebookIcon/>, route: '/profile/config/facebook'},
-                  {text: 'Vkontakte', icon: <DeveloperBoardIcon/>, route: '/profile/config/vk'}
+                    {text: 'Telegram', icon: <TelegramIcon/>, route: '/profile/config/telegram'},
+                    {text: 'Facebook', icon: <FacebookIcon/>, route: '/profile/config/facebook'},
+                    {text: 'Instagram', icon: <InstagramIcon/>, route: '/profile/config/instagram'},
+                    {text: 'Vkontakte', icon: <DeveloperBoardIcon/>, route: '/profile/config/vk'}
                 ]
                     .map((item, index) => (
                         renderListItem(item)

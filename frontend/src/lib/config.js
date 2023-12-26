@@ -104,6 +104,52 @@ export default class ConfigAPI {
         return await instance.delete(`/facebook_config/${config_id}`, config)
     }
 
+    // Instagram
+    static async newInstagramConfig(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.post("/instagram_config", form_data, config)
+    }
+
+    static async getInstagramConfigList(access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get("/instagram_config", config)
+    }
+
+    static async getInstagramConfig(config_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.get(`/instagram_config/${config_id}`, config)
+    }
+
+    static async updateInstagramConfig(form_data, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.put("/instagram_config", form_data, config)
+    }
+
+    static async deleteInstagramConfig(config_id, access_token) {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        }
+        return await instance.delete(`/instagram_config/${config_id}`, config)
+    }
+
     // VK
 
     static async newVkConfig(form_data, access_token) {

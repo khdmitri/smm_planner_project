@@ -6,6 +6,8 @@ from .telegram_config import TelegramConfig, TelegramConfigCreate, TelegramConfi
 from .telegram_queue import TelegramQueue, TelegramQueueCreate, TelegramQueueUpdate
 from .facebook_config import FacebookConfig, FacebookConfigCreate, FacebookConfigUpdate
 from .facebook_queue import FacebookQueue, FacebookQueueCreate, FacebookQueueUpdate
+from .instagram_config import InstagramConfig, InstagramConfigCreate, InstagramConfigUpdate
+from .instagram_queue import InstagramQueue, InstagramQueueCreate, InstagramQueueUpdate
 from .vk_config import VkConfig, VkConfigCreate, VkConfigUpdate
 from .vk_queue import VkQueue, VkQueueCreate, VkQueueUpdate
 from .token import Token, TokenPayload

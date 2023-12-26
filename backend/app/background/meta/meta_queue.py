@@ -67,7 +67,8 @@ class MetaQueue:
                           SET is_posted=TRUE, post_result={post_result} 
                           WHERE id={post_id}'''
 
-    def __init__(self):
+    def __init__(self, session: AsyncClient):
+        self.session = session
         self.current_proxy = None
         self.proxy_success = False
         if settings.USE_PROXY_FOR_SOCIAL:

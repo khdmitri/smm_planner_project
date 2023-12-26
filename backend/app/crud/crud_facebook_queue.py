@@ -4,12 +4,12 @@ from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
-from app.models import TelegramQueue, FacebookQueue
+from app.models import FacebookQueue
 from app.schemas import FacebookQueueCreate, FacebookQueueUpdate
 
 
 class CRUDFacebookQueue(CRUDBase[FacebookQueue, FacebookQueueCreate, FacebookQueueUpdate]):
-    async def get_multi_by_user(self, db: AsyncSession, *, user_id: int) -> Optional[List[TelegramQueue]]:
+    async def get_multi_by_user(self, db: AsyncSession, *, user_id: int) -> Optional[List[FacebookQueue]]:
         result = await db.execute(select(
             FacebookQueue).filter(
             FacebookQueue.user_id == user_id,

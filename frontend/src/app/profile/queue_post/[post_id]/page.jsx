@@ -11,13 +11,14 @@ import {TabContext, TabList, TabPanel} from "@mui/lab";
 import ChatForm from "../(componnets)/chat_form";
 import QueueAPI from "../../../../lib/queue";
 import moment from "moment";
-import {reducer_tg, reducer_fb, reducer_vk} from "../(lib)/reducers";
+import {reducer_tg, reducer_fb, reducer_vk, reducer_ig} from "../(lib)/reducers";
 
 const Page = ({params}) => {
     const [post, setPost] = useState()
     const [isPosted, setIsPosted] = useState(false)
     const [chats, setChats] = useState(null)
     const [fbChats, setFbChats] = useState(null)
+    const [igChats, setIgChats] = useState(null)
     const [vkChats, setVkChats] = useState(null)
     const [showMessage, setShowMessage] = useState(false)
     const [message, setMessage] = useState("")
@@ -27,6 +28,8 @@ const Page = ({params}) => {
     const [state_tg, dispatch_tg] = useReducer(reducer_tg, {}, () => {
     });
     const [state_fb, dispatch_fb] = useReducer(reducer_fb, {}, () => {
+    });
+    const [state_ig, dispatch_ig] = useReducer(reducer_ig, {}, () => {
     });
     const [state_vk, dispatch_vk] = useReducer(reducer_vk, {}, () => {
     });
@@ -63,10 +66,13 @@ const Page = ({params}) => {
         if (!state_fb && post && fbChats) {
             set_init_state(fbChats, dispatch_fb)
         }
+        if (!state_ig && post && igChats) {
+            set_init_state(igChats, dispatch_ig)
+        }
         if (!state_vk && post && vkChats) {
             set_init_state(vkChats, dispatch_vk)
         }
-    }, [post, chats, fbChats, vkChats, state_tg, state_fb, state_vk])
+    }, [post, chats, fbChats, vkChats, igChats, state_tg, state_fb, state_ig, state_vk])
 
     const getConfigList = async () => {
         await ConfigAPI.getTelegramConfigList(sessionStorage.getItem("access-token")).then(res => {
@@ -81,6 +87,16 @@ const Page = ({params}) => {
 
         await ConfigAPI.getFacebookConfigList(sessionStorage.getItem("access-token")).then(res => {
             setFbChats(res.data)
+            if (!value && Array.isArray(res.data) && res.data.length > 0)
+                setValue(res.data[0].chat_id)
+        }).catch(error => {
+            setShowMessage(true)
+            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
+            setSeverity("error")
+        })
+
+        await ConfigAPI.getInstagramConfigList(sessionStorage.getItem("access-token")).then(res => {
+            setIgChats(res.data)
             if (!value && Array.isArray(res.data) && res.data.length > 0)
                 setValue(res.data[0].chat_id)
         }).catch(error => {
@@ -164,6 +180,35 @@ const Page = ({params}) => {
                         })
                 }
             })
+        const keys_ig = Object.keys(state_ig)
+        if (Array.isArray(keys_ig))
+            keys_ig.map(async (key) => {
+                const state_post = state_ig[key]
+                if (state_post.is_included) {
+                    const queued_post = {
+                        post_id: state_post.id,
+                        instagram_config_id: key,
+                        title: state_post.title,
+                        link: state_post.video_url,
+                        text: state_post.plain_text,
+                        when: state_post.when ? state_post.when.format("YYYY-MM-DD HH:mm") : moment().format("YYYY-MM-DD HH:mm"),
+                        tz_offset: new Date().getTimezoneOffset()
+                    }
+                    await QueueAPI.newInstagramPost(queued_post, sessionStorage.getItem("access-token"))
+                        .then(() => {
+                            setIsPosted(true)
+                            setShowMessage(true)
+                            setMessage("Post was successfully appended to queue!")
+                            setSeverity("success")
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            setShowMessage(true)
+                            setMessage(error.response && error.response.data && error.response.data.detail ? error.response.data.detail : error.message)
+                            setSeverity("error")
+                        })
+                }
+            })
         const keys_vk = Object.keys(state_vk)
         if (Array.isArray(keys_vk))
             keys_vk.map(async (key) => {
@@ -225,6 +270,10 @@ const Page = ({params}) => {
                                 <Tab label={chat.description} value={chat.chat_id} key={chat.chat_id}/>
                             )
                             }
+                            {igChats && igChats.map(chat =>
+                                <Tab label={chat.description} value={chat.chat_id} key={chat.chat_id}/>
+                            )
+                            }
                             {vkChats && vkChats.map(chat =>
                                 <Tab label={chat.description} value={chat.chat_id.toString()} key={chat.chat_id}/>
                             )
@@ -240,6 +289,12 @@ const Page = ({params}) => {
                     {state_fb && Object.keys(state_fb).length > 0 && fbChats.map(chat =>
                         <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
                             <ChatForm chat={chat} post={state_fb[chat.id]} dispatch={dispatch_fb} formType="fb"/>
+                        </TabPanel>
+                    )
+                    }
+                    {state_ig && Object.keys(state_ig).length > 0 && igChats.map(chat =>
+                        <TabPanel value={chat.chat_id.toString()} key={chat.chat_id}>
+                            <ChatForm chat={chat} post={state_ig[chat.id]} dispatch={dispatch_ig} formType="ig"/>
                         </TabPanel>
                     )
                     }

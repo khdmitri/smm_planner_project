@@ -7,13 +7,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app import schemas, models
 from app.api import deps
 from app.common.logger import get_logger
-from app.crud import crud_facebook_config
+from app.crud import crud_instagram_config
 
 router = APIRouter()
 logger = get_logger(logging.INFO)
 
 
-@router.get("/", response_model=List[schemas.FacebookConfig])
+@router.get("/", response_model=List[schemas.InstagramConfig])
 async def read_configs(
     db: AsyncSession = Depends(deps.get_db_async),
     current_user: models.User = Depends(deps.get_current_active_user),
@@ -21,11 +21,11 @@ async def read_configs(
     """
     Retrieve configs.
     """
-    configs = await crud_facebook_config.get_multi_by_user(db, user_id=current_user.id)
+    configs = await crud_instagram_config.get_multi_by_user(db, user_id=current_user.id)
     return configs if configs is not None else []
 
 
-@router.get("/{config_id}", response_model=schemas.FacebookConfig)
+@router.get("/{config_id}", response_model=schemas.InstagramConfig)
 async def read_user_by_id(
     config_id: int,
     current_user: models.User = Depends(deps.get_current_active_user),
@@ -34,7 +34,7 @@ async def read_user_by_id(
     """
     Get a specific config by id.
     """
-    config = await crud_facebook_config.get_full(db, config_id=config_id, user_id=current_user.id)
+    config = await crud_instagram_config.get_full(db, config_id=config_id, user_id=current_user.id)
 
     if not config.user_id == current_user.id:
         raise HTTPException(
@@ -44,37 +44,37 @@ async def read_user_by_id(
     return config
 
 
-@router.post("/", response_model=schemas.FacebookConfig)
-async def new_facebook(
+@router.post("/", response_model=schemas.InstagramConfig)
+async def new_instagram(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
-        facebook_config_in: schemas.FacebookConfigCreate,
+        instagram_config_in: schemas.InstagramConfigCreate,
         current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     try:
-        # Create New Facebook Config
-        facebook_config_in.user_id = current_user.id
-        new_facebook_config = await crud_facebook_config.create(db, obj_in=facebook_config_in)
+        # Create New Instagram Config
+        instagram_config_in.user_id = current_user.id
+        new_instagram_config = await crud_instagram_config.create(db, obj_in=instagram_config_in)
     except AssertionError as ae:
         raise HTTPException(
             status_code=500,
             detail=str(ae),
         )
 
-    return new_facebook_config
+    return new_instagram_config
 
 
-@router.put("/", response_model=schemas.FacebookConfig)
+@router.put("/", response_model=schemas.InstagramConfig)
 async def update_config(
     *,
     db: AsyncSession = Depends(deps.get_db_async),
-    config_in: schemas.FacebookConfigUpdate,
+    config_in: schemas.InstagramConfigUpdate,
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Update config.
     """
-    config = await crud_facebook_config.get(db, id=config_in.id)
+    config = await crud_instagram_config.get(db, id=config_in.id)
     if not config:
         raise HTTPException(
             status_code=404,
@@ -86,7 +86,7 @@ async def update_config(
             detail="User can update only self configuration",
         )
 
-    config = await crud_facebook_config.update(db, db_obj=config, obj_in=config_in)
+    config = await crud_instagram_config.update(db, db_obj=config, obj_in=config_in)
     return config
 
 
@@ -100,10 +100,10 @@ async def delete_config(
     """
     Delete config.
     """
-    config = await crud_facebook_config.get(db=db, id=id)
+    config = await crud_instagram_config.get(db=db, id=id)
     if not config:
         raise HTTPException(status_code=404, detail="Config not found")
     if not config.user_id == current_user.id:
         raise HTTPException(status_code=400, detail="User can delete only self configuration")
-    await crud_facebook_config.remove(db=db, id=id)
-    return {"msg": "Facebook config was successfully deleted"}
+    await crud_instagram_config.remove(db=db, id=id)
+    return {"msg": "Instagram config was successfully deleted"}

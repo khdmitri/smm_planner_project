@@ -8,13 +8,13 @@ from app import schemas, models
 from app.api import deps
 from app.common.logger import get_logger
 from app.core.utils import update_time_2_server
-from app.crud import crud_facebook_queue
+from app.crud import crud_instagram_queue
 
 router = APIRouter()
 logger = get_logger(logging.INFO)
 
 
-@router.get("/", response_model=List[schemas.FacebookQueue])
+@router.get("/", response_model=List[schemas.InstagramQueue])
 async def read_queues(
         db: AsyncSession = Depends(deps.get_db_async),
         current_user: models.User = Depends(deps.get_current_active_user),
@@ -22,7 +22,7 @@ async def read_queues(
     """
     Retrieve queues.
     """
-    posts = await crud_facebook_queue.get_multi_by_user(db, user_id=current_user.id)
+    posts = await crud_instagram_queue.get_multi_by_user(db, user_id=current_user.id)
     return posts
 
 
@@ -35,32 +35,32 @@ async def read_max_date(
     """
     Retrieve max date.
     """
-    result = await crud_facebook_queue.get_max_date(db, user_id=current_user.id, config_id=config_id)
+    result = await crud_instagram_queue.get_max_date(db, user_id=current_user.id, config_id=config_id)
     return {"post_date": result[0]}
 
 
-@router.post("/", response_model=schemas.FacebookQueue)
+@router.post("/", response_model=schemas.InstagramQueue)
 async def new_post(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
-        facebook_queue_in: schemas.FacebookQueueCreate,
+        instagram_queue_in: schemas.InstagramQueueCreate,
         current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     try:
-        # Create New Telegram Post
-        facebook_queue_in.user_id = current_user.id
-        facebook_queue_in.when = update_time_2_server(facebook_queue_in.when, facebook_queue_in.tz_offset)
-        new_facebook_post = await crud_facebook_queue.create(db, obj_in=facebook_queue_in)
+        # Create New Instagram Post
+        instagram_queue_in.user_id = current_user.id
+        instagram_queue_in.when = update_time_2_server(instagram_queue_in.when, instagram_queue_in.tz_offset)
+        new_instagram_post = await crud_instagram_queue.create(db, obj_in=instagram_queue_in)
     except AssertionError as ae:
         raise HTTPException(
             status_code=500,
             detail=str(ae),
         )
 
-    return new_facebook_post
+    return new_instagram_post
 
 
-@router.put("/", response_model=schemas.FacebookQueue)
+@router.put("/", response_model=schemas.InstagramQueue)
 async def update_queue(
         *,
         db: AsyncSession = Depends(deps.get_db_async),
@@ -70,7 +70,7 @@ async def update_queue(
     """
     Update queue.
     """
-    post = await crud_facebook_queue.get(db, id=post_in.id)
+    post = await crud_instagram_queue.get(db, id=post_in.id)
     if not post:
         raise HTTPException(
             status_code=404,
@@ -82,7 +82,7 @@ async def update_queue(
             detail="User can update only self queued posts",
         )
 
-    post = await crud_facebook_queue.update(db, db_obj=post, obj_in=post_in)
+    post = await crud_instagram_queue.update(db, db_obj=post, obj_in=post_in)
     return post
 
 
@@ -96,7 +96,7 @@ async def delete_queue(
     """
     Delete post.
     """
-    post = await crud_facebook_queue.get(db=db, id=id)
+    post = await crud_instagram_queue.get(db=db, id=id)
     if not post:
         raise HTTPException(status_code=404, detail="Post not found")
     if post.user_id != current_user.id:
@@ -104,5 +104,5 @@ async def delete_queue(
             status_code=400,
             detail="User can delete only self queued posts",
         )
-    await crud_facebook_queue.remove(db=db, id=id)
-    return {"msg": "Facebook queued post was successfully deleted"}
+    await crud_instagram_queue.remove(db=db, id=id)
+    return {"msg": "Instagram queued post was successfully deleted"}
