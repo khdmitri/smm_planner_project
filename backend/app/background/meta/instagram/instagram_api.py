@@ -7,7 +7,6 @@ from httpx import AsyncClient
 
 from app.common.logger import get_logger
 from app.core.config import settings
-from app.definitions import MEDIA_ROOT_DIR
 from app.schemas import InstagramConfig
 from app.schemas.post_file import PostFile
 

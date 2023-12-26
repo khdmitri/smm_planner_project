@@ -37,6 +37,7 @@ services:
       - backend
     volumes:
       - ./alembic/versions:/app/alembic/versions
+      - ./app/media:/app/app/media
     command: >
       bash -c "alembic revision --autogenerate -m \"first db creation\" 
       && alembic upgrade head 

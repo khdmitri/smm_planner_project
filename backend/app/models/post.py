@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .user import User # Noqa
     from .telegram_queue import TelegramQueue
     from .facebook_queue import FacebookQueue
+    from .instagram_queue import InstagramQueue
     from .vk_queue import VkQueue
 
 
@@ -27,6 +28,7 @@ class Post(Base):
     post_files: Mapped[List["PostFile"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
     tg_queue: Mapped[List["TelegramQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
     fb_queue: Mapped[List["FacebookQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
+    ig_queue: Mapped[List["InstagramQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
     vk_queue: Mapped[List["VkQueue"]] = relationship(lazy="selectin", cascade="all, delete-orphan")
 
 
