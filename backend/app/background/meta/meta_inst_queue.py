@@ -53,11 +53,11 @@ class MetaInstQueue:
                 if len(postfiles) > 0:
                     postfile_collection = []
                     for postfile in postfiles:
-                        post_file_schema = PostFile(filepath=postfile["filepath"],
+                        post_file_schema = PostFile(id=postfile["id"],
+                                                    filepath=postfile["filepath"],
                                                     content_type=postfile["content_type"])
                         postfile_collection.append(post_file_schema)
-                    result = igApi.send_files(self.session, instagram_config, formatted_text, post["user_id"],
-                                              postfile_collection)
+                    result = igApi.send_files(self.session, instagram_config, formatted_text, postfile_collection)
                     if not isinstance(result, dict):
                         result = {}
 

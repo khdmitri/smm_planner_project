@@ -18,9 +18,9 @@ INSTAGRAM_BASE_URL = settings.INSTAGRAM_BASE_URL
 
 class InstagramApi:
     @staticmethod
-    async def send_files(session: AsyncClient, ig_config: InstagramConfig, caption, user_id, db_data: List[PostFile]):
+    async def send_files(session: AsyncClient, ig_config: InstagramConfig, caption, db_data: List[PostFile]):
         containers: List[str] = []
-        server_media_base_url = os.path.join(MEDIA_ROOT_DIR, str(user_id))
+        server_media_base_url = settings.SERVER_API_URL
 
         def add_2_container(new_item):
             containers.append(new_item)
@@ -35,10 +35,12 @@ class InstagramApi:
         else:
             if media_count > 1:
                 for db_item in db_data:
-                    await InstagramApi._create_container(session, ig_config, add_2_container, server_media_base_url,
-                                                         db_item, caption, True)
+                    await InstagramApi._create_container(
+                        session, ig_config, add_2_container,
+                        os.path.join(server_media_base_url, f"document/get_media/{db_item.id}"),
+                        db_item, caption, True)
                 if len(containers) > 1:
-                    res = await InstagramApi._create_ring_container(session, ig_config, containers)
+                    res = await InstagramApi._create_ring_container(session, ig_config, containers.copy())
                     if isinstance(res, dict):
                         if res["success"]:
                             container_id = json.loads(res["text"]["id"])
@@ -52,8 +54,10 @@ class InstagramApi:
                             "message": "Unprocessed error"
                         }
             else:
-                res = await InstagramApi._create_container(session, ig_config, add_2_container, server_media_base_url,
-                                                           db_data[0], caption)
+                res = await InstagramApi._create_container(
+                    session, ig_config, add_2_container,
+                    os.path.join(server_media_base_url, f"document/get_media/{db_data[0].id}"),
+                    db_data[0], caption)
                 if isinstance(res, dict):
                     if res["success"]:
                         return await InstagramApi._publish_container(session, containers[0], ig_config)
@@ -70,9 +74,9 @@ class InstagramApi:
         res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media_publish"), params=params)
         if res.status_code in [200, 201]:
             return {
-                    "success": True,
-                    "message": "Container was successfully published"
-                }
+                "success": True,
+                "message": "Container was successfully published"
+            }
         else:
             logger.error(f"Wrong result: {str(res)}")
             return {
@@ -90,10 +94,10 @@ class InstagramApi:
         res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media"), params=params)
         if res.status_code in [200, 201]:
             return {
-                    "success": True,
-                    "message": "Ring container was successfully created",
-                    "text": res.text
-                }
+                "success": True,
+                "message": "Ring container was successfully created",
+                "text": res.text
+            }
         else:
             logger.error(f"Wrong result: {str(res)}")
             return {

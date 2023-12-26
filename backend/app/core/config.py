@@ -112,6 +112,7 @@ class Settings(BaseSettings):
     SERVER_TZ_OFFSET: int
     FACEBOOK_BASE_URL: str
     INSTAGRAM_BASE_URL: str
+    SERVER_API_URL: str
 
 
 settings = Settings()
