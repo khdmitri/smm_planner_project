@@ -21,7 +21,7 @@ REDIS_HOST = os.getenv("REDIS_HOST")
 
 redis_settings = RedisSettings(host=REDIS_HOST)
 
-EVERY_MINUTES_TO_CHECK=3
+EVERY_MINUTES_TO_CHECK = 3
 
 
 def at_every_x_minutes(x: int, start: int = 0, end: int = 59):
@@ -69,14 +69,14 @@ async def main():
 
 
 class WorkerSettings:
-    functions = [regular_check]
+    # functions = [regular_check]
     cron_jobs = [
         cron(
             regular_check,
             minute=at_every_x_minutes(EVERY_MINUTES_TO_CHECK),
             run_at_startup=True,
             # timeout=1500,
-            # max_tries=5,
+            # max_tries=1,
         )
     ]
     on_startup = startup

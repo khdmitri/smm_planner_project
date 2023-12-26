@@ -119,7 +119,7 @@ class InstagramApi:
             params["image_url"] = media_full_url
         elif "video" in media.content_type:
             params["video_url"] = media_full_url
-            params["media_type"] = "VIDEO"
+            params["media_type"] = "REELS"
         res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media"), params=params)
         if res.status_code in [200, 201]:
             res_dict: dict = json.loads(res.text)

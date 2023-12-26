@@ -57,7 +57,7 @@ class MetaInstQueue:
                                                     filepath=postfile["filepath"],
                                                     content_type=postfile["content_type"])
                         postfile_collection.append(post_file_schema)
-                    result = igApi.send_files(self.session, instagram_config, formatted_text, postfile_collection)
+                    result = await igApi.send_files(self.session, instagram_config, formatted_text, postfile_collection)
                     if not isinstance(result, dict):
                         result = {}
 

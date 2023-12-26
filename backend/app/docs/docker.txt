@@ -1,0 +1,4 @@
+# Delete all unused volumes
+docker volume prune -a
+# Docker volume location on ubuntu 20.04
+/var/lib/docker/volumes
