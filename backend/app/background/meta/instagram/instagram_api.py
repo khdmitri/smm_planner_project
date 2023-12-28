@@ -118,6 +118,7 @@ class InstagramApi:
                         }
                         break
             logger.info(f"Function was not complete: {str(status)}")
+            print(f"Function was not complete: {str(status)}")
         return status
 
     @staticmethod
