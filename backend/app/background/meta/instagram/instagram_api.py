@@ -66,6 +66,11 @@ class InstagramApi:
                     else:
                         logger.error(f"Wrong result: {str(res)}")
                         return res
+                else:
+                    return {
+                        "success": False,
+                        "message": "Unprocessed error"
+                    }
 
     @staticmethod
     async def _check_container_status(session: AsyncClient, container_id, ig_config):
@@ -117,6 +122,7 @@ class InstagramApi:
 
     @staticmethod
     async def _publish_container(session: AsyncClient, container_id, ig_config: InstagramConfig):
+        print(f"Publish container: {str(container_id)}")
         params = {
             "access_token": ig_config.marker_token,
             "creation_id": int(container_id),

@@ -195,8 +195,8 @@ const NewPost = () => {
                     <Button sx={{marginTop: 2}} type="submit" variant="contained">Create New Post</Button>
                 }
                 {isLoading &&
-                    <Box component="h4">
-                        <Typography color="success" mb={3}>The post is loading to server, please, wait...</Typography>
+                    <Box>
+                        <Typography variant="body2" color="success" mb={3} pt={3}>The post is loading to server, please, wait...</Typography>
                     </Box>
                 }
             </Box>
@@ -213,7 +213,7 @@ const NewPost = () => {
                     {message}
                 </UniAlert>
             }
-            <Box mb={3}><hr /></Box>
+            <Box mt={3} mb={3}><hr /></Box>
         </Box>
     );
 };

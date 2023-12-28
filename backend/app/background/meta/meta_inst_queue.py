@@ -66,6 +66,8 @@ class MetaInstQueue:
                                                                         }
                                                 )
             except Exception as e:
+                print("Exception in send_all: ", str(e))
+                logger.error(f"Exception in send_all: {str(e)}")
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],
                                                  "post_result": json.dumps({"success": False, "msg": str(e),
