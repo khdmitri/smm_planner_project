@@ -310,9 +310,11 @@ const Page = ({params}) => {
                 </Button>
             }
             {showMessage &&
+                <Box mb={3} mt={3}>
                     <UniAlert severity={severity}>
                         {message}
                     </UniAlert>
+                </Box>
                 }
         </Box>
     );

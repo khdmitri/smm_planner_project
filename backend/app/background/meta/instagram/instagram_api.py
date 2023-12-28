@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 import os.path
@@ -13,6 +14,8 @@ from app.schemas.post_file import PostFile
 logger = get_logger(logging.INFO)
 
 INSTAGRAM_BASE_URL = settings.INSTAGRAM_BASE_URL
+CHECK_ATTEMPTS = 10
+WAIT_INTERVAL = 30 #seconds
 
 
 class InstagramApi:
@@ -65,22 +68,80 @@ class InstagramApi:
                         return res
 
     @staticmethod
+    async def _check_container_status(session: AsyncClient, container_id):
+        params = {
+            "fields": "status_code",
+        }
+        status = {
+            "success": False,
+            "message": "Before checking"
+        }
+        for i in range(CHECK_ATTEMPTS):
+            await asyncio.sleep(WAIT_INTERVAL)
+            res = await session.get(os.path.join(INSTAGRAM_BASE_URL, str(container_id)), params=params)
+            if res.status_code not in [200, 201]:
+                status = {
+                    "success": False,
+                    "message": f"Server returns wrong status code {res.status_code} with the message {res.text.encode('utf-8')}"
+                }
+                break
+            else:
+                answer = json.loads(res.text)
+                if isinstance(answer, dict):
+                    if answer["status_code"] in ["FINISHED"]:
+                        status = {
+                            "success": True,
+                            "message": f"{answer['id']}"
+                        }
+                        break
+                    elif answer["status_code"] in ["EXPIRED", "ERROR", "PUBLISHED"]:
+                        status = {
+                            "success": False,
+                            "message": f"Unprocessable status received: {answer['status_code']}"
+                        }
+                        break
+                    elif answer["status_code"] in ["IN_PROGRESS"]:
+                        status = {
+                            "success": True,
+                            "message": f"Still in progress...#{str(i)}"
+                        }
+                    else:
+                        status = {
+                            "success": False,
+                            "message": f"Unknown status received: {answer['status_code']}"
+                        }
+                        break
+            logger.info(f"Function was not complete: {str(status)}")
+        return status
+
+    @staticmethod
     async def _publish_container(session: AsyncClient, container_id, ig_config: InstagramConfig):
         params = {
             "access_token": ig_config.marker_token,
             "creation_id": int(container_id),
         }
-        res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media_publish"), params=params)
-        if res.status_code in [200, 201]:
-            return {
-                "success": True,
-                "message": "Container was successfully published"
-            }
+        container_validation = await InstagramApi._check_container_status(session, int(container_id))
+        if isinstance(container_validation, dict):
+            if container_validation["success"]:
+                res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media_publish"),
+                                         params=params)
+                if res.status_code in [200, 201]:
+                    return {
+                        "success": True,
+                        "message": "Container was successfully published"
+                    }
+                else:
+                    logger.error(f"Wrong result: {str(res)}")
+                    return {
+                        "success": False,
+                        "message": f"Server returned status code {res.status_code} and text {res.text.encode('utf-8')}"
+                    }
+            else:
+                return container_validation
         else:
-            logger.error(f"Wrong result: {str(res)}")
             return {
                 "success": False,
-                "message": f"Server returned status code {res.status_code} and text {res.text.encode('utf-8')}"
+                "message": f"Check container fails: {str(container_validation)}"
             }
 
     @staticmethod
