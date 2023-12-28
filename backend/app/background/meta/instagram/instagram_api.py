@@ -68,9 +68,10 @@ class InstagramApi:
                         return res
 
     @staticmethod
-    async def _check_container_status(session: AsyncClient, container_id):
+    async def _check_container_status(session: AsyncClient, container_id, ig_config):
         params = {
             "fields": "status_code",
+            "access_token": ig_config.marker_token,
         }
         status = {
             "success": False,
@@ -120,7 +121,7 @@ class InstagramApi:
             "access_token": ig_config.marker_token,
             "creation_id": int(container_id),
         }
-        container_validation = await InstagramApi._check_container_status(session, int(container_id))
+        container_validation = await InstagramApi._check_container_status(session, int(container_id), ig_config)
         if isinstance(container_validation, dict):
             if container_validation["success"]:
                 res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media_publish"),

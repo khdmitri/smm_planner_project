@@ -2,3 +2,8 @@
 docker volume prune -a
 # Docker volume location on ubuntu 20.04
 /var/lib/docker/volumes
+# remove container
+docker container rm 94d99d738f81
+# delete volume
+docker volume ls # volume list
+docker volume rm adasdasd
