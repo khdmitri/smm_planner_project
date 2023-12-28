@@ -24,6 +24,7 @@ const NewPost = () => {
     const [htmlText, setHtmlText] = useState("")
     const [plainText, setPlainText] = useState("")
     const [isCreated, setIsCreated] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [files, setFiles] = useState([])
     const [video_url, setVideoUrl] = useState("")
     const [user, setUser] = useState()
@@ -57,7 +58,7 @@ const NewPost = () => {
 
     const onNewPost = async (event) => {
         event.preventDefault();
-        console.log("Submit event:", event)
+        setIsLoading(true)
         const data = new FormData(event.currentTarget);
         if (user) {
             data.append("markdown_text", convertPureMarkdown(markdown))
@@ -70,11 +71,13 @@ const NewPost = () => {
             await PostAPI.newPost(data, sessionStorage.getItem("access-token")).then(res => {
                 setPost(res.data)
                 setIsCreated(true)
+                setIsLoading(false)
                 setShowMessage(true)
                 setMessage(`Post was successfully created!`)
                 setSeverity("success")
             }).catch(error => {
                 console.log(error)
+                setIsLoading(false)
                 setShowMessage(true)
                 setMessage(`Error: ${error.response && error.response.data ? error.response.data.detail : "Unknown"}`)
                 setSeverity("error")
@@ -118,11 +121,6 @@ const NewPost = () => {
 
     return (
         <Box pb={3}>
-            {showMessage &&
-                <UniAlert severity={severity}>
-                    {message}
-                </UniAlert>
-            }
             <Typography variant="h5" color="primary" sx={{marginTop: 2, marginBottom: 0}}>
                 Text Description*
             </Typography>
@@ -193,8 +191,13 @@ const NewPost = () => {
                         </TabPanel>
                     </TabContext>
                 </Box>
-                {!isCreated &&
+                {!isCreated && !isLoading &&
                     <Button sx={{marginTop: 2}} type="submit" variant="contained">Create New Post</Button>
+                }
+                {isLoading &&
+                    <Box component="h4" color="success">
+                        The post is loading to server, please, wait...
+                    </Box>
                 }
             </Box>
             {isCreated &&
@@ -204,6 +207,11 @@ const NewPost = () => {
                     <Button m={1} type="button" color="secondary" onClick={resetPage} variant="outlined">Create Next
                         Post</Button>
                 </Box>
+            }
+            {showMessage &&
+                <UniAlert severity={severity}>
+                    {message}
+                </UniAlert>
             }
         </Box>
     );

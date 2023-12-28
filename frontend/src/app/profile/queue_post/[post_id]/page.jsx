@@ -252,11 +252,6 @@ const Page = ({params}) => {
                         onClick={() => router.push("/profile/posts_list")}>
                     Back to post list
                 </Button>
-                {showMessage &&
-                    <UniAlert severity={severity}>
-                        {message}
-                    </UniAlert>
-                }
             </Box>
             <Box sx={{width: '100%', typography: 'body1'}}>
                 <TabContext value={value ? value : "None"}>
@@ -314,6 +309,11 @@ const Page = ({params}) => {
                     Check Post Queue
                 </Button>
             }
+            {showMessage &&
+                    <UniAlert severity={severity}>
+                        {message}
+                    </UniAlert>
+                }
         </Box>
     );
 };

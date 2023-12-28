@@ -68,7 +68,7 @@ class InstagramApi:
     async def _publish_container(session: AsyncClient, container_id, ig_config: InstagramConfig):
         params = {
             "access_token": ig_config.marker_token,
-            "creation_id": container_id,
+            "creation_id": int(container_id),
         }
         res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media_publish"), params=params)
         if res.status_code in [200, 201]:
@@ -80,7 +80,7 @@ class InstagramApi:
             logger.error(f"Wrong result: {str(res)}")
             return {
                 "success": False,
-                "message": f"Server returned status code {res.status_code} and text {res.text}"
+                "message": f"Server returned status code {res.status_code} and text {res.text.encode('utf-8')}"
             }
 
     @staticmethod
@@ -95,13 +95,13 @@ class InstagramApi:
             return {
                 "success": True,
                 "message": "Ring container was successfully created",
-                "text": res.text
+                "text": res.text.encode("utf-8")
             }
         else:
             logger.error(f"Wrong result: {str(res)}")
             return {
                 "success": False,
-                "message": f"Server returned status code {res.status_code} and text {res.text}"
+                "message": f"Server returned status code {res.status_code} and text {res.text.encode('utf-8')}"
             }
 
     @staticmethod
@@ -122,7 +122,7 @@ class InstagramApi:
         if res.status_code in [200, 201]:
             res_dict: dict = json.loads(res.text)
             if res_dict.get("id", None) is not None:
-                setter(res_dict["id"])
+                setter(int(res_dict["id"]))
                 return {
                     "success": True,
                     "message": f"Container successfully created with id: {res_dict['id']}"
@@ -137,7 +137,7 @@ class InstagramApi:
             logger.error(f"Wrong result: {str(res)}")
             return {
                 "success": False,
-                "message": f"Status code: {res.status_code}, text: {res.text}"
+                "message": f"Status code: {res.status_code}, text: {res.text.encode('utf-8')}"
             }
 
 
