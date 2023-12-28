@@ -100,13 +100,13 @@ class InstagramApi:
                             "message": f"{answer['id']}"
                         }
                         break
-                    elif answer["status_code"] in ["EXPIRED", "ERROR", "PUBLISHED"]:
+                    elif answer["status_code"] in ["EXPIRED", "PUBLISHED"]:
                         status = {
                             "success": False,
                             "message": f"Unprocessable status received: {answer['status_code']}"
                         }
                         break
-                    elif answer["status_code"] in ["IN_PROGRESS"]:
+                    elif answer["status_code"] in ["IN_PROGRESS", "ERROR", ]:
                         status = {
                             "success": True,
                             "message": f"Still in progress...#{str(i)}"
