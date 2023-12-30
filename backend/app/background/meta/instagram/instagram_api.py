@@ -47,9 +47,10 @@ class InstagramApi:
                             db_item, caption, True)
                     if len(containers) > 1:
                         res = await InstagramApi._create_ring_container(session, ig_config, containers.copy())
+                        print("Received answer from _create_ring_container:", str(res))
                         if isinstance(res, dict):
                             if res["success"]:
-                                container_id = json.loads(res["text"]["id"])
+                                container_id = json.loads(res["text"])["id"]
                                 return await InstagramApi._publish_container(session, container_id, ig_config)
                             else:
                                 return res
