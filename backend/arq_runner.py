@@ -2,6 +2,7 @@ import asyncio
 import logging
 import os
 
+import httpx
 from arq import create_pool, cron
 from arq.connections import RedisSettings
 from dotenv import load_dotenv
@@ -55,7 +56,8 @@ async def regular_check(ctx):
 
 async def startup(ctx):
     logger.info("---STARTUP---")
-    ctx['session'] = AsyncClient()
+    timeout = httpx.Timeout(60.0, connect=30.0)
+    ctx['session'] = AsyncClient(timeout=timeout)
 
 
 async def shutdown(ctx):
