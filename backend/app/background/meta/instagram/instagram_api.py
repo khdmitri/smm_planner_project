@@ -164,7 +164,7 @@ class InstagramApi:
         params = {
             "access_token": ig_config.marker_token,
             "media_type": "CAROUSEL",
-            "children": ids
+            "children": ",".join(ids)
         }
         res = await session.post(os.path.join(INSTAGRAM_BASE_URL, ig_config.chat_id, "media"), params=params)
         if res.status_code in [200, 201]:
