@@ -160,8 +160,9 @@ const NewPost = () => {
                         </Box>
                         <TabPanel value="Disk">
                             <DropzoneArea
-                                acceptedFiles={[".jpeg", ".png", ".mp4"]}
+                                acceptedFiles={[".jpg", ".jpeg", ".png", ".mp4"]}
                                 maxFileSize={104857600}
+                                filesLimit={10}
                                 getPreviewIcon={handlePreviewIcon}
                                 onChange={(files) => {
                                     setFiles(files)
@@ -196,7 +197,7 @@ const NewPost = () => {
                 }
                 {isLoading &&
                     <Box>
-                        <Typography variant="body2" color="success" mb={3} pt={3}>The post is loading to server, please, wait...</Typography>
+                        <Typography variant="body2" color="text.success" mb={3} pt={3}>The post is loading to server, please, wait...</Typography>
                     </Box>
                 }
             </Box>

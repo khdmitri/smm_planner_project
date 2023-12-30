@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import re
+import traceback
 from datetime import datetime
 from typing import List
 
@@ -67,7 +68,7 @@ class MetaInstQueue:
                                                                         }
                                                 )
             except Exception as e:
-                print("Exception in send_all: ", str(e))
+                print("Exception in send_all: ", traceback.format_exc())
                 # logger.error(f"Exception in send_all: {str(e)}")
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],

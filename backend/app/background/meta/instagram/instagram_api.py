@@ -2,6 +2,7 @@ import asyncio
 import json
 import logging
 import os.path
+import traceback
 from typing import List
 
 from httpx import AsyncClient
@@ -21,56 +22,62 @@ WAIT_INTERVAL = 30 #seconds
 class InstagramApi:
     @staticmethod
     async def send_files(session: AsyncClient, ig_config: InstagramConfig, caption, db_data: List[PostFile]):
-        containers: List[str] = []
-        server_media_base_url = settings.SERVER_API_URL
+        try:
+            for db_item in db_data:
+                print("Start to process PostFile: ", db_item.id)
+            containers: List[str] = []
+            server_media_base_url = settings.SERVER_API_URL
 
-        def add_2_container(new_item):
-            containers.append(new_item)
+            def add_2_container(new_item):
+                containers.append(new_item)
 
-        media_count = len(db_data)
-        if media_count < 1:
-            logger.warning("IG: no media files were found...")
-            return {
-                "success": False,
-                "message": "No media files found"
-            }
-        else:
-            if media_count > 1:
-                for db_item in db_data:
-                    await InstagramApi._create_container(
+            media_count = len(db_data)
+            if media_count < 1:
+                logger.warning("IG: no media files were found...")
+                return {
+                    "success": False,
+                    "message": "No media files found"
+                }
+            else:
+                if media_count > 1:
+                    for db_item in db_data:
+                        await InstagramApi._create_container(
+                            session, ig_config, add_2_container,
+                            os.path.join(server_media_base_url, f"document/get_media/{db_item.id}"),
+                            db_item, caption, True)
+                    if len(containers) > 1:
+                        res = await InstagramApi._create_ring_container(session, ig_config, containers.copy())
+                        if isinstance(res, dict):
+                            if res["success"]:
+                                container_id = json.loads(res["text"]["id"])
+                                return await InstagramApi._publish_container(session, container_id, ig_config)
+                            else:
+                                return res
+                        else:
+                            logger.error(f"Unprocessed error: {str(res)}")
+                            return {
+                                "success": False,
+                                "message": "Unprocessed error"
+                            }
+                else:
+                    res = await InstagramApi._create_container(
                         session, ig_config, add_2_container,
-                        os.path.join(server_media_base_url, f"document/get_media/{db_item.id}"),
-                        db_item, caption, True)
-                if len(containers) > 1:
-                    res = await InstagramApi._create_ring_container(session, ig_config, containers.copy())
+                        os.path.join(server_media_base_url, f"document/get_media/{db_data[0].id}"),
+                        db_data[0], caption)
                     if isinstance(res, dict):
                         if res["success"]:
-                            container_id = json.loads(res["text"]["id"])
-                            return await InstagramApi._publish_container(session, container_id, ig_config)
+                            return await InstagramApi._publish_container(session, containers[0], ig_config)
                         else:
+                            logger.error(f"Wrong result: {str(res)}")
                             return res
                     else:
-                        logger.error(f"Unprocessed error: {str(res)}")
                         return {
                             "success": False,
                             "message": "Unprocessed error"
                         }
-            else:
-                res = await InstagramApi._create_container(
-                    session, ig_config, add_2_container,
-                    os.path.join(server_media_base_url, f"document/get_media/{db_data[0].id}"),
-                    db_data[0], caption)
-                if isinstance(res, dict):
-                    if res["success"]:
-                        return await InstagramApi._publish_container(session, containers[0], ig_config)
-                    else:
-                        logger.error(f"Wrong result: {str(res)}")
-                        return res
-                else:
-                    return {
-                        "success": False,
-                        "message": "Unprocessed error"
-                    }
+        except Exception:
+            print("Error in InstagramApi.send_files")
+            print(traceback.format_exc())
 
     @staticmethod
     async def _check_container_status(session: AsyncClient, container_id, ig_config):
@@ -197,13 +204,13 @@ class InstagramApi:
                     "message": f"Container successfully created with id: {res_dict['id']}"
                 }
             else:
-                logger.error(f"Wrong result: {str(res)}")
+                print(f"Wrong result: {str(res)}")
                 return {
                     "success": False,
                     "message": "No ID attribute found"
                 }
         else:
-            logger.error(f"Wrong result: {str(res)}")
+            print(f"Wrong result: {str(res)}")
             return {
                 "success": False,
                 "message": f"Status code: {res.status_code}, text: {res.text.encode('utf-8')}"
