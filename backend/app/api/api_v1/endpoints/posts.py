@@ -24,6 +24,7 @@ async def new_post(
         json_text: Optional[str] = Form(None),
         html_text: Optional[str] = Form(None),
         plain_text: Optional[str] = Form(None),
+        video_url: Optional[str] = Form(None),
         files: List[UploadFile] = Form(None),
         db: AsyncSession = Depends(get_db_async),
         current_user: models.User = Depends(deps.get_current_user)
@@ -48,13 +49,15 @@ async def new_post(
 
     try:
         # Create New Post
+        print("VideoURL=", video_url)
         new_post = PostCreate(
             user_id=current_user.id,
             title=title,
             markdown_text=markdown_text,
             json_text=json.loads(json_text),
             html_text=html_text,
-            plain_text=plain_text
+            plain_text=plain_text,
+            video_url=video_url
         )
         new_post = await crud_post_inst.create(db, obj_in=new_post)
 

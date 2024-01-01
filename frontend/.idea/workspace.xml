@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: docker">
-      <change afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/docs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/docs/privacy/privacy_en.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/app/docs/redis.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/docs/sn_config/meta/fb.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/docs/sn_config/tg/tg.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../backend/docs/sn_config/vk/vk.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/new_post_test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/footer/telegram.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/document/privacy/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/alembic/env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/0bde486277c7_first_db_creation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/0dedceacc042_first_db_creation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/0fe56545079e_first_db_creation.py" beforeDir="false" />
@@ -43,36 +32,11 @@
       <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/e26a67f6b96d_first_db_creation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/e5bd973853dc_first_db_creation.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/fb789a3c8831_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/facebook_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/facebook_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/telegram_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/vk_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/background/meta/meta_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/meta/meta_queue.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/app/background/telegram/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/telegram/telegram_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/vk/vk_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/core/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/core/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/docs/telegram_bot.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/docs/telegram_bot.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/models/facebook_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/facebook_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/models/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/telegram_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/models/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/vk_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/facebook_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/facebook_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/telegram_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/vk_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/vk_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/arq_runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/arq_runner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/g4f/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/g4f/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/poetry.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/post.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Footer/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Mentor/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Mentor/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/queue_post/[post_id]/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +66,7 @@
   <component name="ProjectId" id="2UWH9i6F6RssgBNKAiqOiSEF1fH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -109,6 +74,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -125,11 +91,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\smm_planner_project\frontend\src\app\profile\config" />
       <recent name="C:\projects\smm_planner_project\frontend\public\assets\footer" />
       <recent name="C:\projects\smm_planner_project\frontend\src\lib" />
       <recent name="C:\projects\smm_planner_project\frontend\public\assets\carousel" />
       <recent name="C:\projects\smm_planner_project\frontend\src" />
-      <recent name="C:\projects\smm_planner_project\frontend\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projects\smm_planner_project\frontend\src\app" />
@@ -201,7 +167,13 @@
       <workItem from="1702439926686" duration="10773000" />
       <workItem from="1702688317919" duration="1473000" />
       <workItem from="1702717809757" duration="1189000" />
-      <workItem from="1702875583389" duration="1437000" />
+      <workItem from="1702875583389" duration="3144000" />
+      <workItem from="1702962452819" duration="1814000" />
+      <workItem from="1703045066072" duration="1818000" />
+      <workItem from="1703126272659" duration="638000" />
+      <workItem from="1703379760303" duration="3134000" />
+      <workItem from="1703488142603" duration="16235000" />
+      <workItem from="1704117562163" duration="1596000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -350,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700105659220</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="BE&amp;FE: docker">
+      <created>1703379888732</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1703379888732</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,6 +347,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="FE&amp;BE: sign up" />
     <MESSAGE value="FE&amp;BE: sign up v.2" />
     <MESSAGE value="FE&amp;BE: sign up &amp; sign in. Start profile design" />
@@ -386,6 +366,7 @@
     <MESSAGE value="BE&amp;FE: User profile, day 2" />
     <MESSAGE value="FE: docker version 3" />
     <MESSAGE value="FE: docker re-build" />
-    <option name="LAST_COMMIT_MESSAGE" value="FE: docker re-build" />
+    <MESSAGE value="BE&amp;FE: docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: docker" />
   </component>
 </project>

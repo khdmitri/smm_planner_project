@@ -22,6 +22,7 @@ BASE_FILE_DIRECTORY = MEDIA_ROOT_DIR
 # FILE_BASE_PATH = "./queries"
 
 logger = get_logger(logging.INFO)
+SUPPORTED_VIDEO_FORMATS = (".mp4", ".avi", )
 
 
 class TelegramQueue:
@@ -33,8 +34,12 @@ class TelegramQueue:
         self._session = AiohttpSession()
         self.bot = Bot(token=settings.TELEGRAM_BOT_TOKEN, parse_mode="HTML", session=self._session)
 
-    def _format_html(self, text, title):
-        text = "<b>"+title+"</b>\n\n"+text
+    def _format_html(self, text, title, link=None):
+        title = "<b>"+title+"</b>\n\n"
+        if link is not None:
+            text = title + link + link + "\n" + text
+        else:
+            text = title + text
         text = re.sub(r"(<p.*?>)", "", text)
         text = re.sub(r"(<\/p.*?>)", "\n", text)
         text = re.sub(r"(<\/?span.*?>)", "", text)
@@ -46,12 +51,23 @@ class TelegramQueue:
     async def close(self):
         await self._session.close()
 
+    @staticmethod
+    def _check_video_type(link: str):
+        if not link:
+            return None, None
+        else:
+            if link.endswith(SUPPORTED_VIDEO_FORMATS):
+                return link, None
+            else:
+                return None, link
+
     async def send_all(self):
         stmt = read_query(os.path.join(FILE_BASE_PATH, "queue.sql"))
         posts: List[Record] = await database_instance.fetch_rows(stmt)
         for post in posts:
             try:
-                formatted_text = self._format_html(post["text"], post["title"])
+                video_url, video_embed = TelegramQueue._check_video_type(post["link"])
+                formatted_text = self._format_html(post["text"], post["title"], video_embed)
                 stmt = read_query(os.path.join(FILE_BASE_PATH, "postfiles.sql"))
                 postfiles: List[Record] = await database_instance.fetch_rows(stmt, {"post_id": post["post_id"]})
                 media_group = []
@@ -63,7 +79,7 @@ class TelegramQueue:
                     media_group.append(filepath)
 
                 await self._send_media_group(post["chat_id"], markdown_text=formatted_text, filenames=media_group,
-                                             content_type=content_type, video_url=post["link"])
+                                             content_type=content_type, video_url=video_url)
                 await database_instance.execute(self.INSERT_IS_POSTED,
                                                 {"post_id": post["id"],
                                                  "post_result": json.dumps({"success": True,

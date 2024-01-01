@@ -65,6 +65,7 @@ const NewPost = () => {
             data.append("json_text", JSON.stringify(jsonText))
             data.append("html_text", htmlText)
             data.append("plain_text", plainText)
+            data.append("video_url", video_url)
             if (files.length > 0)
                 files.map(file => data.append("files", file))
             console.log("Form Data:", data)

@@ -33,6 +33,7 @@ class Post(Base):
 
 
 class PostFile(Base):
+    __mapper_args__ = {'confirm_deleted_rows': False}
     id: Mapped[int] = mapped_column(primary_key=True)
     filepath: Mapped[str] = mapped_column(String, index=True)
     content_type: Mapped[str] = mapped_column(String)
