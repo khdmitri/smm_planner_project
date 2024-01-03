@@ -1,0 +1,3 @@
+STYLES = [
+    "KANDINSKY", "UHD", "ANIME", "DEFAULT"
+]

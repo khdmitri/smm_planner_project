@@ -18,6 +18,7 @@ import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
 import QueueIcon from '@mui/icons-material/Queue';
 import AssistantIcon from '@mui/icons-material/Assistant';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import FlipCameraIosIcon from '@mui/icons-material/FlipCameraIos';
 
 const MenuList = (props) => {
     const {open} = props
@@ -68,7 +69,8 @@ const MenuList = (props) => {
                     {text: 'New Post', icon: <PostAddIcon/>, route: '/profile/new_post'},
                     {text: 'Posts', icon: <DynamicFeedIcon/>, route: '/profile/posts_list'},
                     {text: 'Queue', icon: <QueueIcon/>, route: '/profile/queue_post'},
-                    {text: 'AI Assistant', icon: <AssistantIcon/>, route: '/profile/assistant'}
+                    {text: 'AI Assistant Text', icon: <AssistantIcon/>, route: '/profile/assistant'},
+                    {text: 'AI Assistant Image', icon: <FlipCameraIosIcon/>, route: '/profile/image_assistant'}
                 ]
                     .map((item, index) => (
                         renderListItem(item)

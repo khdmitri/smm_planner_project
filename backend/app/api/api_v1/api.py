@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.api_v1.endpoints import login, users, posts, telegram_config, telegram_queue, facebook_config, \
-    facebook_queue, vk_config, vk_queue, chatgpt, docs, instagram_config, instagram_queue
+    facebook_queue, vk_config, vk_queue, chatgpt, docs, instagram_config, instagram_queue, text2image
 
 api_router = APIRouter()
 api_router.include_router(login.router, tags=["login"])
@@ -17,3 +17,4 @@ api_router.include_router(vk_config.router, prefix="/vk_config", tags=["vk_confi
 api_router.include_router(vk_queue.router, prefix="/vk_queue", tags=["vk_queue"])
 api_router.include_router(chatgpt.router, prefix="/chat", tags=["chat"])
 api_router.include_router(docs.router, prefix="/document", tags=["document"])
+api_router.include_router(text2image.router, prefix="/text2image", tags=["text2image"])

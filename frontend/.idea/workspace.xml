@@ -2,41 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: docker">
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/0bde486277c7_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/0dedceacc042_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/0fe56545079e_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/1a9318f21e8b_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/2be15bf86d4d_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/5cc2327ce0b9_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/642b433cdd6e_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/666a34a0a34c_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/768e274d8ab8_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/7ff6412f3869_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/81fe0dabe474_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/8f910f9d0719_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/8ff07b363b81_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/9447b13f70e3_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/991036d47df5_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/9a86c02350a1_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/9d526c61dca2_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/a3ef727cdf02_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/aa65a6870dbe_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/ae8ee6800d5f_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/b36c955db40b_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/bc332349993a_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/bf271bf9ab24_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/c68273ca9fc4_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/c7a3ed9690f2_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/c95ff3864e83_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/d95b7b3f658f_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/e26a67f6b96d_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/e5bd973853dc_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/alembic/versions/fb789a3c8831_first_db_creation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/posts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/background/telegram/telegram_queue.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/background/telegram/telegram_queue.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/models/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/models/post.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/text2image.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/fusionbrain_ai_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/image_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/kandinsky/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/kandinsky/fusionbrain.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/docs/ai/fusionbrain.ai.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/profile/(components)/ai_assistant_image_form.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/profile/image_assistant/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/new_post/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(schemes)/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(schemes)/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/(components)/menu_list.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/chat.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +151,7 @@
       <workItem from="1703126272659" duration="638000" />
       <workItem from="1703379760303" duration="3134000" />
       <workItem from="1703488142603" duration="16235000" />
-      <workItem from="1704117562163" duration="1596000" />
+      <workItem from="1704117562163" duration="10896000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>

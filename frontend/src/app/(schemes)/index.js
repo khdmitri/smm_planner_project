@@ -25,6 +25,15 @@ const tlgConfigFormSchema = yup.object().shape({
     days: yup.number().required().min(0).max(31).default(0),
 })
 
+const aiAssistantImageFormSchema = yup.object().shape({
+    prompt: yup.string().required("Required").min(8).max(999),
+    negative_prompt_unclip: yup.string().default(""),
+    num_images: yup.number().required().min(1).max(4).default(1),
+    width: yup.number().required().min(128).max(1024).default(2048),
+    height: yup.number().required().min(128).max(1024).default(2048),
+    style: yup.string().required().oneOf(["DEFAULT", "KANDINSKY", "ANIME", "UHD"])
+})
+
 const fbConfigFormSchema = yup.object().shape({
     chat_id: yup.string().required("Required"),
     marker_token: yup.string().required("Required"),
@@ -55,4 +64,5 @@ const resetPasswordFormSchema = yup.object().shape({
         .required("Required")
 })
 
-export {signupFormSchema, tlgConfigFormSchema, resetPasswordFormSchema, fbConfigFormSchema, vkConfigFormSchema};
+export {signupFormSchema, tlgConfigFormSchema, resetPasswordFormSchema, fbConfigFormSchema, vkConfigFormSchema,
+    aiAssistantImageFormSchema};
