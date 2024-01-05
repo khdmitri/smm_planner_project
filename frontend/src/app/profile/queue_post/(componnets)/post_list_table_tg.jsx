@@ -1,7 +1,7 @@
 "use client"
 
 import {DataGrid} from '@mui/x-data-grid';
-import {Box, IconButton, Typography} from "@mui/material";
+import {Alert, Box, IconButton, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../../../../styles/data-grid.css';
 import CheckIcon from '@mui/icons-material/Check';
@@ -17,26 +17,17 @@ const get_columns = (deleteFunc) =>
         {
             field: 'if_posted',
             headerName: 'POSTED',
-            width: 120,
+            width: 100,
             align: "center",
             headerClassName: 'data-grid-header',
             renderCell: (params) => {
                 if (params.row.is_posted)
                     return (
                         <Box>
-                            <CheckIcon color="success"/>
                             {params.row.post_result &&
                                 <Box>
-                                    <Typography variant="h5">
-                                        <strong>Success:</strong>
+                                    <Typography component="p" variant="body2">
                                         {params.row.post_result.success ?
-                                            <CheckIcon color="success"/> :
-                                            <CloseIcon color="warning"/>
-                                        }
-                                    </Typography>
-                                    <Typography variant="h5">
-                                        <strong>When:</strong>
-                                        {params.row.post_result.when ?
                                             <CheckIcon color="success"/> :
                                             <CloseIcon color="warning"/>
                                         }
@@ -46,7 +37,7 @@ const get_columns = (deleteFunc) =>
                         </Box>
                     )
                 else
-                    return <CloseIcon color="warning"/>
+                    return "-"
             },
         },
         {
@@ -61,28 +52,33 @@ const get_columns = (deleteFunc) =>
             }
         },
         {
+            field: 'message',
+            headerName: 'Server Message',
+            sortable: false,
+            width: 250,
+            align: "center",
+            headerAlign: "center",
+            headerClassName: 'data-grid-header',
+            renderCell: (params) => (
+                <Box>
+                    <textarea readOnly={true}>
+                        {params.row.post_result.msg ? params.row.post_result.msg : "-"}
+                    </textarea>
+                </Box>
+            )
+        },
+        {
             field: 'action',
             headerName: 'ACTION',
             sortable: false,
-            width: 200,
+            width: 100,
+            align: "center",
             headerAlign: "center",
             headerClassName: 'data-grid-header',
             renderCell: (params) => (
                 <Box display="flex" justifyContent="right" alignItems="center">
                     <IconButton aria-label="delete" size="large" onClick={() => deleteFunc(params.row.id)}>
                         <DeleteIcon color="warning"/>
-                    </IconButton>
-                    <Typography variant="span">
-                        &nbsp;|&nbsp;
-                    </Typography>
-                    <IconButton aria-label="edit" size="large" onClick={() => editFunc(params.row.id)}>
-                        <EditIcon/>
-                    </IconButton>
-                    <Typography variant="span">
-                        &nbsp;|&nbsp;
-                    </Typography>
-                    <IconButton aria-label="queue" size="large" onClick={() => queuedFunc(params.row.id)}>
-                        <SendIcon color="info"/>
                     </IconButton>
                 </Box>
             )
@@ -113,6 +109,7 @@ export default function PostListTableTg(props) {
     return (
         <div style={{height: 500, width: '100%'}}>
             <DataGrid
+                rowHeight={104}
                 rows={get_rows(data)}
                 columns={get_columns(deleteFunc)}
                 initialState={{

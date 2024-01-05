@@ -12,11 +12,10 @@ class CRUDInstagramQueue(CRUDBase[InstagramQueue, InstagramQueueCreate, Instagra
     async def get_multi_by_user(self, db: AsyncSession, *, user_id: int) -> Optional[List[InstagramQueue]]:
         result = await db.execute(select(
             InstagramQueue).filter(
-            InstagramQueue.user_id == user_id,
-            InstagramQueue.is_posted.is_(False)).group_by(
-            InstagramQueue.when
+            InstagramQueue.user_id == user_id).order_by(
+            InstagramQueue.when.desc()
         ).limit(100))
-        return result.scalars().first()
+        return result.scalars().all()
 
     async def get_max_date(self, db: AsyncSession, *, user_id: int, config_id: int):
         result = await db.execute(select(func.max(InstagramQueue.when)).filter(

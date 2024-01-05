@@ -23,7 +23,7 @@ async def read_queues(
     Retrieve queues.
     """
     posts = await crud_facebook_queue.get_multi_by_user(db, user_id=current_user.id)
-    return posts
+    return posts if posts is not None else []
 
 
 @router.get("/max_date/{config_id}", response_model=schemas.PostDate)

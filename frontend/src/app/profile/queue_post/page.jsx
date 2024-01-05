@@ -22,6 +22,7 @@ const PostList = () => {
     const postList = async () => {
         await QueueAPI.getTelegramPosts(sessionStorage.getItem("access-token")).then(res => {
             setDataTg(res.data)
+            console.log("Tg Data:", res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -29,6 +30,7 @@ const PostList = () => {
         })
         await QueueAPI.getFacebookPosts(sessionStorage.getItem("access-token")).then(res => {
             setDataFb(res.data)
+            console.log("Fb Data:", res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -36,6 +38,7 @@ const PostList = () => {
         })
         await QueueAPI.getInstagramPosts(sessionStorage.getItem("access-token")).then(res => {
             setDataIg(res.data)
+            console.log("IG Data:", res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -43,6 +46,7 @@ const PostList = () => {
         })
         await QueueAPI.getVkPosts(sessionStorage.getItem("access-token")).then(res => {
             setDataVk(res.data)
+            console.log("VK Data:", res.data)
         }).catch(error => {
             setShowMessage(true)
             setMessage(error.data && error.data.detail ? error.data.detail : error.message)
@@ -129,7 +133,7 @@ const PostList = () => {
                 </Box>
                 <CardContent>
                     <Box sx={{width: '100%', typography: 'body1'}}>
-                        <TabContext value={value ? value : "None"}>
+                        <TabContext value={value ? value : "telegram"}>
                             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                                 <TabList onChange={handleChange} aria-label="queued tabs">
                                     {["telegram", "facebook", "instagram", "vk"].map(name =>
@@ -140,18 +144,18 @@ const PostList = () => {
                                 </TabList>
                             </Box>
                             {["telegram", "facebook", "instagram", "vk"].map(name =>
-                                <TabPanel value={name.toUpperCase()} key={name}>
+                                <TabPanel value={name} key={name}>
                                     {name === "telegram" &&
-                                        <PostListTableTg data={dataTg} deleteFunc={deleteFuncTg} />
+                                        <PostListTableTg data={dataTg} deleteFunc={deleteFuncTg}/>
                                     }
                                     {name === "facebook" &&
-                                        <PostListTableTg data={dataFb} deleteFunc={deleteFuncFb} />
+                                        <PostListTableTg data={dataFb} deleteFunc={deleteFuncFb}/>
                                     }
                                     {name === "instagram" &&
-                                        <PostListTableTg data={dataIg} deleteFunc={deleteFuncIg} />
+                                        <PostListTableTg data={dataIg} deleteFunc={deleteFuncIg}/>
                                     }
                                     {name === "vk" &&
-                                        <PostListTableTg data={dataVk} deleteFunc={deleteFuncVk} />
+                                        <PostListTableTg data={dataVk} deleteFunc={deleteFuncVk}/>
                                     }
                                 </TabPanel>
                             )
