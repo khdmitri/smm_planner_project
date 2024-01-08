@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="BE&amp;FE: docker">
-      <change afterPath="$PROJECT_DIR$/src/app/landing/auth/signin/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/landing/auth/signup/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/landing/components/Authorization/signin.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/landing/components/Authorization/signup.tsx" afterDir="false" />
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: signin, signup for mobile devices">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Drawerdata.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Drawerdata.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Registerdialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/components/Navbar/Signdialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/auth/signin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/auth/signin/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/landing/auth/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/auth/signup/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +144,7 @@
       <workItem from="1704117562163" duration="11493000" />
       <workItem from="1704339296711" duration="672000" />
       <workItem from="1704424405739" duration="5583000" />
-      <workItem from="1704684011656" duration="5237000" />
+      <workItem from="1704684011656" duration="5977000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -305,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703379888732</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="FE: signin, signup for mobile devices">
+      <created>1704689669474</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704689669474</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,6 +345,7 @@
     <MESSAGE value="FE: docker version 3" />
     <MESSAGE value="FE: docker re-build" />
     <MESSAGE value="BE&amp;FE: docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="BE&amp;FE: docker" />
+    <MESSAGE value="FE: signin, signup for mobile devices" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE: signin, signup for mobile devices" />
   </component>
 </project>

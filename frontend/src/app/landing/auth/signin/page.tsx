@@ -9,11 +9,6 @@ const SignInPage = () => {
     const [token, setToken] = useState("");
     const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
-    const onVerify = useCallback((token) => {
-        console.log("Token=", token)
-        setToken(token);
-    }, []);
-
     return (
         <div>
             {/*<GoogleReCaptchaProvider reCaptchaKey="6LcRrt4oAAAAAC3guUTUGbAYmEjiW0pGYjBwinyO">*/}
