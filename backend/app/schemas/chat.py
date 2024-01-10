@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -19,7 +19,7 @@ class Content(BaseModel):
 class ChatRequest(BaseModel):
     conversation_id: str
     jailbreak: str
-    model: str = None
-    provider: str = None
+    model: Optional[str] = None
+    provider: Optional[str] = None
     content: Content
 

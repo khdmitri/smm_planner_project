@@ -2,18 +2,14 @@ import logging
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from starlette.requests import Request
-from starlette.responses import StreamingResponse, JSONResponse
+from starlette.responses import JSONResponse
 
 from app import models
 from app.api import deps
 from app.common.logger import get_logger
-from app.core.chatGpt.active_providers import ActiveProviders
-from app.core.chatGpt.conversation import build_messages, generate_stream
+from app.core.chatGpt.conversation import build_messages
 from app.core.chatGpt.utils import GptStateSingleton
 from app.schemas import ChatRequest
-from g4f import ChatCompletion
-from g4f.Provider import GptChatly, GPTalk, Bing, ProviderUtils
 
 router = APIRouter()
 logger = get_logger(logging.INFO)

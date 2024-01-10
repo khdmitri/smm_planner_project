@@ -1,10 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: signin, signup for mobile devices">
+    <list default="true" id="a1947889-88ea-4424-a382-37ded731d23b" name="Changes" comment="FE: signin, signup for mobile devices: bug fixes #1">
+      <change afterPath="$PROJECT_DIR$/../backend/app/chat_gpt/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/chat_gpt/completion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/chat_gpt/g4f_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/chat_gpt/others.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/app/chat_gpt/providers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/api/api_v1/endpoints/chatgpt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/core/chatGpt/active_providers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/core/chatGpt/active_providers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/app/schemas/chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/schemas/chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/AItianhu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/AItianhuSpace.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Acytoo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/AiAsk.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Aibn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Aichat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Ails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Bing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatBase.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatForAi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Chatgpt4Online.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatgptAi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatgptDemo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatgptDuo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatgptFree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatgptLogin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/ChatgptX.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Cromicle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/FreeGpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/GPTalk.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/GptChatly.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/GptForLove.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/GptGo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/GptGod.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/H2o.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Liaobots.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Myshell.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Opchatgpts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Phind.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Vercel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Ylokh.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/You.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/Yqcloud.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/base_provider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/AiService.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Aivvm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/CodeLinkAva.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/DfeHub.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/EasyChat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Equing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/FastGpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Forefront.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/GetGpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Lockchat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/V50.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Vitalentum.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Wewordle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/Wuguokai.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/deprecated/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/helper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/Bard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/HuggingChat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/OpenAssistant.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/OpenaiChat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/Raycast.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/Theb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/needs_auth/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/npm/node_modules/crypto-js/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/npm/node_modules/crypto-js/crypto-js.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/retry_provider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/unfinished/ChatAiGpt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/unfinished/Komo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/unfinished/MikuChat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/unfinished/PerplexityAi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/unfinished/TalkAi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/Provider/unfinished/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/api/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/api/run.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/cli.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/debug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/html/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/android-chrome-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/android-chrome-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/gpt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/site.webmanifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/img/user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/js/chat.v2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/js/highlight.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/js/highlightjs-copy.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/client/js/icons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/run.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/server/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/server/backend.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/server/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/server/internet.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/server/provider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/gui/server/website.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/requests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/g4f/typing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/auth/signin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/auth/signin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/landing/auth/signup/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/landing/auth/signup/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/profile/assistant/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chat/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chat/Message.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +154,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/projects/smm_planner_project/frontend/src/app/landing/auth/signup",
+    "last_opened_file_path": "C:/projects/smm_planner_project/frontend",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -144,7 +251,8 @@
       <workItem from="1704117562163" duration="11493000" />
       <workItem from="1704339296711" duration="672000" />
       <workItem from="1704424405739" duration="5583000" />
-      <workItem from="1704684011656" duration="5977000" />
+      <workItem from="1704684011656" duration="6635000" />
+      <workItem from="1704863478755" duration="2680000" />
     </task>
     <task id="LOCAL-00001" summary="FE&amp;BE: sign up">
       <created>1693223721411</created>
@@ -307,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704689669474</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="FE: signin, signup for mobile devices: bug fixes #1">
+      <created>1704690509809</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1704690509809</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +461,7 @@
     <MESSAGE value="FE: docker re-build" />
     <MESSAGE value="BE&amp;FE: docker" />
     <MESSAGE value="FE: signin, signup for mobile devices" />
-    <option name="LAST_COMMIT_MESSAGE" value="FE: signin, signup for mobile devices" />
+    <MESSAGE value="FE: signin, signup for mobile devices: bug fixes #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="FE: signin, signup for mobile devices: bug fixes #1" />
   </component>
 </project>

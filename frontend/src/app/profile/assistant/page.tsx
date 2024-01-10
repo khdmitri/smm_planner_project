@@ -101,9 +101,11 @@ const ChatGPT = () => {
                         }
                     }
                 }
+                console.log("ChatRequest", chatRequest)
                 const chat_completion = async () => {
                     await ChatAPI.conversation(chatRequest, sessionStorage.getItem("access-token"))
                         .then(async (res) => {
+                            setShowMessage(false)
                             const data = res.data
                             setHistory([...history.slice(0, history.length - 1), {
                                 role: "assistant",
@@ -120,7 +122,8 @@ const ChatGPT = () => {
                         })
                         .catch(error => {
                             console.log("ERROR:", error)
-                            console.log("HisInConversation:", history)
+                            setMessage(error.message)
+                            setShowMessage(true)
                             setHistory([...history.slice(0, history.length - 1), {
                                 role: "assistant",
                                 content: error.response && error.response.data.detail ? error.response.data.detail : "Unknown error",

@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const MessageLeft = (props) => {
-  const message = props.message ? props.message : "no message";
+  const message = props.message ? typeof props.message === 'string' || props.message instanceof String ? props.message : "Unexpected string" : "no message";
   const timestamp = props.timestamp ? props.timestamp : "";
   const displayName = props.displayName ? props.displayName : "";
   const classes = useStyles();

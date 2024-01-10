@@ -38,6 +38,7 @@ curl-cffi = "^0.5.9"
 nest-asyncio = "^1.5.8"
 watchfiles = "^0.21.0"
 py-bcrypt = "^0.4"
+g4f = "^0.1.9.9"
 
 
 [build-system]
