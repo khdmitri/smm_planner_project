@@ -26,9 +26,9 @@ function PractiseLists() {
 
     return (
         <Grid container spacing={2} display="flex" justifyContent="center">
-            <Grid item xs={12} md={6} display="flex" justifyContent="center">
-                {practiseList && Array.isArray(practiseList.data) && practiseList.data.map((practise) => (
-                    <Card sx={{maxWidth: 420}} key={practise.id}>
+            {practiseList && Array.isArray(practiseList.data) && practiseList.data.map((practise) => (
+                <Grid item xs={12} md={6} display="flex" justifyContent="center" key={practise.id}>
+                    <Card sx={{maxWidth: 420}}>
                         <YoutubeEmbed embedId={practise.file_resource_link}/>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
@@ -44,13 +44,13 @@ function PractiseLists() {
                                     <Button variant="contained" size="medium">
                                         КУПИТЬ ЗА 1999 руб.
                                     </Button>
-                                    <Chip icon={<SellIcon />} label="20%" color="error" />
+                                    <Chip icon={<SellIcon/>} label="20%" color="error"/>
                                 </Grid>
                             </Grid>
                         </CardActions>
                     </Card>
-                ))}
-            </Grid>
+                </Grid>
+            ))}
         </Grid>
     )
 }
